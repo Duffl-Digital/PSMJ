@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@font-face {
+   font-family: Elms_Sans_Bold;
+   src: url('/font/Elms_Sans/static/ElmsSans-Bold.ttf');
+   font-display: swap;
+}
+
+@font-face {
+   font-family: Elms_Medium;
+   src: url('/font/Elms_Sans/static/ElmsSans-Medium.ttf');
+   font-display: swap;
+}
+
+@font-face {
+   font-family: Elms_Light;
+   src: url('/font/Elms_Sans/static/ElmsSans-Light.ttf');
+   font-display: swap;
+}
+
+@font-face {
+   font-family: ElmsSans-Regular;
+   src: url('/font/Elms_Sans/static/ElmsSans-Regular.ttf');
+   font-display: swap;
+}
+
+.elms-sans-bold {
+  font-family: Elms_Sans_Bold;
+}
+
+.elms-sans-medium {
+  font-family: Elms_Medium;
+}
+
+.elms-sans-light {
+   font-family: Elms_Light;
+}
+
+.elms-sans-Regular {
+   font-family: ElmsSans-Regular;
+}
+
+
+@font-face {
+   font-family: Figtree-ExtraBold;
+   src: url('/font/Figtree/static/Figtree-ExtraBold.ttf');
+   font-display: swap;
+}
+
+@font-face {
+   font-family: Figtree-Bold;
+   src: url('/font/Figtree/static/Figtree-Bold.ttf');
+   font-display: swap;
+}
+
+@font-face {
+   font-family: Figtree-Light;
+   src: url('/font/Figtree/static/Figtree-Light.ttf');
+   font-display: swap;
+}
+
+@font-face {
+   font-family: Figtree-SemiBold;
+   src: url('/font/Figtree/static/Figtree-SemiBold.ttf');
+   font-display: swap;
+}
+
+@font-face {
+   font-family: Figtree-Regular;
+   src: url('/font/Figtree/static/Figtree-Regular.ttf');
+   font-display: swap;
+}
+
+.figtree-extra-light{
+ font-family: Figtree-Light;
+}
+
+.figtree-extra-bold {
+ font-family: Figtree-ExtraBold;
+}
+
+.figtree-Bold {
+   font-family: Figtree-Bold;
+}
+
+.figtree-SemiBold {
+    font-family: Figtree-SemiBold;
+}
+
+.figtree-Regular {
+     font-family: Figtree-Regular;
+}
+
+/* home scroll  */
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.timeline-card::after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #FFBF00 0%,
+    #FFFFFF 100%
+  ) 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.industries-box::after {
+  content: "";
+    background: #ffeeb9;
+    width: 101%;
+    height: 100%;
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    z-index: -1;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.end-btm-line::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 80%;
+      background: linear-gradient(#1762b7 0%, #fff 100%);
+bottom: 0;
+right: -50px;
+}
+
+.end-top-line::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 80%;
+     background: linear-gradient(#ffffff 0%, #0e61b4 100%);
+top: 0;
+right: -50px;
+}
+
+@media (max-width:1279px) {
+  .end-top-line::after, .end-btm-line::after {
+    display: none;
+  }
+}
+
+
+.about-team-swiper .swiper-button-prev,
+.about-team-swiper .swiper-button-next {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  background: #000 !important;
+  color: #fff !important;
+  border: 1px solid #000;
+  transition: all 0.3s ease;
+}
+
+.about-team-swiper .swiper-button-prev::after,
+.about-team-swiper .swiper-button-next::after {
+  font-size: 10px !important;
+   transform: scale(0.6);
+  font-weight: 700;
+}
+
+.about-team-swiper .swiper-button-prev svg {
+  scale: 0.6;
+}
+
+.about-team-swiper .swiper-button-next svg {
+  scale: 0.6;
+}
+
+.about-team-swiper .swiper-button-disabled {
+  background: #D9D9D9 !important;
+  border-color: #D9D9D9 !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+.about-team-swiper .swiper-button-prev {
+  left: 15px !important;
+}
+
+.about-team-swiper .swiper-button-next {
+  right: 15px !important;
+}
+
+.about-team-swiper .swiper-button-disabled {
+  opacity: 0.4 !important;
+  pointer-events: none;
+}
+
+/* moments & milestones  */
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #ffffff !important;
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 999px;
+  background: #ffffff !important;
+  opacity: 1;
+}
+
+body.case-study-details {
+  overflow-x: clip;
+}
