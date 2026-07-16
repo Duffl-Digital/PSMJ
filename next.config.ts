@@ -1,14 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-trailingSlash: true,  
-  output: "export",
-
+ 
   images: {
-    unoptimized: true,
+    formats: ["image/webp", "image/avif"],
   },
-
-  devIndicators: false,
 };
 
 export default nextConfig;
