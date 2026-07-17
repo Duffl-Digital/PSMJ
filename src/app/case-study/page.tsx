@@ -84,10 +84,10 @@ export default function CaseStudy() {
 
 
                 <section className="lg:pt-24 pt-10">
-                    <div className="container mx-auto px-8 lg:px-0">
+                    <div className="container mx-auto px-8 lg:px-10">
 
                         {caseStudies.map((row, index) => (
-                            <div key={row.id} className="relative lg:mb-24 lg:min-h-[320px]">
+                            <div key={row.id} className="relative lg:mb-24 lg:min-h-[320px] ">
 
                                 {/* Wave Image */}
                                 <Image
@@ -206,7 +206,7 @@ export default function CaseStudy() {
                                     </div>
 
                                     {/* Right */}
-                                    <div className="mb-10 lg:mb-0 lg:absolute -right-[0px] bottom-[50px] lg:max-w-[380px] xl:max-w-[420px] z-[999999]">
+                                    <div className="mb-10 lg:mb-0 lg:absolute lg:-right-[47px] xl:right-0 bottom-[50px] lg:max-w-[380px] xl:max-w-[420px] z-[999999]">
 
                                         <Link href={`/case-study-details?id=${row.right.id}`}>
 

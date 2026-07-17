@@ -154,17 +154,17 @@ export default function ContactPage() {
 
 
 
-    <section className="bg-white pt-8   overflow-hidden">
+    <section className="bg-white pt-8  ps-0 2xl:ps-20   overflow-hidden">
       <Header />
       <div className="pt-5 ps-0 lg:ps-20 2xl:ps-0 mx-auto container lg:max-w-none 2xl:container">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start px-5 sm:px-0">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-12 items-start px-5 sm:px-0">
 
           {/* Left */}
 
 
           <motion.div
-            className="lg:col-span-4 lg:pt-20"
+            className="xl:col-span-4 lg:pt-20 ps-5 lg:ps-0"
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -351,7 +351,7 @@ export default function ContactPage() {
           {/* Right */}
 
 
-          <div className="lg:col-span-8 relative flex flex-col items-center justify-center">
+          <div className="xl:col-span-8 relative flex flex-col items-center justify-center ps-5 md:lg-0">
 
            
             <div className="overflow-hidden"> <Image src="/images/contact/contact-banner.png" alt="Contact Banner" width={900} height={700} className="w-full h-auto object-cover" /> </div>

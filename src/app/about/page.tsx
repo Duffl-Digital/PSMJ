@@ -720,6 +720,8 @@ const zoomVariants: Variants = {
                 </div>
             </section>
 
+           
+
 
             <GetInTouch/>
 
