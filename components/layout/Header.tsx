@@ -45,13 +45,16 @@ export default function Header() {
             >
                 <div className="flex z-[999999] items-center justify-between w-max py-[5px] sm:py-[11px] px-[20px] sm:px-[25px] rounded-full bg-[linear-gradient(73deg,_#6BD4FC_7.66%,_#75ADF1_49.63%,_#6BD4FC_98.64%)] shadow-[0_36px_80px_rgba(0,0,0,0.17),_0_23.333px_46.852px_rgba(0,0,0,0.13),_0_13.867px_25.481px_rgba(0,0,0,0.10),_0_7.2px_13px_rgba(0,0,0,0.09),_0_2.933px_6.519px_rgba(0,0,0,0.07),_0_0.667px_3.148px_rgba(0,0,0,0.04)]">
                     {/* Logo */}
-                    <Image
-                        src="/images/logo.svg"
-                        alt="PSMJ Logo"
-                        width={130}
-                        height={40}
-                        className="w-[100px] sm:w-auto  h-auto me-4"
-                    />
+                    <Link href="/">
+                        <Image
+                            src="/images/logo.svg"
+                            alt="PSMJ Logo"
+                            width={130}
+                            height={40}
+                            className="w-[100px] sm:w-auto  h-auto me-4"
+                        />
+                    </Link>
+                   
 
                     <div className="flex items-center gap-5">
                         <span className="h-10 w-px bg-white/40"></span>
