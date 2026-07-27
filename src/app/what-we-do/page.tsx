@@ -17,41 +17,36 @@ const isManualClick = useRef(false);
 
     const bouquetData = [
         {
-            title: "EMPLOYEE ENGAGEMENT PROGRAMS",
-            description: "Lorem ipsum dolor sit amet consectetur. Ultricies urna sit sem commodo gravida. Diam suspendisse pharetra mauris diam. Dignissim tempor mattis amet pharetra. Massa quis volutpat lectus pharetra in.",
+            title: "Corporate Events",
+            description: " From leadership conferences and town halls to award nights, business summits, and milestone celebrations,we deliver end-to-end event management with meticulous planning, seamless execution, and an unwavering focus on quality, engagement, and business outcomes.",
             bg: "/images/what-we-do/eep-BG.jpeg",
             image: "/images/what-we-do/eep.svg",
         },
         {
-            title: "BRAND MANAGEMENT",
-            description: "Lorem ipsum dolor sit amet consectetur. Ultricies urna sit sem commodo gravida. Diam suspendisse pharetra mauris diam. Dignissim tempor mattis amet pharetra. Massa quis volutpat lectus pharetra in.",
+            title: "Employee Engagement Programs (engagemyteam.in)",
+            description: "We design experiences that bring people together, strengthen workplace culture, and foster collaboration. From team-building activities and annual celebrations to recognition programs and family events, every engagement is thoughtfully crafted to boost morale, motivation, and organizational performance.",
             bg: "/images/what-we-do/bm.jpg",
             image: "/images/what-we-do/bm.svg",
         },
         {
-            title: "BRAND EXPRESSIONS",
-            description: "Lorem ipsum dolor sit amet consectetur. Ultricies urna sit sem commodo gravida. Diam suspendisse pharetra mauris diam. Dignissim tempor mattis amet pharetra. Massa quis volutpat lectus pharetra in.",
+            title: "Brand Expressions",
+            description: "Every brand has a story waiting to be experienced. Through immersive themes, creative communication visual storytelling, and experiential campaigns, we transform brand values into memorable moments that inspire audiences and build stronger emotional connections.",
             bg: "/images/what-we-do/be.jpg",
             image: "/images/what-we-do/be.svg",
         },
         {
-            title: "CORPORATE EVENTS",
-            description: "Lorem ipsum dolor sit amet consectetur. Ultricies urna sit sem commodo gravida. Diam suspendisse pharetra mauris diam. Dignissim tempor mattis amet pharetra. Massa quis volutpat lectus pharetra in.",
+            title: "Exhibitions (expostalls.in)",
+            description: "We design and build exhibition booths that attract attention, encourage meaningful conversations, and showcase your brand with impact. From concept and fabrication to logistics and on-site support, we create exhibition experiences that maximize visitor engagement.",
             bg: "/images/what-we-do/ce.jpg",
             image: "/images/what-we-do/ce.svg",
         },
         {
-            title: "EXHIBITION",
-            description: "Lorem ipsum dolor sit amet consectetur. Ultricies urna sit sem commodo gravida. Diam suspendisse pharetra mauris diam. Dignissim tempor mattis amet pharetra. Massa quis volutpat lectus pharetra in.",
+            title: "Corporate Learning Programs",
+            description: "Learning is most effective when it is engaging and practical. Our customized workshops combine experiential learning, gamification, simulations, and real-world business scenarios to build leadership, communication, collaboration, sales, and workplace effectiveness.",
             bg: "/images/what-we-do/Exhibition.jpg",
             image: "/images/what-we-do/exhibition.svg",
         },
-        {
-            title: "CORPORATE LEARNING PROGRAMS",
-            description: "Lorem ipsum dolor sit amet consectetur. Ultricies urna sit sem commodo gravida. Diam suspendisse pharetra mauris diam. Dignissim tempor mattis amet pharetra. Massa quis volutpat lectus pharetra in.",
-            bg: "/images/what-we-do/clp.jpg",
-            image: "/images/what-we-do/clp.svg",
-        },
+        
     ];
 
     const stats = [
@@ -287,7 +282,7 @@ const isManualClick = useRef(false);
                             ease: "easeOut",
                         }}
                     >
-                        The PSMJ Bouquet
+                        The PSMJ Advantage
                     </motion.h2>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

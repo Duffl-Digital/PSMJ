@@ -10,8 +10,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Autoplay, Pagination } from "swiper/modules";
+
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -118,6 +119,14 @@ export default function WhatWeDo() {
   index={index}
   slides={slides}
   plugins={[Zoom]}
+  styles={{
+    root: {
+      zIndex: 2147483647,
+    },
+    container: {
+      zIndex: 2147483647,
+    },
+  }}
 />
 
 

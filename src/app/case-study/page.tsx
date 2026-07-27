@@ -18,48 +18,48 @@ export default function CaseStudy() {
         {
             id: 1,
             left: {
-                id: "oracle",
-                title: "Helping organizations learn, lead, and grow through every challenge.",
-                company: "ORACLE",
+                id: "BPCL",
+                title: "YouNgage - Nation wide engagement initiative",
+                company: "BPCL",
                 gradient: "linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
             },
             right: {
-                id: "lt-infotech",
-                title: "Ideas that inspired people. Strategies that delivered results.",
-                company: "L&T INFOTECH",
+                id: "AstraZeneca",
+                title: "Young Scientist",
+                company: "AstraZeneca",
                  gradient: "linear-gradient(90deg, rgb(140, 91, 205) 0%, rgb(70, 46, 103) 100%)",
             },
         },
         {
             id: 2,
             left: {
-                id: "flextronics",
-                title: "From complex challenges to meaningful results—one project at a time.",
-                company: "FLEXTRONICS",
+                id: "IFA_Galaxy",
+                title: "IFA Galaxy Conference & Expo",
+                company: "IFA Galaxy",
                 gradient: " linear-gradient(90deg, #EA6194 0%, #843753 100%)",
             },
             right: {
-                id: "collabnet",
-                title: "Where challenges become opportunities for growth.",
-                company: "COLLABNET",
+                id: "AstraZeneca_2",
+                title: "Business Connect - Mystery Room",
+                company: "AstraZeneca",
                 gradient: "linear-gradient(90deg, #F87A25 0%, #924816 100%)",
             },
         },
-        {
-            id: 3,
-            left: {
-                id: "henkel",
-                title: "Turning business challenges into success stories.",
-                company: "HENKEL",
-                gradient: "linear-gradient(90deg, #56B4AC 0%, #254E4B 100%)",
-            },
-            right: {
-                id: "paypal",
-                title: "Real business challenges. Real people. Real impact.",
-                company: "PAYPAL",
-                gradient: " linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
-            },
-        },
+        // {
+        //     id: 3,
+        //     left: {
+        //         id: "henkel",
+        //         title: "Turning business challenges into success stories.",
+        //         company: "HENKEL",
+        //         gradient: "linear-gradient(90deg, #56B4AC 0%, #254E4B 100%)",
+        //     },
+        //     right: {
+        //         id: "paypal",
+        //         title: "Real business challenges. Real people. Real impact.",
+        //         company: "PAYPAL",
+        //         gradient: " linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
+        //     },
+        // },
     ];
 
 
@@ -198,7 +198,7 @@ export default function CaseStudy() {
                                     </Link>
                                       
                                     <Link href={`/case-study-details?id=${row.left.id}`}>
-                                    <p className="mt-3 elms-sans-medium  text-[#1E1E1E] text-[15px] font-semibold leading-[151%] tracking-[0.75px]">
+                                    <p className="mt-3 elms-sans-medium uppercase  text-[#1E1E1E] text-[15px] font-semibold leading-[151%] tracking-[0.75px]">
                                             {row.left.company}
                                         </p>
                                     </Link>
@@ -206,7 +206,7 @@ export default function CaseStudy() {
                                     </div>
 
                                     {/* Right */}
-                                    <div className="mb-10 lg:mb-0 lg:absolute lg:-right-[47px] xl:right-0 bottom-[50px] lg:max-w-[380px] xl:max-w-[420px] z-[999999]">
+                                    <div className="mb-10 lg:mb-0 lg:absolute lg:-right-[47px] xl:right-0 bottom-[50px] lg:min-w-[380px] xl:min-w-[420px] z-[999999]">
 
                                         <Link href={`/case-study-details?id=${row.right.id}`}>
 
@@ -238,7 +238,7 @@ export default function CaseStudy() {
 
 
                                          <Link href={`/case-study-details?id=${row.right.id}`}>
-                                         <p className="mt-3 elms-sans-medium  text-[#1E1E1E] text-[15px] font-semibold leading-[151%] tracking-[0.75px]">
+                                         <p className="mt-3 elms-sans-medium uppercase  text-[#1E1E1E] text-[15px] font-semibold leading-[151%] tracking-[0.75px]">
                                             {row.right.company}
                                         </p>
                                          </Link>

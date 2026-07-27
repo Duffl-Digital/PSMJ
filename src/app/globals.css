@@ -222,3 +222,52 @@ right: -50px;
 body.case-study-details {
   overflow-x: clip;
 }
+
+.about-team-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.about-team-swiper .swiper-slide {
+  width: auto !important;
+}
+
+.about-team-swiper {
+  overflow: visible !important;
+  /* overflow-x: hidden !important; */
+}
+
+
+.team-marquee {
+  overflow: hidden;
+}
+
+.team-marquee .motion-track {
+  display: flex;
+  width: max-content;
+}
+
+
+.marquee_About {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 24px;
+  animation: marquee_About 30s linear infinite;
+}
+
+.marquee_About:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee_About {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

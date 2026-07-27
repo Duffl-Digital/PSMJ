@@ -13,29 +13,38 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function WhatWeDo() {
 
   const clients = [
-    "/images/clientele/logo/axis-bank.svg",
-    "/images/clientele/logo/tata.svg",
-    "/images/clientele/logo/standard_chartered.svg",
-    "/images/clientele/logo/verizon.svg",
-    "/images/clientele/logo/cognizant.svg",
+    "/images/clientele/logo/1.svg",
+    "/images/clientele/logo/2.svg",
+    "/images/clientele/logo/3.svg",
+    "/images/clientele/logo/4.svg",
+    "/images/clientele/logo/5.svg",
 
-    "/images/clientele/logo/infosys.svg",
-    "/images/clientele/logo/cbre.svg",
-    "/images/clientele/logo/paypal.svg",
-    "/images/clientele/logo/bharat-petroleum.svg",
-    "/images/clientele/logo/trimble.svg",
+    "/images/clientele/logo/6.svg",
+    "/images/clientele/logo/7.svg",
+    "/images/clientele/logo/8.svg",
+    "/images/clientele/logo/9.svg",
+    "/images/clientele/logo/10.svg",
 
-    "/images/clientele/logo/oracle.svg",
-    "/images/clientele/logo/l&t.svg",
-    "/images/clientele/logo/flextronics.svg",
-    "/images/clientele/logo/collabnet.svg",
-    "/images/clientele/logo/henkel.svg",
+    "/images/clientele/logo/11.svg",
+    "/images/clientele/logo/12.svg",
+    "/images/clientele/logo/13.svg",
+    "/images/clientele/logo/14.svg",
+    "/images/clientele/logo/15.svg",
 
-    "/images/clientele/logo/verizon.svg",
-    "/images/clientele/logo/cognizant.svg",
-    "/images/clientele/logo/axis-bank.svg",
-    "/images/clientele/logo/standard_chartered.svg",
-    "/images/clientele/logo/tata.svg",
+    "/images/clientele/logo/16.svg",
+    "/images/clientele/logo/17.svg",
+    "/images/clientele/logo/18.svg",
+    "/images/clientele/logo/19.svg",
+    "/images/clientele/logo/20.svg",
+
+      "/images/clientele/logo/21.svg",
+    "/images/clientele/logo/22.svg",
+    "/images/clientele/logo/23.svg",
+    "/images/clientele/logo/24.svg",
+    "/images/clientele/logo/25.svg",
+
+      "/images/clientele/logo/26.svg",
+    "/images/clientele/logo/27.svg",
   ];
 
   return (

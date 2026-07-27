@@ -1,92 +1,55 @@
 export const CaseStudyData = {
 
-  oracle: {
-    title: "ORACLE",
-    problem: "Oracle problem content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra qui.",
-    challenge: "Oracle challenge content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    solution: "Oracle Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis. Sit sollicitudin aenean id amet. Quis ut velit ullamcorper sagittis id pretium ut.",
+  BPCL: {
+    title: "BPCL",
+    problem:
+  "As a national PSU, BPCL recognized the need to connect with its younger workforce through an engaging platform that encouraged collaboration and celebrated emerging talent across seven regions.",
+    challenge: "Bringing together participants from multiple regions while ensuring collaboration, healthy competition, and a seamless event experience.",
+    solution: "PSMJ designed and executed YouNgage, a two-day event featuring leadership challenges, intense contests, and interactive games to identify the Best Young Manager of every region.",
     impact: [
-      "Impact 1",
-      "Impact 2",
-      "Impact 3",
-      "Impact 4",
-      "Impact 5",
+      "Sought after engagement for the young workforce",
+      "Reduced attrition of young employees",
+      "Recognition of Young talent",
+      
     ],
   },
 
 
-  "lt-infotech": {
-    title: "L&T INFOTECH",
-    problem: "L&T problem content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    challenge: "L&T challenge content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    solution: "L&T Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis. Sit sollicitudin aenean id amet. Quis ut velit ullamcorper sagittis id pretium ut.",
+  AstraZeneca: {
+    title: "AstraZeneca",
+    problem: "As a leading pharmaceutical company, AstraZeneca wanted to inspire the children of its associates to develop an early interest in science by making learning fun, interactive, and engaging.",
+    challenge: "Creating an immersive science experience for children of different age groups within the workplace while ensuring every activity was educational, engaging, and age-appropriate.",
+    solution: "PSMJ conceptualized and executed Young Scientist, an experiential event featuring interactive science booths, hands-on experiments, and engaging activities that encouraged children to explore scientific concepts through play and discovery.",
     impact: [
-      "Impact 1",
-      "Impact 2",
-      "Impact 3",
-      "Impact 4",
-      "Impact 5",
+      "Strengthened family engagement within the organization",
+      "Fostered curiosity and a love for science among young minds",
     ],
   },
 
 
-  flextronics: {
-    title: "FLEXTRONICS",
-    problem: "Flextronics problem content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    challenge: "Flextronics challenge content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    solution: "Flextronics Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis. Sit sollicitudin aenean id amet. Quis ut velit ullamcorper sagittis id pretium ut.",
+  IFA_Galaxy: {
+    title: "IFA Galaxy",
+    problem: "IFA Galaxy aimed to create a common platform where Independent Financial Advisors from across India could connect, exchange knowledge, and grow through industry insights.",
+    challenge: "Bringing together entrepreneurs from across the country while curating renowned speakers, industry experts, and innovators to deliver a valuable and engaging conference experience.",
+    solution: "For over 15 years, PSMJ has partnered with IFA Galaxy to seamlessly manage the conference—from registrations and event app development to stage production, speaker management, audience engagement, and entertainment—creating a world-class conference and expo experience.",
     impact: [
-      "Impact 1",
-      "Impact 2",
-      "Impact 3",
-      "Impact 4",
-      "Impact 5",
+      "Transformed into one of India's most sought-after financial conferences",
     ],
   },
 
 
-  collabnet: {
-    title: "COLLABNET",
-    problem: "Collabnet problem content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    challenge: "Collabnet challenge content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    solution: "Collabnet Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis. Sit sollicitudin aenean id amet. Quis ut velit ullamcorper sagittis id pretium ut.",
+  AstraZeneca_2: {
+    title: "AstraZeneca",
+    problem: "AstraZeneca wanted to reinforce its organizational values and foster stronger connections among employees through an engaging and experiential activity.",
+    challenge: "Creating an interactive experience that involved employees from different departments while effectively communicating AstraZeneca's core values in a fun and memorable way.",
+    solution: "As part of Business Connect, PSMJ designed and executed a fully immersive Mystery Room experience featuring four themed rooms. Teams solved puzzles and decoded clues, with each challenge revealing key aspects of AstraZeneca's values, culture, and purpose.",
     impact: [
-      "Impact 1",
-      "Impact 2",
-      "Impact 3",
-      "Impact 4",
-      "Impact 5",
+      "Increased cross-functional employee engagement",
+      "Effectively communicated AstraZeneca's core values",
+     
     ],
   },
 
 
-  henkel: {
-    title: "HENKEL",
-    problem: "Henkel problem content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    challenge: "Henkel challenge content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    solution: "Henkel Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis. Sit sollicitudin aenean id amet. Quis ut velit ullamcorper sagittis id pretium ut.",
-    impact: [
-      "Impact 1",
-      "Impact 2",
-      "Impact 3",
-      "Impact 4",
-      "Impact 5",
-    ],
-  },
-
-
-  paypal: {
-    title: "PAYPAL",
-    problem: "Paypal problem content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    challenge: "Paypal challenge content Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis.",
-    solution: "Paypal Lorem ipsum dolor sit amet consectetur. Vel posuere non vitae integer quisque faucibus risus. Lacus et lectus sem dignissim viverra tincidunt. Sit suspendisse vehicula nec scelerisque. Interdum enim nisi viverra adipiscing viverra quis. Sit sollicitudin aenean id amet. Quis ut velit ullamcorper sagittis id pretium ut.",
-    impact: [
-      "Impact 1",
-      "Impact 2",
-      "Impact 3",
-      "Impact 4",
-      "Impact 5",
-    ],
-  },
 
 };

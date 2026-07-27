@@ -356,6 +356,8 @@ export default function ContactPage() {
            
             <div className="overflow-hidden"> <Image src="/images/contact/contact-banner.png" alt="Contact Banner" width={900} height={700} className="w-full h-auto object-cover" /> </div>
 
+              <Image src="/images/contact/arrow-icon.png" alt="arrow" width={312} height={300} className=" h-auto hidden xl:block absolute left-0 "/>
+
             <motion.div
               initial={{ opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}

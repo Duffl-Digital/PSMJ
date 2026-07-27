@@ -221,13 +221,13 @@ export default function CaseStudyDetails() {
                                                 ease: [0.22, 1, 0.36, 1],
                                             }} className="text-center max-w-4xl mx-auto">
                                             <h2 className="text-center figtree-extra-bold text-[31.793px] leading-[151%] tracking-[1.59px] uppercase">
-                                                <span className="text-white">SOLU</span>
-                                                <span
+                                                <span className="text-white">SOLUTION</span>
+                                                {/* <span
                                                     className="text-transparent"
                                                     style={{ WebkitTextStroke: "0.85px #FFDB6E" }}
                                                 >
                                                     TION
-                                                </span>
+                                                </span> */}
                                             </h2>
 
                                             <p className="mt-8 text-white text-center elms-sans-light text-[14px] font-light leading-[165%] tracking-[0.95px]">
@@ -244,7 +244,7 @@ export default function CaseStudyDetails() {
                                                 ease: [0.22, 1, 0.36, 1],
                                             }}
                                             className="mt-7 py-5 xl:bg-[url('/images/case-study-details/impact-bg.svg')] bg-none  bg-no-repeat bg-center bg-[length:100%_100%]">
-                                            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                                            <div className="grid lg:grid-cols-2 gap-5 lg:gap-12 items-center xl:min-h-50">
                                                 <div className="flex justify-center">
                                                     <motion.h3
                                                         initial={{ opacity: 0, x: -60 }}
