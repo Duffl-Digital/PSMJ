@@ -33,9 +33,9 @@ export default function CaseStudy() {
         {
             id: 2,
             left: {
-                id: "IFA_Galaxy",
-                title: "IFA Galaxy Conference & Expo",
-                company: "IFA Galaxy",
+                id: "MFD_Galaxy",
+                title: "MFD Galaxy Conference & Expo",
+                company: "MFD Galaxy",
                 gradient: " linear-gradient(90deg, #EA6194 0%, #843753 100%)",
             },
             right: {
@@ -45,21 +45,53 @@ export default function CaseStudy() {
                 gradient: "linear-gradient(90deg, #F87A25 0%, #924816 100%)",
             },
         },
-        // {
-        //     id: 3,
-        //     left: {
-        //         id: "henkel",
-        //         title: "Turning business challenges into success stories.",
-        //         company: "HENKEL",
-        //         gradient: "linear-gradient(90deg, #56B4AC 0%, #254E4B 100%)",
-        //     },
-        //     right: {
-        //         id: "paypal",
-        //         title: "Real business challenges. Real people. Real impact.",
-        //         company: "PAYPAL",
-        //         gradient: " linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
-        //     },
-        // },
+        {
+            id: 3,
+            left: {
+                id: "DHL",
+                title: "Flavors of India: The Team CookOff",
+                company: "DHL",
+                gradient: "linear-gradient(90deg, #56B4AC 0%, #254E4B 100%)",
+            },
+            right: {
+                id: "UK_Based_Organisation",
+                title: "Sustainability Roadshow",
+                company: "UK-Based Organisation",
+                gradient: " linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
+            },
+        },
+
+        {
+            id: 4,
+            left: {
+                id: "TIGER_ANALYTICS",
+                title: "Board Game Experience",
+                company: "TIGER ANALYTICS",
+                gradient: "linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
+            },
+            right: {
+                id: "GLOBAL_TECH_COMPANY",
+                title: "Pitch Perfect",
+                company: "GLOBAL TECH COMPANY",
+                 gradient: "linear-gradient(90deg, rgb(140, 91, 205) 0%, rgb(70, 46, 103) 100%)",
+            },
+        },
+
+        {
+            id: 5,
+            left: {
+                id: "Exhibition_Stall_Launch",
+                title: "Exhibition Stall Launch",
+                company: "",
+                gradient: "linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
+            },
+            right: {
+                id: "BOUNTEOUS",
+                title: "Family Day",
+                company: "BOUNTEOUS",
+                 gradient: "linear-gradient(90deg, rgb(140, 91, 205) 0%, rgb(70, 46, 103) 100%)",
+            },
+        },
     ];
 
 
@@ -144,6 +176,50 @@ export default function CaseStudy() {
                                     </map>
                                 )}
                                 {index === 2 && (
+                                    <map name={`image-map-${index + 1}`}>
+                                        <area
+                                            shape="circle"
+                                            coords="404,20,20"
+                                             href={`/case-study-details?id=${row.left.id}`}
+                                            alt={row.left.company}
+                                            rel="noopener noreferrer"
+                                            
+                                        />
+
+                                        <area
+                                            shape="circle"
+                                            coords="532,219,21"
+                                             href={`/case-study-details?id=${row.right.id}`}
+                                            alt={row.right.company}
+                                            rel="noopener noreferrer"
+                                            
+                                        />
+                                    </map>
+                                )}
+
+                                {index === 3 && (
+                                    <map name={`image-map-${index + 1}`}>
+                                        <area
+                                            shape="circle"
+                                            coords="404,20,20"
+                                             href={`/case-study-details?id=${row.left.id}`}
+                                            alt={row.left.company}
+                                            rel="noopener noreferrer"
+                                            
+                                        />
+
+                                        <area
+                                            shape="circle"
+                                            coords="532,219,21"
+                                             href={`/case-study-details?id=${row.right.id}`}
+                                            alt={row.right.company}
+                                            rel="noopener noreferrer"
+                                            
+                                        />
+                                    </map>
+                                )}
+
+                                {index === 4 && (
                                     <map name={`image-map-${index + 1}`}>
                                         <area
                                             shape="circle"
