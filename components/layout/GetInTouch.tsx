@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,7 +7,7 @@ import type { Variants } from "framer-motion";
 
 
 
-export default function Footer() {
+export default function GetInTouch() {
 
     const fadeUp: Variants = {
         hidden: {
@@ -31,7 +30,7 @@ export default function Footer() {
 
         {/* Contact Bar */}
                 <motion.div
-                    className="max-w-6xl mx-auto bg-[linear-gradient(90deg,_#FFF_0%,_#FFE79E_51.44%,_#FFF_100%)] rounded-sm  px-4 sm:px-12 py-7 flex flex-col lg:flex-row items-center justify-between gap-6"
+                    className="max-w-6xl mx-auto bg-[linear-gradient(90deg,#FFF_0%,#FFE79E_51.44%,_#FFF_100%)] rounded-sm  px-4 sm:px-12 py-7 flex flex-col lg:flex-row items-center justify-between gap-6"
                     variants={fadeUp}
                     initial="hidden"
                     whileInView="visible"
@@ -45,7 +44,7 @@ export default function Footer() {
                         Get In Touch
                     </h2>
 
-                    <div className="hidden lg:block w-px h-10 bg-[linear-gradient(180deg,_#FFF_0%,_#121212_50%,_#FFF_100%)]" />
+                    <div className="hidden lg:block w-px h-10 bg-[linear-gradient(180deg,#FFF_0%,#121212_50%,_#FFF_100%)]" />
 
 
                     <div className="flex flex-col lg:flex-row items-center gap-6 ">

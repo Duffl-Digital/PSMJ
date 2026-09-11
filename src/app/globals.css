@@ -271,3 +271,79 @@ body.case-study-details {
     transform: translateX(-50%);
   }
 }
+
+@theme {
+  --color-ink: #0B1E3D;
+  --color-skyDeep: #0E2A55;
+  --color-skyMid: #1C4F8C;
+  --color-skyLight: #4F8FD1;
+  --color-amber: #F5C34C;
+  --color-clay: #E8734A;
+
+  --animate-cardIn: cardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cardIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* app/globals.css */
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+
+ .hero-flip-pagination .swiper-pagination-bullet {
+              width: 8px;
+              height: 8px;
+              border-radius: 9999px;
+              background: rgba(255, 255, 255, 0.25);
+              opacity: 1;
+              cursor:pointer;
+              transition: all 0.5s ease;
+              
+            }
+            .hero-flip-pagination .swiper-pagination-bullet-active {
+              width: 22px;
+              background: var(--amber, #f5a623);
+            }
+
+            @media(min-width:992px){
+                .hero-flip-pagination .swiper-pagination-bullet {
+              width: 8px;
+              height: 8px;
+              border-radius: 9999px;
+              background: rgba(255, 255, 255, 0.25);
+              opacity: 1;
+              cursor:pointer;
+              transition: all 0.5s ease;
+              
+            }
+            .hero-flip-pagination .swiper-pagination-bullet-active {
+              height: 22px;
+              background: var(--amber, #f5a623);
+            }
+             .hero-flip-pagination.swiper-pagination-bullets{
+              left: unset !important;
+             }
+            }
