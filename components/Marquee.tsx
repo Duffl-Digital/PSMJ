@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 interface MarqueeProps {
   items: string[];
-  speed?: number;
+  speed?: number; // pixels per second
   separator?: string;
   reverse?: boolean;
   className?: string;
@@ -10,43 +12,78 @@ interface MarqueeProps {
 
 export default function Marquee({
   items,
-  speed = 25,
-  separator = "  /  ",
+  speed = 60,
+  separator = "   /  ",
   reverse = false,
   className = "",
 }: MarqueeProps) {
-  const content = items.join(separator) + separator;
+  const baseContent = items.join(separator) + separator;
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const singleRef = useRef<HTMLSpanElement>(null);
+
+  const [singleWidth, setSingleWidth] = useState(0);
+  const [repeatCount, setRepeatCount] = useState(2); // minimum sane default
+
+  useEffect(() => {
+    const measure = () => {
+      const containerWidth = containerRef.current?.getBoundingClientRect().width ?? 0;
+      const contentWidth = singleRef.current?.getBoundingClientRect().width ?? 0;
+
+      if (contentWidth > 0) {
+        setSingleWidth(contentWidth);
+        // Make sure total rendered width is always >= 2x container width,
+        // so there's always enough content to scroll through without gaps.
+        const needed = Math.ceil((containerWidth * 2) / contentWidth) + 1;
+        setRepeatCount(Math.max(2, needed));
+      }
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (containerRef.current) ro.observe(containerRef.current);
+    if (singleRef.current) ro.observe(singleRef.current);
+    return () => ro.disconnect();
+  }, [baseContent]);
+
+  const duration = singleWidth > 0 ? singleWidth / speed : 0;
 
   return (
-    
     <div
-      className={`relative overflow-hidden whitespace-nowrap border-ink/5 bg-white py-1 ${className}`}
+      ref={containerRef}
+      className={`relative overflow-hidden whitespace-nowrap bg-white py-1 ${className}`}
     >
-        <div className="pt-1"></div>
-      {/* left fade */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-white to-transparent md:w-24" />
-
-      {/* right fade */}
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-white to-transparent md:w-24" />
 
       <div
         className="flex w-max"
         style={{
-          animationName: "marquee",
-          animationDuration: `${speed}s`,
+          animationName: singleWidth ? "marquee" : "none",
+          animationDuration: `${duration}s`,
           animationTimingFunction: "linear",
           animationIterationCount: "infinite",
           animationDirection: reverse ? "reverse" : "normal",
           willChange: "transform",
+          ["--marquee-distance" as any]: `-${singleWidth}px`,
         }}
       >
-        {[0, 1].map((i) => (
+        {/* First copy, measured */}
+        <span
+          ref={singleRef}
+          className="flex-shrink-0 text-xs font-medium tracking-wide text-ink/25"
+        >
+          {baseContent}
+        </span>
+
+        {/* Enough extra copies to guarantee no gap, ever */}
+        {Array.from({ length: repeatCount - 1 }).map((_, i) => (
           <span
             key={i}
+            aria-hidden="true"
             className="flex-shrink-0 text-xs font-medium tracking-wide text-ink/25"
-            aria-hidden={i === 1}
           >
-            {content}
+            {baseContent}
           </span>
         ))}
       </div>

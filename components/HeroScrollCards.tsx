@@ -52,12 +52,12 @@ export default function HeroSlider() {
        
       />
 
-      <div className="relative z-10 mx-auto  max-w-7xl w-11/12  px-5 pt-24 pb-12 sm:px-6 sm:pt-28 md:px-0 md:pt-[120px] md:pb-0">
+      <div className="relative z-10 mx-auto  max-w-7xl w-11/12  px-5 pt-12 pb-12 sm:px-6 sm:pt-12 md:px-0 md:pt-[120px] md:pb-0">
         <div className="flex w-full lg:items-end justify-end flex-wrap">
           {/* Left copy */}
-          <div className="lg:w-3/12 md:w-5/12 pb-5">
+          <div className="xl:w-3/12 md:w-5/12 pb-5">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-figtree font-normal text-[#B1E7FF] tracking-[0.96px] leading-[123%] [text-shadow:0_39.332px_59.37px_rgba(101,101,101,0.34),0_25.493px_34.77px_rgba(0,0,0,0.26),0_15.15px_18.91px_rgba(0,0,0,0.21)]">
-              Everything Your  <br /> Organization <br /> Needs. All in One <br/> Place.
+              Everything Your  <br className="md:block hidden" /> Organization <br /> Needs. All in One <br className="md:block hidden" /> Place.
             </h1>
             <p className="mt-4 text-sm leading-relaxed text-white sm:mt-5 ">
               Lorem ipsum dolor sit amet consectetur. In non in sit id et tristique at commodo.
@@ -65,7 +65,7 @@ export default function HeroSlider() {
           </div>
 
           {/* Center: Swiper flip carousel */}
-          <div className="lg:w-4/12 w-full md:w-7/12 relative lg:bottom-[-20px]">
+          <div className="xl:w-4/12 w-full md:w-7/12 relative xl:bottom-[-20px]">
     
               <div className=" items-center gap-3 sm:gap-4 relative">
                 {/* prev arrow */}
@@ -79,7 +79,7 @@ export default function HeroSlider() {
                 </button>
 
                 <div
-                  className="hero-flip-swiper sm:w-[355px] w-full h-[358px] mx-auto"
+                  className="hero-flip-swiper sm:w-[355px] w-11/12 h-[358px] mx-auto"
                 >
                   <Swiper
                     modules={[EffectFlip, Navigation, Pagination, Autoplay]}
@@ -133,7 +133,7 @@ export default function HeroSlider() {
                 >
                   ›
                 </button>
-                 <div className="hero-flip-pagination lg:absolute lg:!bottom-1/2 lg:!right-[5px]  lg:flex  lg:!w-max lg:flex-col mt-6 flex justify-center gap-[12px]" />
+                 <div className="hero-flip-pagination xl:absolute xl:!bottom-1/2 xl:!right-[5px]  xl:flex  xl:!w-max xl:flex-col mt-6 flex justify-center gap-[12px]" />
               </div>
 
               {/* pagination bullets, styled to match your amber dot design */}
@@ -142,7 +142,7 @@ export default function HeroSlider() {
           </div>
 
           {/* Right: logos grid */}
-          <div className="lg:w-5/12 w-full pb-5 lg:pt-0 pt-8">
+          <div className="xl:w-5/12 w-full pb-5 xl:pt-0 pt-8">
            <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-3 sm:gap-x-2 sm:gap-y-6">
   {LOGOS.map((logo, i) => (
     <div

@@ -26,21 +26,29 @@ export default function GetInTouch() {
 
       return (
         
-  <div className=" ">
+  <div className="xl:pt-24 md:pt-8 pt-18">
 
         {/* Contact Bar */}
                 <motion.div
-                    className="max-w-6xl mx-auto bg-[linear-gradient(90deg,#FFF_0%,#FFE79E_51.44%,_#FFF_100%)] rounded-sm  px-4 sm:px-12 py-7 flex flex-col lg:flex-row items-center justify-between gap-6"
+                    className="max-w-7xl mx-auto relative bg-[linear-gradient(-270deg,#FFF_0%,#FFE79E_51.44%)] rounded-sm  px-4 sm:pr-12  md:py-7 pb-7 pt-0 flex xl:pl-[12%] lg:pl-[14%] flex-col lg:flex-row items-center justify-between xl:gap-6 lg:gap-4 gap-6"
                     variants={fadeUp}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                 >
 
+<div className="xl:aspect-[255/255] md:aspect-[200/200]  md:mt-0 -mt-[70px] aspect-square w-[120px] md:w-[200px] xl:w-[255px] xl:h-[255px] md:absolute md:-left-[29px] lg:-bottom-[51px] ">
+    <img
+        src="/images/footer/footer-img.png"
+        className="w-full h-full object-cover hidden md:block"
+        alt=""
+    />
+    <img
+       src="/images/footer/footer-img-noshadow.png"    className="w-full h-full object-cover md:hidden block"/>
+</div>
 
 
-
-                    <h2 className="font-figtree text-[#1C1C1C] text-[30px] font-bold leading-[134%] uppercase figtree-Bold">
+                    <h2 className="font-figtree text-[#1C1C1C] xl:text-[30px] lg:text-[26px] text-[30px] font-bold leading-[134%] uppercase figtree-Bold">
                         Get In Touch
                     </h2>
 

@@ -5,7 +5,6 @@ import Header from "@/components/layout/Header";
 import { words1, words2 } from "@/data/words";
 import {
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
   type ComponentType,
@@ -90,65 +89,88 @@ const SERVICES = [
   "PEOPLE EXPERIENCES",
 ];
 export default function CaseStudy() {
-  const sectionRef = useRef<HTMLElement | null>(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
 
-  const [mounted, setMounted] = useState(false);
+const [containerWidth, setContainerWidth] = useState(0);
+const [angle, setAngle] = useState(0);
+const [isArcReady, setIsArcReady] = useState(false);
+const [isMounted, setIsMounted] = useState(false);
 
-  const [containerWidth, setContainerWidth] = useState(1440);
-
-  const [angle, setAngle] = useState(0);
-
-  
   /* =======================================================
-     MOUNT
+     SCROLL TO TOP
   ======================================================= */
 
-  useLayoutEffect(() => {
-    setMounted(true);
-  }, []);
+useEffect(() => {
+  setIsMounted(true);
+
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+
+  window.scrollTo(0, 0);
+
+  requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+  });
+
+  return () => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "auto";
+    }
+  };
+}, []);
 
   /* =======================================================
      WIDTH
   ======================================================= */
 
-  // Update container width
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    const updateWidth = () => {
-      if (!sectionRef.current) return;
-      setContainerWidth(sectionRef.current.getBoundingClientRect().width);
-    };
-    updateWidth();
-    const resizeObserver = new ResizeObserver(updateWidth);
-    resizeObserver.observe(sectionRef.current);
-    return () => resizeObserver.disconnect();
-  }, [mounted]);
+useEffect(() => {
+  if (!sectionRef.current) return;
 
+  const updateWidth = () => {
+    if (!sectionRef.current) return;
+
+    setContainerWidth(
+      sectionRef.current.getBoundingClientRect().width
+    );
+  };
+
+  updateWidth();
+
+  const resizeObserver = new ResizeObserver(updateWidth);
+
+  resizeObserver.observe(sectionRef.current);
+
+  return () => resizeObserver.disconnect();
+}, []);
 
   /* =======================================================
      ARC ANIMATION
   ======================================================= */
 
-  useEffect(() => {
-    let animationFrameId: number;
-    let previousTime = performance.now();
+useEffect(() => {
+  setIsArcReady(true);
 
-    const animate = (currentTime: number) => {
-      const delta = currentTime - previousTime;
-      setAngle((prev) => (prev + delta * 0.003) % 360);
-      previousTime = currentTime;
-      animationFrameId = requestAnimationFrame(animate);
-    };
+  let animationFrameId: number;
+  let previousTime = performance.now();
+
+  const animate = (currentTime: number) => {
+    const delta = currentTime - previousTime;
+
+    setAngle((prev) => (prev + delta * 0.003) % 360);
+
+    previousTime = currentTime;
 
     animationFrameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+  };
 
-  /* =======================================================
-     MOUNT CHECK
-  ======================================================= */
+  animationFrameId = requestAnimationFrame(animate);
 
- if (!mounted) return null;
+  return () => {
+    cancelAnimationFrame(animationFrameId);
+  };
+}, []);
+
 
   /* =======================================================
      ARC CALCULATIONS
@@ -260,6 +282,8 @@ export default function CaseStudy() {
       sm:px-6
       md:px-8
       lg:min-h-[calc(100vh-100px)]
+      md:pt-[0]
+      pt-7
       lg:px-6
     "
           >
@@ -623,8 +647,11 @@ export default function CaseStudy() {
         </svg>
 
         {/* Animated pills on outer arc */}
-        {words.map((word, index) => {
-          const degree = (index * spacing + angle) % cycle;
+       {isMounted &&
+  containerWidth > 0 &&
+  words.map((word, index) => {
+          const degree =
+  (index * spacing + (isArcReady ? angle : 0)) % cycle;
           const isVisible = degree >= 0 && degree <= 180;
           const radians = (degree * Math.PI) / 180;
 
@@ -642,14 +669,14 @@ export default function CaseStudy() {
             <div
              key={`${word}-${index}`}
               className="pointer-events-none absolute z-30 whitespace-nowrap rounded-full border border-white/80 bg-white/10 text-white shadow-sm backdrop-blur-sm will-change-transform"
-              style={{
-                left:` ${x}px`,
-                top: `${y}px`,
-                opacity,
-                fontSize: containerWidth < 640 ? "12px" : "14px",
-                padding: containerWidth < 640 ? "6px 12px" : "8px 18px",
-                transform:`translate(-50%, -50%) scale(${scale})`,
-              }}
+            style={{
+  left: `${x}px`,
+  top: `${y}px`,
+  opacity,
+  fontSize: containerWidth < 640 ? 12 : 14,
+  padding: containerWidth < 640 ? "6px 12px" : "8px 18px",
+  transform: `translate(-50%, -50%) scale(${scale})`,
+}}
             >
               {word}
             </div>
@@ -671,13 +698,13 @@ export default function CaseStudy() {
            style={{ left: `${x}px`, top: `${y}px` }}
             >
               <div className="flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-blue-500/25 backdrop-blur-sm">
-                <Icon size={containerWidth < 640 ? 25 : 34} strokeWidth={1.5} />
+                <Icon size={containerWidth < 640 ? 20 : 34} strokeWidth={1.5} />
               </div>
-              <div className="mt-2 flex flex-col items-center">
+              <div className="mt-2 md:flex hidden flex-col items-center">
                 <strong className="text-2xl font-bold leading-none sm:text-3xl">
                   {item.value}
                 </strong>
-                <p className="mt-2 text-xs leading-4 text-white/95 sm:text-base sm:leading-5">
+                <p className="mt-2 text-xs leading-4 text-white/95 sm:text-base sm:leading-5 elms-sans-light ">
                   {item.line1}
                   <br />
                   {item.line2}
@@ -686,7 +713,28 @@ export default function CaseStudy() {
             </div>
           );
         })}
-   </section>   {/* ← closes the ARC section (ref={sectionRef}) */}
+
+      
+   </section> 
+   <div className="w-11/12 mx-auto">
+     <div className="md:hidden flex  flex-wrap">
+          {staticStats.map((item) => {
+            return (
+            <div className="w-6/12 text-center py-4" key={item.id}>
+              <strong className="text-2xl figtree-Bold leading-none sm:text-3xl text-white">
+                  {item.value}
+                </strong>
+                <p className="mt-2 text-xs leading-4 text-white/95 sm:text-base sm:leading-5 elms-sans-light ">
+                  {item.line1}
+                  <br />
+                  {item.line2}
+                </p>
+            </div>
+            )
+            
+          })}
+          </div>
+          </div>  
      
       <HeroScrollCards />
  
