@@ -46,7 +46,7 @@ export default function About() {
 
     const timeline = [
         {
-            year: "2004",
+            year: "20044",
             description:
                 "PSMJ began with three visionaries, a cup of coffee, and a passion for transforming people.",
         },
