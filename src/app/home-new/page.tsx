@@ -31,6 +31,7 @@ import Introhome from "@/components/Introhome";
 import Introhometwo from "@/components/Introhometwo";
 import PsmjUniverse from "@/components/PsmjUniverse";
 import TrustedBySection from "@/components/TrustedBySection";
+import ScrollMask from "@/components/layout/ScrollMask";
 
 const words = [
   "#Lorem", "#Branding", "#Marketing", "#Creative", "#Digital",
@@ -276,13 +277,17 @@ export default function homenew() {
 
   return (
     <>
-      <Introhome />
+        <ScrollMask
+        desktopVideo="/video/intro.mp4"
+        mobileVideo="https://cd.duffldigital.in/video/mobile-sample2.mp4"
+        height="250vh"
+      />
         <main className="w-full ">
      
       {/* =====================================================
           HERO
       ===================================================== */}
-
+         <div className="relative z-10 -mt-[50vh] w-full shadow-[0_-30px_80px_rgba(0,0,0,0.45)] rounded-t-[40px]">
       <section
         ref={heroRef}
         className="
@@ -714,7 +719,9 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
       </motion.div>
 
       <Footer />
+      </div>
     </main>
+
     </>
  
   );
