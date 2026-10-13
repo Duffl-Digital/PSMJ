@@ -23,15 +23,14 @@ import { motion, useScroll, useTransform, easeOut } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import HeroScrollCards from "@/components/HeroScrollCards";
-import Marquee from "@/components/Marquee";
+
+
 import Footer from "@/components/layout/Footer";
 import GetInTouch from "@/components/layout/GetInTouch";
-import Introhome from "@/components/Introhome";
-import Introhometwo from "@/components/Introhometwo";
+
 import PsmjUniverse from "@/components/PsmjUniverse";
 import TrustedBySection from "@/components/TrustedBySection";
-import ScrollMask from "@/components/layout/ScrollMask";
+
 
 const words = [
   "#Lorem", "#Branding", "#Marketing", "#Creative", "#Digital",
@@ -277,11 +276,7 @@ export default function homenew() {
 
   return (
     <>
-        <ScrollMask
-        desktopVideo="/video/intro.mp4"
-        mobileVideo="https://cd.duffldigital.in/video/mobile-sample2.mp4"
-        height="250vh"
-      />
+       
         <main className="w-full ">
      
       {/* =====================================================

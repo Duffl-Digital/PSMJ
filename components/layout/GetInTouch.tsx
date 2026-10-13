@@ -43,9 +43,7 @@ export default function GetInTouch() {
                     className="max-w-7xl  mx-auto relative md:bg-[linear-gradient(270deg,#FFDF7E_0%,#FEFFB3_100%)] xl:rounded-sm  px-4 sm:pr-[8%]  md:py-7 pb-7 pt-0 flex xl:pl-[15%] md:pl-[20%] lg:pl-[16%] flex-col xl:flex-row items-center  xl:gap-6 lg:gap-4 gap-6"
                    
                 >
-                    
-
-
+                
 
 
                     <h2 className="font-figtree text-[#1C1C1C] xl:text-[30px] lg:text-[26px] text-[30px] font-bold leading-[134%] uppercase figtree-Bold">
