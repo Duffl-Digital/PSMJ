@@ -12,7 +12,7 @@ interface MarqueeProps {
 
 export default function Marquee({
   items,
-  speed = 60,
+  speed = 30,
   separator = "   /  ",
   reverse = false,
   className = "",

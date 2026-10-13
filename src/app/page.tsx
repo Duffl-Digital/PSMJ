@@ -18,6 +18,8 @@ import {
   type LucideProps,
 } from "lucide-react";
 
+import { motion, useScroll, useTransform, easeOut } from "framer-motion";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,11 +27,8 @@ import HeroScrollCards from "@/components/HeroScrollCards";
 import Marquee from "@/components/Marquee";
 import Footer from "@/components/layout/Footer";
 import GetInTouch from "@/components/layout/GetInTouch";
-
-
-
-
-
+import Introhome from "@/components/Introhome";
+import Introhometwo from "@/components/Introhometwo";
 
 const words = [
   "#Lorem", "#Branding", "#Marketing", "#Creative", "#Digital",
@@ -38,8 +37,36 @@ const words = [
   "#SEO", "#Content", "#Media", "#Ideas", "#Future",
 ];
 
+/* =========================================================
+   ANIMATION VARIANTS
+========================================================= */
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 48 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: easeOut },
+  },
+};
 
+const fadeUpStagger = (delay = 0) => ({
+  hidden: { opacity: 0, y: 32 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: easeOut, delay },
+  },
+});
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.92 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.7, ease: easeOut },
+  },
+};
 
 /* =========================================================
    STATS
@@ -51,14 +78,14 @@ type StaticStat = {
   value: string;
   line1: string;
   line2: string;
-  icon: ComponentType<LucideProps>;
+  icon:string;
 };
 
 const staticStats: StaticStat[] = [
-  { id: 1, degree: 35, value: "90+", line1: "Brand", line2: "management", icon: PanelsTopLeft },
-  { id: 2, degree: 72, value: "11", line1: "Years of", line2: "experience", icon: Eye },
-  { id: 3, degree: 108, value: "400+", line1: "Team Building", line2: "programs", icon: Handshake },
-  { id: 4, degree: 145, value: "60", line1: "Clients across", line2: "industries", icon: Blocks },
+  { id: 1, degree: 35, value: "90+", line1: "Brand", line2: "management", icon: "/images/home/stats/brand.svg" },
+  { id: 2, degree: 72, value: "11", line1: "Years of", line2: "experience", icon: "/images/home/stats/experience.svg" },
+  { id: 3, degree: 108, value: "400+", line1: "Team Building", line2: "programs", icon: "/images/home/stats/team.svg" },
+  { id: 4, degree: 145, value: "60", line1: "Clients across", line2: "industries", icon: "/images/home/stats/clients.svg" },
 ];
 
 /* =========================================================
@@ -88,89 +115,103 @@ const SERVICES = [
   "BRAND EXPERIENCES",
   "PEOPLE EXPERIENCES",
 ];
-export default function CaseStudy() {
-    const sectionRef = useRef<HTMLElement | null>(null);
 
-const [containerWidth, setContainerWidth] = useState(0);
-const [angle, setAngle] = useState(0);
-const [isArcReady, setIsArcReady] = useState(false);
-const [isMounted, setIsMounted] = useState(false);
+export default function CaseStudy() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const heroRef = useRef<HTMLElement | null>(null);
+
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [angle, setAngle] = useState(0);
+  const [isArcReady, setIsArcReady] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  /* =======================================================
+     SCROLL-LINKED PARALLAX (hero background image)
+  ======================================================= */
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Subtle, linear parallax drift + fade as the hero scrolls out
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0.3]);
 
   /* =======================================================
      SCROLL TO TOP
   ======================================================= */
 
-useEffect(() => {
-  setIsMounted(true);
+  useEffect(() => {
+    setIsMounted(true);
 
-  if ("scrollRestoration" in window.history) {
-    window.history.scrollRestoration = "manual";
-  }
-
-  window.scrollTo(0, 0);
-
-  requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
-  });
-
-  return () => {
     if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "auto";
+      window.history.scrollRestoration = "manual";
     }
-  };
-}, []);
+
+    window.scrollTo(0, 0);
+
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+
+    return () => {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "auto";
+      }
+    };
+  }, []);
 
   /* =======================================================
      WIDTH
   ======================================================= */
 
-useEffect(() => {
-  if (!sectionRef.current) return;
-
-  const updateWidth = () => {
+  useEffect(() => {
     if (!sectionRef.current) return;
 
-    setContainerWidth(
-      sectionRef.current.getBoundingClientRect().width
-    );
-  };
+    const updateWidth = () => {
+      if (!sectionRef.current) return;
 
-  updateWidth();
+      setContainerWidth(
+        sectionRef.current.getBoundingClientRect().width
+      );
+    };
 
-  const resizeObserver = new ResizeObserver(updateWidth);
+    updateWidth();
 
-  resizeObserver.observe(sectionRef.current);
+    const resizeObserver = new ResizeObserver(updateWidth);
 
-  return () => resizeObserver.disconnect();
-}, []);
+    resizeObserver.observe(sectionRef.current);
+
+    return () => resizeObserver.disconnect();
+  }, []);
 
   /* =======================================================
-     ARC ANIMATION
+     ARC ANIMATION (continuous linear rotation)
   ======================================================= */
 
-useEffect(() => {
-  setIsArcReady(true);
+  useEffect(() => {
+    setIsArcReady(true);
 
-  let animationFrameId: number;
-  let previousTime = performance.now();
+    let animationFrameId: number;
+    let previousTime = performance.now();
 
-  const animate = (currentTime: number) => {
-    const delta = currentTime - previousTime;
+    const animate = (currentTime: number) => {
+      const delta = currentTime - previousTime;
 
-    setAngle((prev) => (prev + delta * 0.003) % 360);
+      // linear increment -> constant angular speed, no easing
+      setAngle((prev) => (prev + delta * 0.003) % 360);
 
-    previousTime = currentTime;
+      previousTime = currentTime;
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
 
     animationFrameId = requestAnimationFrame(animate);
-  };
 
-  animationFrameId = requestAnimationFrame(animate);
-
-  return () => {
-    cancelAnimationFrame(animationFrameId);
-  };
-}, []);
-
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   /* =======================================================
      ARC CALCULATIONS
@@ -198,7 +239,7 @@ useEffect(() => {
      OUTER ARC
   ======================================================= */
 
-   const offset = containerWidth >= 1200 ? 98 : containerWidth >= 768 ? 78 : 52;
+  const offset = containerWidth >= 1200 ? 98 : containerWidth >= 768 ? 78 : 52;
 
   const innerRadiusX = Math.max(radiusX - offset, 30);
   const innerRadiusY = Math.max(radiusY - offset, 30);
@@ -217,43 +258,38 @@ useEffect(() => {
   const edgePadding = containerWidth >= 768 ? 12 : 5;
   const fadeRange = containerWidth >= 768 ? 80 : 45;
 
-
-
-
-
-
   return (
-    <main className="w-full">
+    <>
+      <Introhometwo />
+        <main className="w-full hidden ">
+     
       {/* =====================================================
           HERO
       ===================================================== */}
 
       <section
+        ref={heroRef}
         className="
           relative
           pt-4
-         
           bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%)]
         "
       >
         <Header />
 
-        <Image
-          src="/images/home/section-top-image.png"
-          alt=""
-          width={1000}
-          height={500}
-          priority
-          className="
-            absolute
-            left-1/2
-            top-0
-            z-10
-            h-auto
-            w-full
-            -translate-x-1/2
-          "
-        />
+        <motion.div
+          style={{ y: bgY, opacity: bgOpacity }}
+          className="absolute left-1/2 top-0 z-10 h-auto w-full -translate-x-1/2"
+        >
+          <Image
+            src="/images/home/section-top-image.png"
+            alt=""
+            width={1000}
+            height={500}
+            priority
+            className="block h-auto w-full"
+          />
+        </motion.div>
 
         {/* =================================================
             HERO CONTENT
@@ -292,7 +328,10 @@ useEffect(() => {
           HEADING AREA
       ===================================================== */}
 
-              <div
+              <motion.div
+                initial="hidden"
+                animate="show"
+                variants={fadeUp}
                 className="
           relative
       
@@ -302,7 +341,10 @@ useEffect(() => {
             TARGET ICON
         ================================================= */}
 
-                <div
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.4, rotate: -25 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.7, ease: easeOut, delay: 0.5 }}
                   className="
             absolute
             left-0
@@ -337,14 +379,17 @@ useEffect(() => {
               lg:w-[54px]
             "
                   />
-                </div>
+                </motion.div>
 
                 {/* =================================================
             AEROPLANE ICON
         ================================================= */}
 
-<div
-  className="
+                <motion.div
+                  initial={{ opacity: 0, x: 40, y: -20 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{ duration: 0.8, ease: easeOut, delay: 0.65 }}
+                  className="
     absolute
     right-[5px]
     top-[110px]
@@ -354,7 +399,7 @@ useEffect(() => {
     lg:top-[125px]
     xl:top-[140px]
   "
->
+                >
                   <Image
                     src="/images/home/aeroplan-icon.svg"
                     alt="Aeroplane"
@@ -373,14 +418,14 @@ useEffect(() => {
               lg:w-[47px]
             "
                   />
-                </div>
+                </motion.div>
 
                 {/* =================================================
             MAIN HEADING
         ================================================= */}
 
-            <h1
-  className="
+                <h1
+                  className="
     relative
     z-[20]
     m-0
@@ -403,10 +448,10 @@ useEffect(() => {
 
     [text-shadow:0_52.798px_79.696px_rgba(101,101,101,0.34),0_34.221px_46.674px_rgba(0,0,0,0.26),0_20.337px_25.385px_rgba(0,0,0,0.21),0_10.56px_12.951px_rgba(0,0,0,0.17),0_4.302px_6.494px_rgba(0,0,0,0.13),0_0.978px_3.136px_rgba(0,0,0,0.08)]
   "
->
-  {/* BUILDING + BADGE — stacks on mobile, inline from sm: up */}
-  <span
-    className="
+                >
+                  {/* BUILDING + BADGE — stacks on mobile, inline from sm: up */}
+                  <span
+                    className="
       flex
       w-full
      
@@ -417,11 +462,14 @@ useEffect(() => {
       sm:items-center
       sm:gap-0
     "
-  >
-    <span className="block shrink-0 whitespace-nowrap">Building</span>
+                  >
+                    <span className="block shrink-0 whitespace-nowrap">Building</span>
 
-    <span
-      className="
+                    <motion.span
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.7, ease: easeOut, delay: 0.35 }}
+                      className="
         relative
         block
         shrink-0
@@ -434,10 +482,10 @@ useEffect(() => {
         sm:mt-0
         sm:h-[50px]
       "
-    >
-      {/* HIGHLIGHT */}
-      <span
-        className="
+                    >
+                      {/* HIGHLIGHT */}
+                      <span
+                        className="
           absolute
           left-0
           right-0
@@ -449,11 +497,11 @@ useEffect(() => {
           sm:top-[8px]
           sm:h-[50px]
         "
-      />
+                      />
 
-      {/* BADGE */}
-      <span
-        className="
+                      {/* BADGE */}
+                      <span
+                        className="
           relative
           z-10
           inline-block
@@ -483,24 +531,41 @@ useEffect(() => {
           md:top-[-16px]
           lg:top-[-33px]
         "
-      >
-        <span className="text-pink-400">People.</span>{" "}
-        <span className="text-yellow-300">Strategy.</span>{" "}
-        <span className="text-lime-300">Performance.</span>
-      </span>
-    </span>
-  </span>
+                      >
+                        <span className="text-pink-400">People.</span>{" "}
+                        <span className="text-yellow-300">Strategy.</span>{" "}
+                        <span className="text-lime-300">Performance.</span>
+                      </span>
+                    </motion.span>
+                  </span>
 
-  <span className="block">High-Performing</span>
-  <span className="block">Organizations</span>
-</h1>
-              </div>
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: easeOut, delay: 0.15 }}
+                    className="block"
+                  >
+                    High-Performing
+                  </motion.span>
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: easeOut, delay: 0.25 }}
+                    className="block"
+                  >
+                    Organizations
+                  </motion.span>
+                </h1>
+              </motion.div>
 
               {/* =====================================================
           DESCRIPTION
       ===================================================== */}
 
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: easeOut, delay: 0.8 }}
                 className="
           relative
           z-[20]
@@ -583,7 +648,7 @@ useEffect(() => {
                   experiences through learning, consulting, events, and brand
                   activation.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -592,166 +657,202 @@ useEffect(() => {
             ARC SECTION
         ================================================= */}
 
-       
-      <section
-        ref={sectionRef}
-        className="relative h-[430px] w-full overflow-hidden "
-      >
-        {/* Top glow */}
-        <div className="pointer-events-none absolute left-1/2 top-[-250px] h-[520px] w-[75%] -translate-x-1/2 rounded-full  blur-[130px]" />
+        <motion.section
+          ref={sectionRef}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1, ease: "linear" }}
+          className="relative h-[430px] w-full overflow-hidden "
+        >
+          {/* Top glow */}
+          <div className="pointer-events-none absolute left-1/2 top-[-250px] h-[520px] w-[75%] -translate-x-1/2 rounded-full  blur-[130px]" />
 
-        {/* SVG Arcs */}
-        <svg
-          className="pointer-events-none absolute inset-0 z-10 h-full w-full"
-          width={containerWidth}
-          height="430"
-          viewBox={`0 0 ${containerWidth} 430`}
-          preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="arcGradient" gradientUnits="userSpaceOnUse" x1={startX} y1="0" x2={endX} y2="0">
-              <stop offset="0%" stopColor="white" stopOpacity="0" />
-              <stop offset="12%" stopColor="white" stopOpacity="0.35" />
-              <stop offset="50%" stopColor="white" stopOpacity="0.8" />
-              <stop offset="88%" stopColor="white" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="white" stopOpacity="0" />
-            </linearGradient>
+          {/* SVG Arcs */}
+          <svg
+            className="pointer-events-none absolute inset-0 z-10 h-full w-full"
+            width={containerWidth}
+            height="430"
+            viewBox={`0 0 ${containerWidth} 430`}
+            preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="arcGradient" gradientUnits="userSpaceOnUse" x1={startX} y1="0" x2={endX} y2="0">
+                <stop offset="0%" stopColor="white" stopOpacity="0" />
+                <stop offset="12%" stopColor="white" stopOpacity="0.35" />
+                <stop offset="50%" stopColor="white" stopOpacity="0.8" />
+                <stop offset="88%" stopColor="white" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="white" stopOpacity="0" />
+              </linearGradient>
 
-            <linearGradient id="innerArcGradient" gradientUnits="userSpaceOnUse" x1={innerStartX} y1="0" x2={innerEndX} y2="0">
-              <stop offset="0%" stopColor="white" stopOpacity="0" />
-              <stop offset="15%" stopColor="white" stopOpacity="0.25" />
-              <stop offset="50%" stopColor="white" stopOpacity="0.65" />
-              <stop offset="85%" stopColor="white" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="white" stopOpacity="0" />
-            </linearGradient>
-          </defs>
+              <linearGradient id="innerArcGradient" gradientUnits="userSpaceOnUse" x1={innerStartX} y1="0" x2={innerEndX} y2="0">
+                <stop offset="0%" stopColor="white" stopOpacity="0" />
+                <stop offset="15%" stopColor="white" stopOpacity="0.25" />
+                <stop offset="50%" stopColor="white" stopOpacity="0.65" />
+                <stop offset="85%" stopColor="white" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="white" stopOpacity="0" />
+              </linearGradient>
+            </defs>
 
-          {/* Outer Arc */}
-          <path
-            d={arcPath}
-            fill="none"
-            stroke="url(#arcGradient)"
-            strokeWidth="1.3"
-            strokeDasharray="5 7"
-            strokeLinecap="round"
-          />
+            {/* Outer Arc */}
+            <path
+              d={arcPath}
+              fill="none"
+              stroke="url(#arcGradient)"
+              strokeWidth="1.3"
+              strokeDasharray="5 7"
+              strokeLinecap="round"
+            />
 
-          {/* Inner Parallel Arc */}
-          <path
-            d={innerArcPath}
-            fill="none"
-            stroke="url(#innerArcGradient)"
-            strokeWidth="1.2"
-            strokeDasharray="5 7"
-            strokeLinecap="round"
-          />
-        </svg>
+            {/* Inner Parallel Arc */}
+            <path
+              d={innerArcPath}
+              fill="none"
+              stroke="url(#innerArcGradient)"
+              strokeWidth="1.2"
+              strokeDasharray="5 7"
+              strokeLinecap="round"
+            />
+          </svg>
 
-        {/* Animated pills on outer arc */}
-       {isMounted &&
-  containerWidth > 0 &&
-  words.map((word, index) => {
-          const degree =
-  (index * spacing + (isArcReady ? angle : 0)) % cycle;
-          const isVisible = degree >= 0 && degree <= 180;
-          const radians = (degree * Math.PI) / 180;
+          {/* Animated pills on outer arc — constant linear rotation speed */}
+          {isMounted &&
+            containerWidth > 0 &&
+            words.map((word, index) => {
+              const degree =
+                (index * spacing + (isArcReady ? angle : 0)) % cycle;
+              const isVisible = degree >= 0 && degree <= 180;
+              const radians = (degree * Math.PI) / 180;
 
-          const x = centerX + radiusX * Math.cos(Math.PI - radians);
-          const y = centerY - radiusY * Math.sin(radians);
+              const x = centerX + radiusX * Math.cos(Math.PI - radians);
+              const y = centerY - radiusY * Math.sin(radians);
 
-          const closeness = 1 - Math.abs(degree - 90) / 90;
-          const distance = Math.min(x - startX, endX - x);
-          const edgeOpacity = Math.max(0, Math.min(1, (distance - edgePadding) / fadeRange));
+              const closeness = 1 - Math.abs(degree - 90) / 90;
+              const distance = Math.min(x - startX, endX - x);
+              const edgeOpacity = Math.max(0, Math.min(1, (distance - edgePadding) / fadeRange));
 
-          const opacity = isVisible ? edgeOpacity : 0;
-          const scale = 0.9 + closeness * 0.12;
+              const opacity = isVisible ? edgeOpacity : 0;
+              const scale = 0.9 + closeness * 0.12;
 
-          return (
-            <div
-             key={`${word}-${index}`}
-              className="pointer-events-none absolute z-30 whitespace-nowrap rounded-full border border-white/80 bg-white/10 text-white shadow-sm backdrop-blur-sm will-change-transform"
-            style={{
-  left: `${x}px`,
-  top: `${y}px`,
-  opacity,
-  fontSize: containerWidth < 640 ? 12 : 14,
-  padding: containerWidth < 640 ? "6px 12px" : "8px 18px",
-  transform: `translate(-50%, -50%) scale(${scale})`,
-}}
-            >
-              {word}
-            </div>
-          );
-        })}
+              return (
+                <div
+                  key={`${word}-${index}`}
+                  className="pointer-events-none absolute z-30 whitespace-nowrap rounded-full border border-white/80 bg-white/10 text-white shadow-sm backdrop-blur-sm will-change-transform"
+                  style={{
+                    left: `${x}px`,
+                    top: `${y}px`,
+                    opacity,
+                    fontSize: containerWidth < 640 ? 12 : 14,
+                    padding: containerWidth < 640 ? "6px 12px" : "8px 18px",
+                    transform: `translate(-50%, -50%) scale(${scale})`,
+                    transition: "opacity 0.2s linear",
+                  }}
+                >
+                  {word}
+                </div>
+              );
+            })}
 
-        {/* Static stats on inner arc */}
-        {staticStats.map((item) => {
-          const radians = (item.degree * Math.PI) / 180;
-          const x = centerX + innerRadiusX * Math.cos(Math.PI - radians);
-          const y = centerY - innerRadiusY * Math.sin(radians);
+          {/* Static stats on inner arc */}
+        {staticStats.map((item, i) => {
+  const radians = (item.degree * Math.PI) / 180;
+  const x = centerX + innerRadiusX * Math.cos(Math.PI - radians);
+  const y = centerY - innerRadiusY * Math.sin(radians);
 
-          const Icon = item.icon;
+  return (
+    <motion.div
+      key={item.id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.6, ease: easeOut, delay: i * 0.12 }}
+      className="pointer-events-none absolute z-40 flex -translate-x-1/2 flex-col items-center text-center text-white"
+      style={{ left: `${x}px`, top: `${y}px` }}
+    >
+      <div className="flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-blue-500/25 backdrop-blur-sm">
+        <Image
+          src={item.icon}
+          alt={item.line1}
+          width={containerWidth < 640 ? 20 : 34}
+          height={containerWidth < 640 ? 20 : 34}
+        />
+      </div>
+      <div className="mt-2 md:flex hidden flex-col items-center">
+        <strong className="text-2xl font-bold leading-none sm:text-3xl">
+          {item.value}
+        </strong>
+        <p className="mt-2 text-xs leading-4 text-white/95 sm:text-base sm:leading-5 elms-sans-light ">
+          {item.line1}
+          <br />
+          {item.line2}
+        </p>
+      </div>
+    </motion.div>
+  );
+})}
+        </motion.section>
 
-          return (
-            <div
-              key={item.id}
-              className="pointer-events-none absolute z-40 flex -translate-x-1/2 flex-col items-center text-center text-white"
-           style={{ left: `${x}px`, top: `${y}px` }}
-            >
-              <div className="flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-blue-500/25 backdrop-blur-sm">
-                <Icon size={containerWidth < 640 ? 20 : 34} strokeWidth={1.5} />
-              </div>
-              <div className="mt-2 md:flex hidden flex-col items-center">
-                <strong className="text-2xl font-bold leading-none sm:text-3xl">
-                  {item.value}
-                </strong>
-                <p className="mt-2 text-xs leading-4 text-white/95 sm:text-base sm:leading-5 elms-sans-light ">
-                  {item.line1}
-                  <br />
-                  {item.line2}
-                </p>
-              </div>
-            </div>
-          );
-        })}
+        <div className="w-11/12 mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            className="md:hidden flex  flex-wrap"
+          >
+            {staticStats.map((item, i) => {
+              return (
+                <motion.div
+                  variants={fadeUpStagger(i * 0.1)}
+                  className="w-6/12 text-center py-4"
+                  key={item.id}
+                >
+                  <strong className="text-2xl figtree-Bold leading-none sm:text-3xl text-white">
+                    {item.value}
+                  </strong>
+                  <p className="mt-2 text-xs leading-4 text-white/95 sm:text-base sm:leading-5 elms-sans-light ">
+                    {item.line1}
+                    <br />
+                    {item.line2}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
 
-      
-   </section> 
-   <div className="w-11/12 mx-auto">
-     <div className="md:hidden flex  flex-wrap">
-          {staticStats.map((item) => {
-            return (
-            <div className="w-6/12 text-center py-4" key={item.id}>
-              <strong className="text-2xl figtree-Bold leading-none sm:text-3xl text-white">
-                  {item.value}
-                </strong>
-                <p className="mt-2 text-xs leading-4 text-white/95 sm:text-base sm:leading-5 elms-sans-light ">
-                  {item.line1}
-                  <br />
-                  {item.line2}
-                </p>
-            </div>
-            )
-            
-          })}
-          </div>
-          </div>  
-     
-      <HeroScrollCards />
- 
-      <Marquee items={words1} />
-      <Marquee items={words2} reverse />
-      <Marquee items={words1} />
-      </section> 
-<div className="pt-7"></div>
-      <GetInTouch />
-     <Footer/>
-
-
-        
-
-     
-    </main>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={fadeUp}
+        >
+          <HeroScrollCards />
+        </motion.div>
 
     
+          <Marquee items={words1} />
+      
+      
+          <Marquee items={words2} reverse />
+        
+       
+          <Marquee items={words1} />
+     
+      </section>
+
+      <div className="pt-7"></div>
+
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+      >
+        <GetInTouch />
+      </motion.div>
+
+      <Footer />
+    </main>
+    </>
+ 
   );
 }

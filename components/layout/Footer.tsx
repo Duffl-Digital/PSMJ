@@ -31,20 +31,20 @@ export default function Footer() {
             
            
 
-              <footer className="">
+              <footer className="relative z-99">
 
                 {/* Bottom Bar */}
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }} className="  bg-gradient-to-r from-[#0F4C8C] to-[#2F7CC2]  px-10 sm:px-30 py-3 flex justify-between items-center">
+                    viewport={{ once: true, amount: 0.3 }} className="    px-10 sm:px-30 py-3 flex justify-between items-center">
 
-                    <p className="text-white text-[13px] figtree-extra-light leading-[28px] tracking-[0.26px] ">
+                    <p className="text-black text-[13px] figtree-extra-light leading-[28px] tracking-[0.26px] ">
                         &copy; {new Date().getFullYear()} | PSMJ
                     </p>
 
-                    <p className="text-white text-[13px] figtree-extra-light leading-[28px] tracking-[0.26px]">
-                        <a target="_blank" href="https://duffldigital.com/" className="text-white text-[13px]  leading-[28px] tracking-[0.26px]">
+                    <p className="text-black text-[13px] figtree-extra-light leading-[28px] tracking-[0.26px]">
+                        <a target="_blank" href="https://duffldigital.com/" className="text-black text-[13px]  leading-[28px] tracking-[0.26px]">
                             DUFFL DIGITAL
                         </a>
 
