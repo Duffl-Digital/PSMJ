@@ -41,7 +41,7 @@ export default function GallerySlider({ slides }: { slides: Slide[] }) {
       {
         startIndex,
         Carousel: { infinite: true },
-        Thumbs: { type: "classic" },
+      
         on: {
           close: () => swiper.autoplay?.start(),
         },

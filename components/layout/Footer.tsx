@@ -37,7 +37,7 @@ export default function Footer() {
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }} className="    px-10 sm:px-30 py-3 flex justify-between items-center">
+                    viewport={{ once: true, amount: 0.3 }} className=" 2xl:container mx-auto    px-10 sm:px-30 py-3 flex justify-between items-center">
 
                     <p className="text-black text-[13px] figtree-extra-light leading-[28px] tracking-[0.26px] ">
                         &copy; {new Date().getFullYear()} | PSMJ

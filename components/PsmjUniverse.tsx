@@ -59,7 +59,7 @@ function Logo() {
       <span className="text-xl font-semibold tracking-wide text-[#1E2A5E] sm:text-2xl">
         UNIVERSE
       </span> */}
-      <img src="/images/home/psmjuniverselogo.svg" />
+      <img src="/images/home/psmjuniverselogo.svg" className="md:w-auto w-[280px]" />
     </div>
   );
 }
@@ -220,8 +220,8 @@ function OrbitLayer({ id, half, z }: { id: string; half: "back" | "front"; z: st
 
 export default function PsmjUniverse() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-white">
-      <div className="mx-auto grid min-h-screen max-w-6xl items-center gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10 lg:py-12">
+    <main className="n overflow-x-hidden bg-white">
+      <div className="mx-auto grid  max-w-6xl items-center gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10 lg:py-12">
         {/* left: logo + cluster */}
         <section className="animate-rise space-y-6 lg:space-y-10">
           <Logo />

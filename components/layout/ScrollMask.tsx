@@ -12,7 +12,7 @@ type ScrollMaskProps = {
 export default function ScrollMask({
   desktopVideo,
   mobileVideo,
-  height = "250vh",
+  height = "200vh", // pinned scroll distance = height - 100vh
 }: ScrollMaskProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -21,10 +21,10 @@ export default function ScrollMask({
     offset: ["start start", "end end"],
   });
 
-  /* PHASE 1 (0 → 0.6): circle reveal */
+  /* Circle fully open by 0.85 (spring lags a little, so it settles by the end) */
   const rawCircleSize = useTransform(
     scrollYProgress,
-    [0, 0.04, 0.1, 0.2, 0.32, 0.45, 0.6],
+    [0, 0.05, 0.12, 0.25, 0.45, 0.65, 0.85],
     [0.7, 3, 10, 25, 50, 80, 150]
   );
 
@@ -46,18 +46,20 @@ export default function ScrollMask({
     )`;
   });
 
-  /* PHASE 2 (0.6 → 1): parallax while home page slides over */
-  const videoScale = useTransform(scrollYProgress, [0, 0.6], [1.25, 1]);
-  const videoY = useTransform(scrollYProgress, [0.6, 1], ["0%", "-15%"]);
-  const textOpacity = useTransform(scrollYProgress, [0.65, 0.9], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0.6, 1], ["0%", "-40%"]);
+  /* Video: no vertical movement, so no gap appears at the bottom */
+  const videoScale = useTransform(scrollYProgress, [0, 0.85], [1.25, 1]);
+
+  /* Text: no vertical movement, so it never freezes mid-scroll.
+     It fades out smoothly while the circle opens. */
+  const textOpacity = useTransform(scrollYProgress, [0.3, 0.75], [1, 0]);
+  const textScale = useTransform(scrollYProgress, [0, 0.75], [1, 1.08]);
 
   const dotOpacity = useTransform(scrollYProgress, [0, 0.02, 0.06], [1, 1, 0]);
   const dotScale = useTransform(scrollYProgress, [0, 0.02, 0.06], [1, 1, 0]);
 
   return (
     <section ref={sectionRef} className="relative w-full" style={{ height }}>
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-white">
+      <div className="sticky top-0 flex h-[100dvh] w-full items-center justify-center overflow-hidden bg-white">
         {/* MASKED LAYER */}
         <motion.div
           className="absolute inset-0"
@@ -70,10 +72,9 @@ export default function ScrollMask({
             maskPosition: "center",
           }}
         >
-          {/* PARALLAX LAYER (scale + move) */}
           <motion.div
             className="absolute inset-0 will-change-transform"
-            style={{ scale: videoScale, y: videoY }}
+            style={{ scale: videoScale }}
           >
             <video
               src={desktopVideo}
@@ -95,10 +96,9 @@ export default function ScrollMask({
             />
           </motion.div>
 
-          {/* TEXT (moves faster than video = depth) */}
           <motion.div
             className="absolute inset-0 z-10 flex items-center justify-center"
-            style={{ opacity: textOpacity, y: textY }}
+            style={{ opacity: textOpacity, scale: textScale }}
           >
             <h1 className="text-center text-4xl font-bold tracking-[0.2em] text-white md:text-6xl lg:text-8xl">
               WELCOME TO PSMJ

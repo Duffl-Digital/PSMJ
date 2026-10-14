@@ -26,7 +26,7 @@ export default function GetInTouch() {
 
       return (
         
-  <div className="xl:pt-24 md:pt-8 pt-18 relative  bg-[linear-gradient(180deg,_#FFE79E_51.44%,_#FFF_100%)] md:bg-none ">
+  <div className="xl:pt-24 md:pt-8 pt-18 relative 2xl:container mx-auto   bg-[linear-gradient(180deg,_#FFE79E_51.44%,_#FFF_100%)] md:bg-none ">
     
 <div className="md:-mt-[70px] md:w-[260px]  text-md-start text-center relative  md:absolute  md:-bottom-[52px] z-99  ">
     <img

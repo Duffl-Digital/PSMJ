@@ -24,6 +24,9 @@ import GetInTouch from "@/components/layout/GetInTouch";
 import PsmjUniverse from "@/components/PsmjUniverse";
 import TrustedBySection from "@/components/TrustedBySection";
 import ScrollMask from "@/components/layout/ScrollMask";
+import CompanyStats from "./CompanyStats";
+import RotatingHeroHeading from "./RotatingHeroHeading";
+import HeroDescription from "./HeroDescription";
 
 const words = [
   "#Lorem", "#Branding", "#Marketing", "#Creative", "#Digital",
@@ -275,7 +278,7 @@ export default function Home() {
       {/* =====================================================
           HERO
       ===================================================== */}
-         <div className="relative z-10 -mt-[50vh] w-full shadow-[0_-30px_80px_rgba(0,0,0,0.45)] rounded-t-[40px]">
+         <div className="relative z-10  w-full shadow-[0_-30px_80px_rgba(0,0,0,0.45)] rounded-t-[40px]">
       <section
         ref={heroRef}
         className="
@@ -422,7 +425,7 @@ export default function Home() {
             MAIN HEADING
         ================================================= */}
 
-                <h1
+                {/* <h1
                   className="
     relative
     z-[20]
@@ -447,7 +450,7 @@ export default function Home() {
     [text-shadow:0_52.798px_79.696px_rgba(101,101,101,0.34),0_34.221px_46.674px_rgba(0,0,0,0.26),0_20.337px_25.385px_rgba(0,0,0,0.21),0_10.56px_12.951px_rgba(0,0,0,0.17),0_4.302px_6.494px_rgba(0,0,0,0.13),0_0.978px_3.136px_rgba(0,0,0,0.08)]
   "
                 >
-                  {/* BUILDING + BADGE — stacks on mobile, inline from sm: up */}
+                  
                   <span
                     className="
       flex
@@ -484,10 +487,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
         
       "
                     >
-                      {/* HIGHLIGHT */}
-                   
-
-                      {/* BADGE */}
+                     
                       <span
                         className="
          
@@ -543,14 +543,16 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
                   >
                     Organizations
                   </motion.span>
-                </h1>
+                </h1> */}
+
+                <RotatingHeroHeading />
               </motion.div>
 
               {/* =====================================================
           DESCRIPTION
       ===================================================== */}
 
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: easeOut, delay: 0.8 }}
@@ -576,9 +578,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
           lg:gap-8
         "
               >
-                {/* =================================================
-            BRAIN ICON
-        ================================================= */}
+           
 
                 <Image
                   src="/images/home/brain-icon.svg"
@@ -602,9 +602,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
           "
                 />
 
-                {/* =================================================
-            DESCRIPTION TEXT
-        ================================================= */}
+              
 
                 <p
                   className="
@@ -636,14 +634,16 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
                   experiences through learning, consulting, events, and brand
                   activation.
                 </p>
-              </motion.div>
+              </motion.div> */}
 
+              
+<HeroDescription />
 
             
             </div>
 
           </div>
-                         <div
+                         {/* <div
       aria-label="Company statistics"
       className="w-full px-4 py-8 sm:py-10"
     >
@@ -682,7 +682,9 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
             </p>
           </div>
       </div>
-    </div>
+    </div> */}
+
+     <CompanyStats />
         </section>
 
         <PsmjUniverse />
@@ -697,14 +699,9 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
 
       <div className="pt-7"></div>
 
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={fadeUp}
-      >
+   
         <GetInTouch />
-      </motion.div>
+      
 
       <Footer />
       </div>
