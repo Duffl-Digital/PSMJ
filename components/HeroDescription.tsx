@@ -25,7 +25,7 @@ const ITEMS = [
   },
 ];
 
-const INTERVAL_MS = 5000; // keep same as the heading so both change together
+const INTERVAL_MS = 7000; // keep same as the heading so both change together
 
 const fade = {
   initial: { opacity: 0 },

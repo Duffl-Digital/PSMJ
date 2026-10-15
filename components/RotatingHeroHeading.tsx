@@ -12,7 +12,7 @@ const HERO_ITEMS = [
   { prefix: "Empowering", line1: "Ambitious", line2: "Teams" },
 ];
 
-const INTERVAL_MS = 5000;
+const INTERVAL_MS = 7000;
 
 const fade = {
   initial: { opacity: 0 },
