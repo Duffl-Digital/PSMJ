@@ -50,7 +50,7 @@ export default function GetInTouch() {
                         Get In Touch
                     </h2>
 
-                    <div className="hidden xl:block w-px h-10 bg-[linear-gradient(180deg,#FFF_0%,#121212_50%,_#FFF_100%)]" />
+                    <div className="hidden xl:block w-px h-10 bg-[linear-gradient(180deg,#ffffff4f_0%,#121212_50%,_#ffffff4f_100%)]" />
 
 
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-6 flex-1 ">

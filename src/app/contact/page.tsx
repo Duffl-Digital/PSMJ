@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
@@ -13,143 +13,225 @@ import {
   EnquiryRequest,
   contactInitialValues,
 } from "../models/contactModel";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 import { validateContactForm } from "../validations/contactValidation";
 import { submitEnquiry } from "../services/contactService";
 
 
-export default function ContactPage() {
+export default function ContactNewPage() {
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  whatsapp: "",
+  subject: "",
+  message: "",
+});
+const [captchaToken, setCaptchaToken] = useState("");
+ const recaptchaRef = useRef<ReCAPTCHA>(null);
+const [errors, setErrors] = useState<Record<string, string>>({});
+const [loading, setLoading] = useState(false);
+const [sameWhatsapp, setSameWhatsapp] = useState(false);
+const [honeypot, setHoneypot] = useState("");
+function handleChange(
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >
+) {
+  const { name, value } = e.target;
 
-
-  const [formData, setFormData] = useState<ContactFormModel>(contactInitialValues);
-
-
-  const [loading, setLoading] = useState(false);
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, "").slice(0, 10);
-
-    setFormData((prev) => ({
+  setForm((prev) => {
+    const updated = {
       ...prev,
-      phone: value,
-      whatsapp: prev.sameAsWhatsapp ? value : prev.whatsapp,
-    }));
+      [name]: value,
+    };
 
-    setErrors((prev) => ({
-      ...prev,
-      phone: "",
-    }));
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-
-    if (e.target instanceof HTMLInputElement && e.target.type === "checkbox") {
-      const checked = e.target.checked;
-
-      setFormData((prev) => ({
-        ...prev,
-        [name]: checked,
-        whatsapp: checked ? prev.phone : "",
-      }));
-    } else {
-      let inputValue = value;
-
-      // Name field - only letters and spaces
-      if (name === "name") {
-        inputValue = value
-          .replace(/[^a-zA-Z\s]/g, "") // Remove numbers & special characters
-          .replace(/\s{2,}/g, " ")     // Remove multiple spaces
-          .replace(/^\s/, "");         // Remove leading space
-      }
-
-      // Phone & WhatsApp - numbers only, max 10 digits
-      if (name === "phone" || name === "whatsapp") {
-        inputValue = value
-          .replace(/\D/g, "") // Numbers only
-          .slice(0, 10);      // Maximum 10 digits
-      }
-
-      setFormData((prev) => ({
-        ...prev,
-        [name]: inputValue,
-      }));
+    if (name === "phone" && sameWhatsapp) {
+      updated.whatsapp = value;
     }
 
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
+    return updated;
+  });
 
+  setErrors((prev) => ({
+    ...prev,
+    [name]: "",
+  }));
+}
 
+function validateForm() {
+  const newErrors: Record<string, string> = {};
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
+  if (!form.name.trim()) {
+    newErrors.name = "Enter name";
+  }
 
-    const validationErrors = validateContactForm(formData);
+  if (!form.email.trim()) {
+    newErrors.email = "Enter email id";
+  } else if (
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email)
+  ) {
+    newErrors.email = "Enter valid email id";
+  }
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+  if (!form.phone.trim()) {
+    newErrors.phone = "Enter phone number";
+  } else if (!/^[6-9]\d{9}$/.test(form.phone)) {
+    newErrors.phone = "Enter a valid 10-digit phone number";
+  }
+
+  if (!form.whatsapp.trim()) {
+    newErrors.whatsapp = "Enter whatsapp number";
+  } else if (!/^[6-9]\d{9}$/.test(form.whatsapp)) {
+    newErrors.whatsapp = "Enter valid whatsapp number";
+  }
+
+  if (!form.subject) {
+    newErrors.subject = "Select service";
+  }
+
+  if (!form.message.trim()) {
+    newErrors.message = "Enter message";
+  }
+  if (honeypot) {
+      newErrors.honeypot = "Something went wrong";
+  }
+  if (!captchaToken) {
+  newErrors.captcha = "Verify captcha";
+  }
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+}
+
+async function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  try {
+    setLoading(true);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+     body: JSON.stringify({
+  ...form,
+  captchaToken,
+  honeypot,
+}),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Something went wrong.");
       return;
     }
 
-    setLoading(true);
-
-    try {
-      const payload: EnquiryRequest = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        sameAsWhatsApp: formData.sameAsWhatsapp,
-        whatsAppNumber: formData.sameAsWhatsapp
-          ? formData.phone
-          : formData.whatsapp,
-        service: formData.service,
-        message: formData.message,
-      };
-
-      const response = await submitEnquiry(payload);
-
-      console.log(response);
-
-
       Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "Enquiry submitted successfully.",
-        backdrop: "rgba(0,0,0,0.6)",
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        confirmButtonColor: "#0B6BFF",
+            icon: "success",
+            title: "Success!",
+            text: "Enquiry submitted successfully.",
+            backdrop: "rgba(0,0,0,0.6)",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            confirmButtonColor: "#0B6BFF",
+    
+          });
+          recaptchaRef.current?.reset();
+          setCaptchaToken("");
 
-      });
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      whatsapp: "",
+      subject: "",
+      message: "",
+    });
 
-      setFormData(contactInitialValues);
-      setErrors({});
-    } catch (error) {
-      console.error(error);
+    setErrors({});
+    setSameWhatsapp(false);
+  } finally {
+    setLoading(false);
+  }
+}
+function handleNameKeyDown(
+  e: React.KeyboardEvent<HTMLInputElement>
+) {
+  const allowedKeys = [
+    "Backspace",
+    "Delete",
+    "ArrowLeft",
+    "ArrowRight",
+    "Tab",
+    "Home",
+    "End",
+  ];
 
-      Swal.fire({
-        icon: "error",
-        title: "Error!",
-        text: "Something went wrong. Please try again.",
-        confirmButtonColor: "#0B6BFF",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (allowedKeys.includes(e.key)) return;
 
+  if (!/^[A-Za-z ]$/.test(e.key)) {
+    e.preventDefault();
+  }
+}
+
+function handleNameInput(
+  e: React.FormEvent<HTMLInputElement>
+) {
+  e.currentTarget.value = e.currentTarget.value.replace(
+    /[^A-Za-z ]/g,
+    ""
+  );
+}
+function handleNumberKeyDown(
+  e: React.KeyboardEvent<HTMLInputElement>
+) {
+  const allowedKeys = [
+    "Backspace",
+    "Delete",
+    "ArrowLeft",
+    "ArrowRight",
+    "Tab",
+    "Home",
+    "End",
+  ];
+
+  if (allowedKeys.includes(e.key)) return;
+
+  if (!/^[0-9]$/.test(e.key)) {
+    e.preventDefault();
+  }
+}
+
+function handleNumberInput(
+  e: React.FormEvent<HTMLInputElement>
+) {
+  e.currentTarget.value = e.currentTarget.value.replace(/\D/g, "");
+}
+function handleWhatsappCheckbox(
+  e: React.ChangeEvent<HTMLInputElement>
+) {
+  const checked = e.target.checked;
+
+  setSameWhatsapp(checked);
+
+  setForm((prev) => ({
+    ...prev,
+    whatsapp: checked ? prev.phone : prev.whatsapp,
+  }));
+   if (checked) {
+    setErrors((prev) => ({
+      ...prev,
+      whatsapp: "",
+    }));
+  }
+}
+ 
   return (
 
 
@@ -163,7 +245,7 @@ export default function ContactPage() {
           {/* Left */}
 
 
-          <motion.div
+     <motion.div
             className="xl:col-span-4 lg:pt-20 ps-5 lg:ps-0"
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -388,22 +470,45 @@ export default function ContactPage() {
               />
             </motion.div>
 
-              <form onSubmit={handleSubmit} className="space-y-4 mt-8">
-                {/* Name */}
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className="peer capitalize w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]"
-                  />
+              
 
-                  <label
-                    htmlFor="name"
-                    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
+
+
+
+               <form onSubmit={handleSubmit} className="space-y-4 mt-8">
+                 <input
+  type="text"
+  name="website"
+  autoComplete="off"
+  tabIndex={-1}
+  value={honeypot}
+  onChange={(e) => setHoneypot(e.target.value)}
+  className="hidden"
+/>
+ {errors.honeypot && (
+    <p className="text-red-500 text-xs mt-1 mb-2">{errors.honeypot}</p>
+  )}
+
+{/* Full Name */}
+<div className="relative">
+  <input
+    id="name"
+    type="text"
+    name="name"
+    value={form.name}
+    onChange={handleChange}
+    onKeyDown={handleNameKeyDown}
+    onInput={handleNameInput}
+    placeholder=" "
+    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+      errors.name
+        ? "border-red-500"
+        : "border-gray-300 focus:border-blue-600"
+    }`}
+  />
+  <label
+    htmlFor="name"
+    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
     peer-placeholder-shown:top-5
     peer-placeholder-shown:text-base
     peer-focus:top-0
@@ -411,32 +516,32 @@ export default function ContactPage() {
     peer-focus:text-[#0B6BFF]
     peer-[:not(:placeholder-shown)]:top-0
     peer-[:not(:placeholder-shown)]:text-xs"
-                  >
-                    Name<sup className="text-[#256EAA]">*</sup>
-                  </label>
+  >
+     Name <span className="text-red-500">*</span>
+  </label>
+  {errors.name && (
+    <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+  )}
+</div>
 
-                  {errors.name && (
-                    <p className="text-red-500 text-xs mt-2">
-                      {errors.name}
-                    </p>
-                  )}
-                </div>
-
-                {/* Email */}
-                <div className="relative">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className="peer lowercase w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]"
-                  />
-
-                  <label
-                    htmlFor="email"
-                    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
+{/* Email */}
+<div className="relative">
+  <input
+    id="email"
+    type="email"
+    name="email"
+    value={form.email}
+    onChange={handleChange}
+    placeholder=" "
+    className={`peer lowercase w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+      errors.email
+        ? "border-red-500"
+        : "border-gray-300 focus:border-blue-600"
+    }`}
+  />
+  <label
+    htmlFor="email"
+    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
     peer-placeholder-shown:top-5
     peer-placeholder-shown:text-base
     peer-focus:top-0
@@ -444,33 +549,38 @@ export default function ContactPage() {
     peer-focus:text-[#0B6BFF]
     peer-[:not(:placeholder-shown)]:top-0
     peer-[:not(:placeholder-shown)]:text-xs"
-                  >
-                    Email ID<sup className="text-[#256EAA]">*</sup>
-                  </label>
+  >
+    Email ID <span className="text-red-500">*</span>
+  </label>
 
-                  {errors.email && (
-                    <p className="text-red-500 text-xs mt-2">
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
+  {errors.email && (
+    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+  )}
+</div>
 
-                {/* Phone */}
-                <div className="relative mb-10">
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handlePhoneChange}
-                    maxLength={10}
-                    placeholder=" "
-                    className="peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]"
-                  />
+{/* Phone */}
+<div className="relative">
+  <input
+    id="phone"
+    type="tel"
+    name="phone"
+    value={form.phone}
+    maxLength={10}
+    inputMode="numeric"
+    onChange={handleChange}
+    onKeyDown={handleNumberKeyDown}
+    onInput={handleNumberInput}
+    placeholder=" "
+    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+      errors.phone
+        ? "border-red-500"
+        : "border-gray-300 focus:border-blue-600"
+    }`}
+  />
 
-                  <label
-                    htmlFor="phone"
-                    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
+  <label
+    htmlFor="phone"
+    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
       peer-placeholder-shown:top-5
       peer-placeholder-shown:text-base
       peer-focus:top-0
@@ -478,52 +588,77 @@ export default function ContactPage() {
       peer-focus:text-[#0B6BFF]
       peer-[:not(:placeholder-shown)]:top-0
       peer-[:not(:placeholder-shown)]:text-xs"
-                  >
-                    Phone Number<sup className="text-[#256EAA]">*</sup>
-                  </label>
-
-                  {errors.phone && (
-                    <p className="text-red-500 text-xs mt-2">
-                      {errors.phone}
-                    </p>
-                  )}
-
-                  <div className="flex items-center gap-3 mt-3">
-                    <label
-                      htmlFor="sameAsWhatsapp"
-                      className="text-[16px] text-[#1E1E1E] cursor-pointer elms-sans-Regular"
-                    >
-                      Is it same as your WhatsApp number?
-                    </label>
-
-                    <input
-                      id="sameAsWhatsapp"
-                      type="checkbox"
-                      name="sameAsWhatsapp"
-                      checked={formData.sameAsWhatsapp}
-                      onChange={handleChange}
-                      className="w-4 h-4 rounded border border-[#1E1E1E] accent-black cursor-pointer"
-                    />
-                  </div>
-                </div>
-                {/* Service */}
-                <div className="relative">
-  {/* Label */}
-  <label
-    htmlFor="service"
-    className="absolute left-0 top-0 z-10 text-[16px] text-gray-500 elms-sans-medium transition-all duration-300 peer-focus:text-[#0B6BFF]"
   >
-    Service<sup className="text-[#256EAA]">*</sup>
+    Phone Number <span className="text-red-500">*</span>
   </label>
 
-  {/* Select */}
-  <select
-    id="service"
-    name="service"
-    value={formData.service}
+  {errors.phone && (
+    <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+  )}
+
+  <div className="flex items-center mt-3">
+    <input
+      id="sameWhatsapp"
+      type="checkbox"
+      checked={sameWhatsapp}
+      onChange={handleWhatsappCheckbox}
+      className="mr-2"
+    />
+    <label htmlFor="sameWhatsapp" className="text-sm">
+      WhatsApp number is same as Phone Number
+    </label>
+  </div>
+</div>
+
+{/* WhatsApp */}
+<div className="relative">
+  <input
+    id="whatsapp"
+    type="tel"
+    name="whatsapp"
+    value={form.whatsapp}
+    maxLength={10}
+    inputMode="numeric"
     onChange={handleChange}
-    className="
-      peer
+    onKeyDown={handleNumberKeyDown}
+    onInput={handleNumberInput}
+    readOnly={sameWhatsapp}
+    placeholder=" "
+    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+      errors.whatsapp
+        ? "border-red-500"
+        : "border-gray-300 focus:border-blue-600"
+    } ${sameWhatsapp ? "bg-gray-100" : ""}`}
+  />
+
+  <label
+    htmlFor="whatsapp"
+    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
+      peer-placeholder-shown:top-5
+      peer-placeholder-shown:text-base
+      peer-focus:top-0
+      peer-focus:text-xs
+      peer-focus:text-[#0B6BFF]
+      peer-[:not(:placeholder-shown)]:top-0
+      peer-[:not(:placeholder-shown)]:text-xs"
+  >
+    WhatsApp Number <span className="text-red-500">*</span>
+  </label>
+
+  {errors.whatsapp && (
+    <p className="text-red-500 text-xs mt-1">{errors.whatsapp}</p>
+  )}
+</div>
+
+{/* Service */}
+<div className="relative">
+  <select
+    id="subject"
+    name="subject"
+    
+    value={form.subject}
+    onChange={handleChange}
+    className={`peer
       w-full
       bg-transparent
       border-0
@@ -538,51 +673,40 @@ export default function ContactPage() {
       focus:border-[#0B6BFF]
       appearance-none
       [-webkit-appearance:none]
-      [-moz-appearance:none]
-    "
+      [-moz-appearance:none] ${
+      errors.subject
+        ? "border-red-500"
+        : "border-gray-300 focus:border-blue-600"
+    }`}
   >
-    <option value="">Select</option>
-    <option value="Web Design">Web Design</option>
-    <option value="UI/UX">UI / UX</option>
-    <option value="Development">Development</option>
+   
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
   </select>
 
-  {/* Custom Dropdown Arrow */}
-  <div className="pointer-events-none absolute right-0 top-[55%] -translate-y-1/2">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4 text-gray-500"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19 9l-7 7-7-7"
-      />
-    </svg>
-  </div>
+  <label
+    htmlFor="subject"
+    className="absolute left-0 top-0 z-10 text-[16px] text-gray-500 elms-sans-medium transition-all duration-300 peer-focus:text-[#0B6BFF]"
+  >
+    Service <span className="text-red-500">*</span>
+  </label>
 
-  {/* Error */}
-  {errors.service && (
-    <p className="mt-2 text-xs text-red-500">
-      {errors.service}
-    </p>
+  {errors.subject && (
+    <p className="text-red-500 text-xs mt-1">{errors.subject}</p>
   )}
 </div>
 
-                {/* Message */}
-                <div className="relative mt-10">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder=" "
-                    className="peer
+{/* Message */}
+<div className="relative">
+  <textarea
+    id="message"
+    name="message"
+    rows={5}
+    value={form.message}
+    onChange={handleChange}
+    placeholder=" "
+    className={`peer
       w-full
       border
       ps-4
@@ -594,13 +718,18 @@ export default function ContactPage() {
       outline-none
       transition-all
       duration-300
+      resize-none
    [text-transform:lowercase] first-letter:[text-transform:uppercase]
-      focus:border-[#0B6BFF]"
-                  />
+      focus:border-[#0B6BFF] ${
+      errors.message
+        ? "border-red-500"
+        : "border-gray-300 focus:border-blue-600"
+    }`}
+  />
 
-                  <label
-                    htmlFor="message"
-                    className="absolute left-4 top-5 elms-sans-medium text-gray-500 transition-all duration-300
+  <label
+    htmlFor="message"
+    className="absolute left-4 top-5 elms-sans-medium text-gray-500 transition-all duration-300
     peer-placeholder-shown:top-5
     peer-placeholder-shown:text-base
     peer-focus:top-2
@@ -608,29 +737,46 @@ export default function ContactPage() {
     peer-focus:text-[#0B6BFF]
     peer-[:not(:placeholder-shown)]:top-2
     peer-[:not(:placeholder-shown)]:text-xs"
-                  >
-                    Message
-                  </label>
+  >
+    Message <span className="text-red-500">*</span>
+  </label>
 
-                  {errors.message && (
-                    <p className="text-red-500 text-xs mt-2">
-                      {errors.message}
-                    </p>
-                  )}
-                </div>
+  {errors.message && (
+    <p className="text-red-500 text-xs mt-1">{errors.message}</p>
+  )}
+</div>
 
-                {/* Submit */}
+<div className="relative">
+ <label className="block elms-sans-medium mb-2 text-gray-500  text-base  text-[14px]">
+          Verify Captcha <span className="text-red-500">*</span>
+        </label>
+         <ReCAPTCHA
+  ref={recaptchaRef}
+  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+  className="scale-75 origin-left"
+  onChange={(token) => {
+    setCaptchaToken(token || "");
+   setErrors((prev) => ({
+    ...prev,
+    captcha: "",
+  }));
+  }}
+/>
+{errors.captcha && (
+  <p className="text-red-500  text-[12px] mt-1">
+    {errors.captcha}
+  </p>
+)}
+</div>
 
-
-                <button
-                  className="elms-sans-medium text-white text-[20px] leading-[39.318px] tracking-[0.34px] mx-auto block rounded-[10px] bg-gradient-to-r from-blue-800 to-cyan-400 px-[14px] py-[2px]"
-                  type="submit"
-                  disabled={loading}
-                >
-                  {loading ? "Submitting..." : "Submit"}
-                </button>
-
-              </form>
+<button
+  type="submit"
+  disabled={loading}
+  className="elms-sans-medium text-white text-[20px] leading-[39.318px] tracking-[0.34px] mx-auto block rounded-[10px] bg-gradient-to-r from-blue-800 to-cyan-400 px-[14px] py-[2px]"
+>
+   {loading ? "Submitting..." : "Submit"}
+</button>
+    </form>
 
             </motion.div> {/* Form Card */}
 

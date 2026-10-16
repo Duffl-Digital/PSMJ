@@ -60,7 +60,7 @@ export default function GallerySlider({ slides }: { slides: Slide[] }) {
         [&_.swiper-pagination-bullet]:bg-slate-200 [&_.swiper-pagination-bullet]:opacity-100
         [&_.swiper-pagination-bullet]:transition-all
         [&_.swiper-pagination-bullet-active]:!h-[6px] [&_.swiper-pagination-bullet-active]:!w-[30px]
-        [&_.swiper-pagination-bullet-active]:bg-slate-800
+        [&_.swiper-pagination-bullet-active]:bg-slate-800 
       "
     >
       <Swiper
@@ -81,7 +81,7 @@ export default function GallerySlider({ slides }: { slides: Slide[] }) {
         }}
         pagination={{ clickable: true }}
         onClick={handleClick}
-        className="home-gallery-slider !pb-6 !pt-4"
+        className="home-gallery-slider !pb-6 !pt-4 !px-2"
       >
         {slides.map((s) => (
           <SwiperSlide

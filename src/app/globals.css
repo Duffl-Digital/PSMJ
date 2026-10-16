@@ -800,7 +800,13 @@ Arrow box icon
   opacity: 1 !important;
   transition: all 0.5s ease;
 }
+.home-gallery-slider .swiper-slide {
+    visibility: hidden;
+}
 
+.home-gallery-slider .swiper-slide-visible ,.home-gallery-slider .swiper-slide-prev ,.home-gallery-slider .swiper-slide-next, .home-gallery-slider .swiper-slide-active  {
+    visibility: visible;
+}
 .home-gallery-slider .swiper-pagination-bullet-active {
   width: 28px;
   height: 5px;

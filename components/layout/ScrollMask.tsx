@@ -51,11 +51,16 @@ export default function ScrollMask({
 
   /* Text: no vertical movement, so it never freezes mid-scroll.
      It fades out smoothly while the circle opens. */
-  const textOpacity = useTransform(scrollYProgress, [0.3, 0.75], [1, 0]);
+  // const textOpacity = useTransform(scrollYProgress, [0.3, 0.75], [1, 0]);
   const textScale = useTransform(scrollYProgress, [0, 0.75], [1, 1.08]);
 
   const dotOpacity = useTransform(scrollYProgress, [0, 0.02, 0.06], [1, 1, 0]);
   const dotScale = useTransform(scrollYProgress, [0, 0.02, 0.06], [1, 1, 0]);
+
+
+const textOpacity = useTransform(scrollYProgress, [0.3, 0.5, 1], [0, 1, 1]);
+const rawTextY = useTransform(scrollYProgress, [0.3, 0.5, 1], [120, 0, 0]);
+const textY = useSpring(rawTextY, { stiffness: 80, damping: 25, mass: 0.8 });
 
   return (
     <section ref={sectionRef} className="relative w-full" style={{ height }}>
@@ -96,14 +101,37 @@ export default function ScrollMask({
             />
           </motion.div>
 
-          <motion.div
-            className="absolute inset-0 z-10 flex items-center justify-center"
-            style={{ opacity: textOpacity, scale: textScale }}
-          >
-            <h1 className="text-center text-4xl font-bold tracking-[0.2em] text-white md:text-6xl lg:text-8xl">
-              WELCOME TO PSMJ
-            </h1>
-          </motion.div>
+      {/* MASKED LAYER (video only) */}
+<motion.div
+  className="absolute inset-0"
+  style={{
+    WebkitMaskImage: maskImage,
+    maskImage,
+    WebkitMaskRepeat: "no-repeat",
+    maskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    maskPosition: "center",
+  }}
+>
+  <motion.div
+    className="absolute inset-0 will-change-transform"
+    style={{ scale: videoScale }}
+  >
+    {/* ...your two <video> tags... */}
+  </motion.div>
+</motion.div>
+
+{/* TEXT LAYER (outside the mask, always stays once shown) */}
+<motion.div
+  className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
+  style={{ opacity: textOpacity, y: textY }}
+>
+  <h1 className="text-center text-4xl font-bold tracking-[0.2em] text-white md:text-6xl lg:text-8xl">
+    WELCOME TO PSMJ
+  </h1>
+</motion.div>
+
+
         </motion.div>
 
         {/* CENTER DOT */}
