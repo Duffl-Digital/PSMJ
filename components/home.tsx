@@ -346,7 +346,7 @@ export default function Home() {
               <motion.div
                 initial="hidden"
                 animate="show"
-                variants={fadeUp}
+             
                 className="
           relative
       

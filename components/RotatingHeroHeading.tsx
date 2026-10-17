@@ -56,7 +56,7 @@ export default function RotatingHeroHeading() {
         md:pt-[0px]
         pt-[12px]
 
-        [text-shadow:0_52.798px_79.696px_rgba(101,101,101,0.34),0_34.221px_46.674px_rgba(0,0,0,0.26),0_20.337px_25.385px_rgba(0,0,0,0.21),0_10.56px_12.951px_rgba(0,0,0,0.17),0_4.302px_6.494px_rgba(0,0,0,0.13),0_0.978px_3.136px_rgba(0,0,0,0.08)]
+        
       "
     >
       {/* PREFIX (changes) + BADGE (static) */}
