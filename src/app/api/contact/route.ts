@@ -15,37 +15,37 @@ export async function POST(req: Request) {
         action: "API Request Started",
         time: new Date().toISOString(),
     });
-  // Get Client IP
-    // const ip =
-    //     req.headers.get("x-forwarded-for") ||
-    //     req.headers.get("x-real-ip") ||
-    //     "unknown";
 
-            // Rate Limit
-    // try {
+    // Get Client IP
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const ip =
+        forwardedFor?.split(",")[0]?.trim() ||
+        req.headers.get("x-real-ip") ||
+        "unknown";
 
-    //     await rateLimiter.consume(ip);
+    // Rate Limit
+    try {
+        await rateLimiter.consume(ip);
+    } catch {
+        logger.warn({
+            module: "Contact",
+            action: "Rate Limit Exceeded",
+            ip,
+            time: new Date().toISOString(),
+        });
 
-    // }
-    // catch {
+        return NextResponse.json(
+            {
+                success: false,
+                message:
+                    "Too many requests. Please try again after 1 minute.",
+            },
+            {
+                status: 429,
+            }
+        );
+    }
 
-    //     logger.warn({
-    //         module: "Contact",
-    //         action: "Rate Limit Exceeded",
-    //         ip,
-    //         time: new Date().toISOString(),
-    //     });
-
-    //     return NextResponse.json(
-    //         {
-    //             success: false,
-    //             message: "Too many requests. Please try again after 1 minute.",
-    //         },
-    //         {
-    //             status: 429,
-    //         }
-    //     );
-    // }
     try {
 
         // Read Request Body

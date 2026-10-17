@@ -35,12 +35,19 @@ const [errors, setErrors] = useState<Record<string, string>>({});
 const [loading, setLoading] = useState(false);
 const [sameWhatsapp, setSameWhatsapp] = useState(false);
 const [honeypot, setHoneypot] = useState("");
+
 function handleChange(
   e: React.ChangeEvent<
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >
 ) {
-  const { name, value } = e.target;
+  const { name } = e.target;
+  let { value } = e.target;
+
+  // Message: first letter uppercase, remaining letters lowercase
+  if (name === "message" && value.length > 0) {
+    value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+  }
 
   setForm((prev) => {
     const updated = {
@@ -60,6 +67,7 @@ function handleChange(
     [name]: "",
   }));
 }
+
 
 function validateForm() {
   const newErrors: Record<string, string> = {};
@@ -719,7 +727,7 @@ function handleWhatsappCheckbox(
       transition-all
       duration-300
       resize-none
-   [text-transform:lowercase] first-letter:[text-transform:uppercase]
+  
       focus:border-[#0B6BFF] ${
       errors.message
         ? "border-red-500"
