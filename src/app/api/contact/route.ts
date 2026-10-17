@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 
 import { ContactSchema } from "@/src/lib/validation";
@@ -6,8 +7,8 @@ import { sendContactMail } from "@/src/lib/mail";
 import { logger } from "@/src/lib/logger";
 import { sanitizeInput } from "@/src/lib/sanitize";
 import { rateLimiter } from "@/src/lib/rateLimit";
-export async function POST(req: Request) {
 
+export async function POST(req: Request) {
     let body: any;
 
     logger.info({
@@ -16,14 +17,14 @@ export async function POST(req: Request) {
         time: new Date().toISOString(),
     });
 
-    // // Get Client IP
+    // Get Client IP
     // const forwardedFor = req.headers.get("x-forwarded-for");
     // const ip =
     //     forwardedFor?.split(",")[0]?.trim() ||
     //     req.headers.get("x-real-ip") ||
     //     "unknown";
 
-    // // Rate Limit
+    // Rate Limit
     // try {
     //     await rateLimiter.consume(ip);
     // } catch {
@@ -40,16 +41,14 @@ export async function POST(req: Request) {
     //             message:
     //                 "Too many requests. Please try again after 1 minute.",
     //         },
-    //         {
-    //             status: 429,
-    //         }
+    //         { status: 429 }
     //     );
     // }
 
     try {
-
         // Read Request Body
         body = await req.json();
+
         const { captchaToken, honeypot } = body;
 
         logger.info({
@@ -58,65 +57,114 @@ export async function POST(req: Request) {
             email: body.email,
             time: new Date().toISOString(),
         });
-// Honeypot validation
-if (honeypot) {
-  logger.warn({
-    module: "Contact",
-    action: "Spam detected (Honeypot)",
-    email: body?.email,
-    time: new Date().toISOString(),
-  });
 
-  return NextResponse.json(
-    {
-      success: false,
-      message: "Spam detected.",
-    },
-    {
-      status: 400,
-    }
-  );
-}
-// Verify Google reCAPTCHA
-const verifyResponse = await fetch(
-  "https://www.google.com/recaptcha/api/siteverify",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      secret: process.env.RECAPTCHA_SECRET_KEY!,
-      response: captchaToken,
-    }),
-  }
-);
-console.log(process.env.RECAPTCHA_SECRET_KEY);
-console.log(verifyResponse.json());
-const captchaResult = await verifyResponse.json();
-if (!captchaResult.success) {
-  logger.warn({
-    module: "Contact",
-    action: "Captcha Verification Failed",
-    email: body?.email,
-    time: new Date().toISOString(),
-  });
+        // Honeypot Validation
+        if (honeypot) {
+            logger.warn({
+                module: "Contact",
+                action: "Spam detected (Honeypot)",
+                email: body?.email,
+                time: new Date().toISOString(),
+            });
 
-  return NextResponse.json(
-    {
-      success: false,
-      message: "Captcha verification failed.",
-    },
-    {
-      status: 400,
-    }
-  );
-}
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Spam detected.",
+                },
+                { status: 400 }
+            );
+        }
+
+        // Check CAPTCHA Configuration
+        const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
+
+        if (!recaptchaSecret) {
+            logger.error({
+                module: "Contact",
+                action: "reCAPTCHA Secret Key Missing",
+                time: new Date().toISOString(),
+            });
+
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Server configuration error.",
+                },
+                { status: 500 }
+            );
+        }
+
+        // Check CAPTCHA Token
+        if (
+            typeof captchaToken !== "string" ||
+            !captchaToken.trim()
+        ) {
+            logger.warn({
+                module: "Contact",
+                action: "CAPTCHA Token Missing",
+                email: body?.email,
+                time: new Date().toISOString(),
+            });
+
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "CAPTCHA verification failed.",
+                },
+                { status: 400 }
+            );
+        }
+
+        // Verify Google reCAPTCHA
+        const verifyResponse = await fetch(
+            "https://www.google.com/recaptcha/api/siteverify",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    secret: recaptchaSecret,
+                    response: captchaToken,
+                }),
+                cache: "no-store",
+            }
+        );
+
+        // IMPORTANT: Read the response body only once
+        const captchaResult = await verifyResponse.json();
+
+        logger.info({
+            module: "Contact",
+            action: "Captcha Verification Response",
+            success: captchaResult.success,
+            errorCodes: captchaResult["error-codes"],
+            time: new Date().toISOString(),
+        });
+
+        if (!verifyResponse.ok || !captchaResult.success) {
+            logger.warn({
+                module: "Contact",
+                action: "Captcha Verification Failed",
+                email: body?.email,
+                time: new Date().toISOString(),
+            });
+
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Captcha verification failed.",
+                },
+                { status: 400 }
+            );
+        }
+
         // Validation
         const validation = ContactSchema.safeParse(body);
 
         if (!validation.success) {
-         
             logger.warn({
                 module: "Contact",
                 action: "Validation Failed",
@@ -130,12 +178,13 @@ if (!captchaResult.success) {
                     success: false,
                     errors: validation.error.flatten(),
                 },
-                {
-                    status: 400,
-                }
+                { status: 400 }
             );
         }
-const cleanData = sanitizeInput(validation.data);
+
+        // Sanitize Input
+        const cleanData = sanitizeInput(validation.data);
+
         logger.info({
             module: "Contact",
             action: "Validation Success",
@@ -151,7 +200,7 @@ const cleanData = sanitizeInput(validation.data);
             time: new Date().toISOString(),
         });
 
-   await sendContactMail(cleanData);
+        await sendContactMail(cleanData);
 
         logger.info({
             module: "Contact",
@@ -165,19 +214,21 @@ const cleanData = sanitizeInput(validation.data);
                 success: true,
                 message: "Mail Sent Successfully",
             },
-            {
-                status: 200,
-            }
+            { status: 200 }
         );
-
     } catch (error) {
-
         logger.error({
             module: "Contact",
             action: "Mail Sending Failed",
             email: body?.email ?? "Unknown",
-            error: error instanceof Error ? error.message : String(error),
-            stack: error instanceof Error ? error.stack : undefined,
+            error:
+                error instanceof Error
+                    ? error.message
+                    : String(error),
+            stack:
+                error instanceof Error
+                    ? error.stack
+                    : undefined,
             time: new Date().toISOString(),
         });
 
@@ -186,9 +237,7 @@ const cleanData = sanitizeInput(validation.data);
                 success: false,
                 message: "Internal Server Error",
             },
-            {
-                status: 500,
-            }
+            { status: 500 }
         );
     }
 }
