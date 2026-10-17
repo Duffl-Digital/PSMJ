@@ -103,6 +103,9 @@ function validateForm() {
   if (!form.message.trim()) {
     newErrors.message = "Enter message";
   }
+  else if (form.message.trim().length < 10) {
+  newErrors.message = "Message must be at least 10 characters";
+}
   if (honeypot) {
       newErrors.honeypot = "Something went wrong";
   }
@@ -508,7 +511,11 @@ function handleWhatsappCheckbox(
     onKeyDown={handleNameKeyDown}
     onInput={handleNameInput}
     placeholder=" "
-    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+    className={`peer w-full border-b capitalize border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]
+      [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_transparent]
+    [&:-webkit-autofill]:[-webkit-text-fill-color:inherit]
+    [&:-webkit-autofill]:transition-[background-color]
+    [&:-webkit-autofill]:duration-[5000s] ${
       errors.name
         ? "border-red-500"
         : "border-gray-300 focus:border-blue-600"
@@ -541,7 +548,11 @@ function handleWhatsappCheckbox(
     value={form.email}
     onChange={handleChange}
     placeholder=" "
-    className={`peer lowercase w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+    className={`peer lowercase w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]
+      [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_transparent]
+    [&:-webkit-autofill]:[-webkit-text-fill-color:inherit]
+    [&:-webkit-autofill]:transition-[background-color]
+    [&:-webkit-autofill]:duration-[5000s] ${
       errors.email
         ? "border-red-500"
         : "border-gray-300 focus:border-blue-600"
@@ -556,7 +567,7 @@ function handleWhatsappCheckbox(
     peer-focus:text-xs
     peer-focus:text-[#0B6BFF]
     peer-[:not(:placeholder-shown)]:top-0
-    peer-[:not(:placeholder-shown)]:text-xs"
+    peer-[:not(:placeholder-shown)]:text-xs "
   >
     Email ID <span className="text-red-500">*</span>
   </label>
@@ -579,7 +590,11 @@ function handleWhatsappCheckbox(
     onKeyDown={handleNumberKeyDown}
     onInput={handleNumberInput}
     placeholder=" "
-    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+    className={`peer w-full border-b  border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]
+      [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_transparent]
+    [&:-webkit-autofill]:[-webkit-text-fill-color:inherit]
+    [&:-webkit-autofill]:transition-[background-color]
+    [&:-webkit-autofill]:duration-[5000s] ${
       errors.phone
         ? "border-red-500"
         : "border-gray-300 focus:border-blue-600"
@@ -632,7 +647,11 @@ function handleWhatsappCheckbox(
     onInput={handleNumberInput}
     readOnly={sameWhatsapp}
     placeholder=" "
-    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF] ${
+    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]
+      [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_transparent]
+    [&:-webkit-autofill]:[-webkit-text-fill-color:inherit]
+    [&:-webkit-autofill]:transition-[background-color]
+    [&:-webkit-autofill]:duration-[5000s] ${
       errors.whatsapp
         ? "border-red-500"
         : "border-gray-300 focus:border-blue-600"
@@ -681,7 +700,11 @@ function handleWhatsappCheckbox(
       focus:border-[#0B6BFF]
       appearance-none
       [-webkit-appearance:none]
-      [-moz-appearance:none] ${
+      [-moz-appearance:none] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_transparent]
+    [&:-webkit-autofill]:[-webkit-text-fill-color:inherit]
+    [&:-webkit-autofill]:transition-[background-color]
+    [&:-webkit-autofill]:duration-[5000s]
+    ${
       errors.subject
         ? "border-red-500"
         : "border-gray-300 focus:border-blue-600"
