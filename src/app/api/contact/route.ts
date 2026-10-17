@@ -16,35 +16,35 @@ export async function POST(req: Request) {
         time: new Date().toISOString(),
     });
 
-    // Get Client IP
-    const forwardedFor = req.headers.get("x-forwarded-for");
-    const ip =
-        forwardedFor?.split(",")[0]?.trim() ||
-        req.headers.get("x-real-ip") ||
-        "unknown";
+    // // Get Client IP
+    // const forwardedFor = req.headers.get("x-forwarded-for");
+    // const ip =
+    //     forwardedFor?.split(",")[0]?.trim() ||
+    //     req.headers.get("x-real-ip") ||
+    //     "unknown";
 
-    // Rate Limit
-    try {
-        await rateLimiter.consume(ip);
-    } catch {
-        logger.warn({
-            module: "Contact",
-            action: "Rate Limit Exceeded",
-            ip,
-            time: new Date().toISOString(),
-        });
+    // // Rate Limit
+    // try {
+    //     await rateLimiter.consume(ip);
+    // } catch {
+    //     logger.warn({
+    //         module: "Contact",
+    //         action: "Rate Limit Exceeded",
+    //         ip,
+    //         time: new Date().toISOString(),
+    //     });
 
-        return NextResponse.json(
-            {
-                success: false,
-                message:
-                    "Too many requests. Please try again after 1 minute.",
-            },
-            {
-                status: 429,
-            }
-        );
-    }
+    //     return NextResponse.json(
+    //         {
+    //             success: false,
+    //             message:
+    //                 "Too many requests. Please try again after 1 minute.",
+    //         },
+    //         {
+    //             status: 429,
+    //         }
+    //     );
+    // }
 
     try {
 
