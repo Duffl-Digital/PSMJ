@@ -91,6 +91,8 @@ const verifyResponse = await fetch(
     }),
   }
 );
+console.log(process.env.RECAPTCHA_SECRET_KEY);
+console.log(verifyResponse.json());
 const captchaResult = await verifyResponse.json();
 if (!captchaResult.success) {
   logger.warn({
