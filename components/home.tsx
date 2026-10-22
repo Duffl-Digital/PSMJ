@@ -27,6 +27,7 @@ import ScrollMask from "@/components/layout/ScrollMask";
 import CompanyStats from "./CompanyStats";
 import RotatingHeroHeading from "./RotatingHeroHeading";
 import HeroDescription from "./HeroDescription";
+import CasestudyHome from "./CasestudyHome";
 
 const words = [
   "#Lorem", "#Branding", "#Marketing", "#Creative", "#Digital",
@@ -700,10 +701,13 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
 
      <CompanyStats />
         </section>
-
+     
         <PsmjUniverse />
-
+        <div className="bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)]">
         <TrustedBySection />
+
+    <CasestudyHome />
+    </div>
 
       
 
@@ -714,21 +718,20 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
       <div className="pt-7"></div>
 
    
-         <div className="xl:pt-24 md:pt-8 pt-18 relative 2xl:container mx-auto   bg-[linear-gradient(180deg,_#FFE79E_51.44%,_#FFF_100%)] md:bg-none ">
+         <div className="xl:pt-24 md:pt-8 pt-18 relative flex lg:flex-row flex-col  w-10/12 item-center justify-center mx-auto     ">
     
-<div className="md:-mt-[70px] md:w-[260px]  text-md-start text-center relative  md:absolute  md:-bottom-[52px] z-99  ">
+<div className="lg:w-2/12  lg:mx-0 mx-auto md:w-4/12  w-9/12   text-center">
     <img
         src="/images/footer-boxes.png"
-        className=" text-center  md:aspect-[142/142] md:mx-0 mx-auto  w-[142px]  md:absolute md:top-[50%] md:left-[40%] md:-translate-[50%]"
+        className=" text-center  md:aspect-[142/142] mx-auto  w-[142px]  "
         alt=""
     />
-    <img
-       src="/images/footer-polygon.png"    className="w-full  md:block hidden"/>
+   
 </div>
-<div className=" md:pb-[60px] ">
+<div className="  lg:w-9/12 ">
         {/* Contact Bar */}
                 <motion.div
-                    className="max-w-7xl  mx-auto relative md:bg-[linear-gradient(270deg,#FFDF7E_0%,#FEFFB3_100%)] xl:rounded-sm  px-4 sm:pr-[8%]  md:py-7 pb-7 pt-0 flex xl:pl-[15%] md:pl-[20%] lg:pl-[16%] flex-col xl:flex-row items-center  xl:gap-6 lg:gap-4 gap-6"
+                    className=" relative w-full  xl:rounded-sm  lg:px-4    md:py-7 pb-7 pt-0 flex flex-col lg:flex-row items-center  xl:gap-6 lg:gap-4 gap-6"
                    
                 >
                 
@@ -741,7 +744,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
                     <div className="hidden xl:block w-px h-10 bg-[linear-gradient(180deg,#ffffff4f_0%,#121212_50%,_#ffffff4f_100%)]" />
 
 
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-6 flex-1 ">
+                    <div className="flex flex-col w-full md:flex-row items-center justify-between gap-6 lg:flex-1 ">
                          <div className="flex items-center justify-center gap-[13px] ">
 
                             <a href="tel:+919840077635" className="elms-sans-Regular text-black text-[18.322px] font-normal leading-[140%] ">+91 98400 77635</a>
@@ -796,7 +799,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }} className=" 2xl:container mx-auto    px-10 sm:px-30 py-3 flex justify-between items-center">
+                    viewport={{ once: true, amount: 0.3 }} className="   w-10/12 mx-auto    py-3 flex justify-between items-center">
 
                     <p className="text-black text-[13px] figtree-extra-light leading-[28px] tracking-[0.26px] ">
                         &copy; {new Date().getFullYear()} | PSMJ

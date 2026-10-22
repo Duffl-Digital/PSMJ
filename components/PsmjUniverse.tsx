@@ -145,7 +145,7 @@ function Logo() {
                   height={64}
                   className="mb-[1.2cqw] h-[6.5cqw] w-[6.5cqw] object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
                 />
-                <span className="max-w-[70%] text-center text-[2.4cqw] font-medium leading-[1.25] text-neutral-700 xl:max-w-[60%]">
+                <span className="max-w-[70%] text-center text-[2.4cqw] font-medium leading-[1.25] text-[#1E1E1E] xl:max-w-[60%]">
                   {c.label}
                 </span>
               </Hex>

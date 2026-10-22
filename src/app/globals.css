@@ -57,6 +57,12 @@
 }
 
 @font-face {
+   font-family: Figtree-Medium;
+   src: url('/font/Figtree/static/Figtree-Medium.ttf');
+   font-display: swap;
+}
+
+@font-face {
    font-family: Figtree-Light;
    src: url('/font/Figtree/static/Figtree-Light.ttf');
    font-display: swap;
@@ -85,7 +91,9 @@
 .figtree-Bold {
    font-family: Figtree-Bold;
 }
-
+.figtree-Medium{
+   font-family: Figtree-Medium;
+}
 .figtree-SemiBold {
     font-family: Figtree-SemiBold;
 }
