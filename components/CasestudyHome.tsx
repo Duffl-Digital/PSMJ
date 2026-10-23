@@ -60,10 +60,10 @@ export default function CasestudyHome() {
             Creating
             <br />
             <span className="figtree-SemiBold">
-              Real <span className="text-[#FFD75E]">Impact.</span>
+              Real <span className="text-[#FFD659]">Impact.</span>
             </span>
           </h2>
-          <span className="mt-3 block h-[3px] w-16 rounded bg-[#FFD75E]"  />
+          <span className="mt-3 block h-[3px] w-16 rounded bg-[#FFD659]"  />
         </div>
 
         {/* 2. Tabs: horizontal on mobile/tablet, vertical line on desktop */}
@@ -92,7 +92,7 @@ export default function CasestudyHome() {
           onClick={() => setActive(c.id)}
           className={`flex items-center gap-2 cursor-pointer whitespace-nowrap sm:text-xs text-[10px] tracking-wider transition-colors duration-300 md:text-sm ${
             isActive
-              ? "font-medium uppercase text-[#FFD75E]"
+              ? "font-medium uppercase text-[#FFD659]"
               : "text-[#DEDEDE] hover:text-white"
           } ${c.tab === c.tab.toUpperCase() ? "uppercase" : ""}`}
         >
