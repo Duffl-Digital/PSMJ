@@ -12,7 +12,7 @@ import {
 
 
 
-import { motion, useScroll, useTransform, easeOut, Variants } from "framer-motion";
+import { motion, useScroll, useTransform, easeOut, Variants,useReducedMotion  } from "framer-motion";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -137,7 +137,7 @@ export default function Home() {
   const [angle, setAngle] = useState(0);
   const [isArcReady, setIsArcReady] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-
+const prefersReducedMotion = useReducedMotion();
   /* =======================================================
      SCROLL-LINKED PARALLAX (hero background image)
   ======================================================= */
@@ -402,40 +402,40 @@ export default function Home() {
             AEROPLANE ICON
         ================================================= */}
 
-                <motion.div
-                  initial={{ opacity: 0, x: 40, y: -20 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
-                  transition={{ duration: 0.8, ease: easeOut, delay: 0.65 }}
-                  className="
-    absolute
-    right-[5px]
-    top-[110px]
-
-    sm:top-[90px]
-    md:top-[105px]
-    lg:top-[125px]
-    xl:top-[140px]
+              <motion.div
+  initial={{ opacity: 0, x: 40, y: -20 }}
+  animate={{ opacity: 1, x: 0, y: 0 }}
+  transition={{ duration: 0.8, ease: easeOut, delay: 0.65 }}
+  className="
+    absolute right-[5px] top-[110px]
+    sm:top-[90px] md:top-[105px] lg:top-[125px] xl:top-[140px]
   "
-                >
-                  <Image
-                    src="/images/home/aeroplan-icon.svg"
-                    alt="Aeroplane"
-                    width={47}
-                    height={47}
-                    priority
-                    className="
-              block
-              h-auto
-              w-[30px]
-
-              sm:w-[34px]
-
-              md:w-[40px]
-
-              lg:w-[47px]
-            "
-                  />
-                </motion.div>
+>
+  {/* inner: continuous floating loop */}
+  <motion.div
+    animate={
+      prefersReducedMotion
+        ? undefined
+        : { y: [0, -10, 0], x: [0, 4, 0], rotate: [0, -3, 0] }
+    }
+    transition={{
+      duration: 4,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatType: "loop",
+      delay: 1.5, // start after the entrance finishes (0.65 + 0.8)
+    }}
+  >
+    <Image
+      src="/images/home/aeroplan-icon.svg"
+      alt="Aeroplane"
+      width={47}
+      height={47}
+      priority
+      className="block h-auto w-[30px] sm:w-[34px] md:w-[40px] lg:w-[47px]"
+    />
+  </motion.div>
+</motion.div>
 
                 {/* =================================================
             MAIN HEADING
@@ -568,7 +568,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
           DESCRIPTION
       ===================================================== */}
 
-              {/* <motion.div
+              <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: easeOut, delay: 0.8 }}
@@ -623,7 +623,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
                 <p
                   className="
             m-0
-          
+          elms-sans-light
             pt-0
             text-white
 
@@ -650,10 +650,10 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
                   experiences through learning, consulting, events, and brand
                   activation.
                 </p>
-              </motion.div> */}
+              </motion.div>
 
               
-<HeroDescription />
+{/* <HeroDescription /> */}
 
             
             </div>

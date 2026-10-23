@@ -174,8 +174,8 @@ export default function Index() {
       <motion.div style={{ y: maskY }}>
         <ScrollMask
           desktopVideo="/video/intro.mp4"
-          mobileVideo="https://cd.duffldigital.in/video/mobile-sample2.mp4"
-          height="200vh"
+          mobileVideo="/video/intro.mp4"
+          height="400vh"
         />
       </motion.div>
 
