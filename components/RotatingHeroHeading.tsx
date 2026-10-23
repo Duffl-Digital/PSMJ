@@ -44,7 +44,7 @@ export default function RotatingHeroHeading() {
         font-normal
         not-italic
 
-        text-[34px]
+        text-[28px]
         leading-[110%]
         tracking-[0.7px]
 
