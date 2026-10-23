@@ -81,7 +81,7 @@ export default function RotatingHeroHeading() {
             bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
             sm:ml-[10px]
             sm:mt-0
-            sm:h-[50px]
+            sm:h-[44px]
           "
         >
           {/* BADGE — static, never changes */}
@@ -89,7 +89,7 @@ export default function RotatingHeroHeading() {
             className="
               block
               bg-[#3281ba]
-              font-medium
+             figtree-Regular
               leading-none
               text-[9px]
               tracking-[1px]
@@ -98,7 +98,7 @@ export default function RotatingHeroHeading() {
               m-[6px]
               py-[8px]
               px-[9px]
-              sm:m-[8px]
+              sm:m-[6px]
               sm:py-[10px]
               sm:px-[12px]
               sm:text-[12px]
