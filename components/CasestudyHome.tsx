@@ -48,11 +48,11 @@ const cases: CaseStudy[] = [
 ];
 
 export default function CasestudyHome() {
-  const [active, setActive] = useState(cases[0].id);
+  const [active, setActive] = useState(cases[0].id); 
   const current = cases.find((c) => c.id === active) ?? cases[0];
 
   return (
-    <section className="relative overflow-hidden  px-5 py-12 text-white md:px-10 md:py-16 lg:px-16 lg:py-20">
+    <section className="relative overflow-hidden  px-5 md:pb-12 pt-12  pb-10 text-white md:px-10 md:py-16 lg:px-16 lg:py-20">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.6fr] md:items-center lg:grid-cols-[0.9fr_1.9fr_0.7fr] lg:gap-10">
         {/* 1. Heading */}
         <div className="order-1">

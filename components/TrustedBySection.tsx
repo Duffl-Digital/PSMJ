@@ -11,7 +11,7 @@ const images: GalleryItem[] = [
 export default function TrustedBySection() {
   return (
    <section className="relative overflow-hidden xl:max-w-[1440px] xl:mx-auto ">
-  <div className="relative mx-auto grid  items-center gap-10  py-16 lg:grid-cols-[1fr_auto_1.2fr]  lg:gap-12">
+  <div className="relative mx-auto grid  items-center gap-10  md:py-16 pt-16 pb-8  lg:grid-cols-[1fr_auto_1.2fr]  lg:gap-12">
    
 
     {/* logos: second on mobile, first on desktop */}
