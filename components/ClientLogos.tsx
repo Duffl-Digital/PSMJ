@@ -7,55 +7,55 @@ export default function ClientLogos() {
       
       <li >
           <img
-            src="/images/clientele/logo/5.svg"
+            src="/images/home/client-logo/logo-1.svg"
             className=" w-auto max-h-[32px] object-contain   "
           />
         </li>
           <li >
           <img
-            src="/images/clientele/logo/24.svg"
+            src="/images/home/client-logo/logo-2.svg"
             className=" w-auto max-h-[42px] object-contain    "
           />
         </li>
           <li >
           <img
-            src="/images/clientele/logo/23.svg"
+            src="/images/home/client-logo/logo-3.svg"
             className=" w-auto max-h-[44px] object-contain    "
           />
         </li>
         <li >
           <img
-            src="/images/clientele/logo/21.svg"
+            src="/images/home/client-logo/logo-4.svg"
             className=" w-auto max-h-[34px] object-contain    "
           />
         </li>
          <li >
           <img
-            src="/images/clientele/logo/16.svg"
+            src="/images/home/client-logo/logo-5.svg"
             className=" w-auto max-h-[43px] object-contain   "
           />
         </li>
           <li >
           <img
-            src="/images/clientele/logo/22.svg"
+            src="/images/home/client-logo/logo-6.svg"
             className=" w-auto max-h-[44px] object-contain    "
           />
         </li>
          <li >
           <img
-            src="/images/clientele/logo/4.svg"
+            src="/images/home/client-logo/logo-7.svg"
             className=" w-auto max-h-[44px] object-contain    "
           />
         </li>
           <li >
           <img
-            src="/images/clientele/logo/9.svg"
+            src="/images/home/client-logo/logo-8.svg"
             className=" w-auto max-h-[48px] object-contain    "
           />
         </li>
           <li >
           <img
-            src="/images/clientele/logo/27.svg"
+            src="/images/home/client-logo/logo-9.svg"
             className=" w-auto max-h-[56px] object-contain    "
           />
         </li>

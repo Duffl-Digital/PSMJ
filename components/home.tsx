@@ -317,6 +317,7 @@ export default function Home() {
     z-[999]
     min-h-0
     px-0
+     xl:max-w-[1440px] mx-auto
   "
         >
           <div
@@ -703,7 +704,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
         </section>
      
         <PsmjUniverse />
-        <div className="bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)]">
+        <div className="lg:bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)] bg-[linear-gradient(180deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)]">
         <TrustedBySection />
 
     <CasestudyHome />
@@ -718,7 +719,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
       <div className="pt-7"></div>
 
    
-         <div className="xl:pt-24 md:pt-8 pt-18 relative flex lg:flex-row flex-col  xl:w-10/12 lg:w-11/12 item-center justify-center mx-auto     ">
+         <div className="xl:pt-24 md:pt-8 pt-18 relative flex lg:flex-row flex-col xl:max-w-[1440px] 2xl:w-10/12 w-11/12 item-center justify-center mx-auto     ">
     
 <div className="lg:w-2/12  lg:mx-0 mx-auto md:w-4/12  w-9/12   text-center">
     <img
@@ -728,7 +729,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
     />
    
 </div>
-<div className="  lg:w-9/12 ">
+<div className="  lg:w-9/12  ">
         {/* Contact Bar */}
                 <motion.div
                     className=" relative w-full  xl:rounded-sm  lg:px-4    md:py-7 pb-7 pt-0 flex flex-col lg:flex-row items-center  xl:gap-6 lg:gap-4 gap-6"
@@ -793,7 +794,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
   </div>
       
 
-           <footer className="relative z-99">
+           <footer className="relative z-99  xl:max-w-[1440px] mx-auto" >
 
                 {/* Bottom Bar */}
                 <motion.div 

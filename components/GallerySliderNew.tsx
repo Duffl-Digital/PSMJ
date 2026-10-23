@@ -54,7 +54,7 @@ export default function GallerySliderNew({
   return (
     <div
       className={styles.wrapper}
-      onMouseEnter={() => setPaused(true)}
+      onMouseEnter={() => setPaused(false)}
       onMouseLeave={() => setPaused(false)}
     >
       <div className={styles.stage}>

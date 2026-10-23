@@ -120,10 +120,11 @@ export default function HeroDescription() {
           lg:text-[15.146px]
           lg:leading-[180%]
           lg:tracking-[0.757px]
+          elms-sans-light
         "
       >
         <AnimatePresence mode="wait">
-          <motion.span key={text} {...fade} className="block">
+          <motion.span key={text} {...fade} className="block elms-sans-light">
             {text}
           </motion.span>
         </AnimatePresence>

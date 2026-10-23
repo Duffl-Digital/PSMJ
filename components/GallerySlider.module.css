@@ -1,31 +1,40 @@
 /* Full-bleed to the right edge of the page */
 .wrapper {
   width: 100%;
-  overflow: hidden; /* clips the next image at the page end */
+  /* clips the next image at the page end */
 }
 
 .stage {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 320px;
-  aspect-ratio: 16 / 9;
+  min-height: 260px;
+  aspect-ratio: 14 / 7;
 }
 
+@media (min-width:768px){
+.stage {
+    min-height: 320px;
+    aspect-ratio: 16 / 9;
+}
+}
 .slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 78%;
   height: 100%;
-  overflow: hidden;
-  transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.3, 1),
-    opacity 0.7s ease, height 0.7s ease, top 0.7s ease;
+  /* overflow: hidden; */
+  transition: transform 2.9s cubic-bezier(0.22, 0.8, 0.3, 1),
+    opacity 0.1s ease, height 0.7s ease, top 0.7s ease;
   will-change: transform, opacity;
+  /* box-shadow: 0 0 74.305px 0 rgba(0, 0, 0, 0.02), 0 0 43.516px 0 rgba(0, 0, 0, 0.04), 0 0 23.667px 0 rgba(0, 0, 0, 0.05), 0 0 12.074px 0 rgba(0, 0, 0, 0.06), 0 0 6.054px 0 rgba(0, 0, 0, 0.08), 0 0 2.924px 0 rgba(0, 0, 0, 0.10); */
 }
 
 .img {
   object-fit: cover;
+  
+   /* box-shadow: 0 0 74.305px 0 rgba(0, 0, 0, 0.02), 0 0 43.516px 0 rgba(0, 0, 0, 0.04), 0 0 23.667px 0 rgba(0, 0, 0, 0.05), 0 0 12.074px 0 rgba(0, 0, 0, 0.06), 0 0 6.054px 0 rgba(0, 0, 0, 0.08), 0 0 2.924px 0 rgba(0, 0, 0, 0.10); */
 }
 
 /* current image */
@@ -34,8 +43,9 @@
   opacity: 1;
   z-index: 3;
   border-radius: 5px;
-  border: 1px solid #FFF;
-  box-shadow: 0 0 74.305px 0 rgba(0, 0, 0, 0.02), 0 0 43.516px 0 rgba(0, 0, 0, 0.04), 0 0 23.667px 0 rgba(0, 0, 0, 0.05), 0 0 12.074px 0 rgba(0, 0, 0, 0.06), 0 0 6.054px 0 rgba(0, 0, 0, 0.08), 0 0 2.924px 0 rgba(0, 0, 0, 0.10);
+  border: 2px solid #FFF;
+  overflow: hidden;
+  
 }
 
 /* next image – starts right after the active one and runs off the page end */
@@ -45,14 +55,18 @@
   height: 84%;
   opacity: 1;
   z-index: 2;
+   
   cursor: pointer;
 }
 
 /* previous image – moves up and fades behind the active one */
 .prev {
-  transform: translateY(-18%);
-  opacity: 0;
+  /* transform: translateY(-18%); */
+  /* opacity: 0; */
   z-index: 1;
+    border: 2px solid #FFF;
+  overflow: hidden;
+  
 }
 
 /* everything else waits off-screen on the right */
@@ -61,6 +75,7 @@
   top: 8%;
   height: 84%;
   opacity: 0;
+   border-radius: 5px;
   z-index: 0;
   pointer-events: none;
 }

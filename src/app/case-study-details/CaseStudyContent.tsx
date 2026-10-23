@@ -56,17 +56,17 @@ export default function CaseStudyDetails() {
                             <div className="grid lg:grid-cols-12 lg:gap-16 gap-10 items-center">
 
                                 {/* LEFT IMAGE */}
-                                <div className="lg:col-span-4 lg:pl-14 text-center lg:text-left mt-10 lg:mt-0">
+                                <div className="xl:col-span-4 lg:col-span-3 lg:pl-10 xl:pl-14 text-center lg:text-left mt-10 lg:mt-0">
 
-                                    <p className="elms-sans-medium text-[#1E1E1E] text-[15px]">
+                                    <p className="elms-sans-medium text-[#1E1E1E] text-[20px]">
                                         Case Study
                                     </p>
 
-                                    <h2 className="mt-2 figtree-extra-bold text-[#1E1E1E] text-[22px] uppercase">
+                                    <h2 className="mt-2 figtree-extra-bold text-[#1E1E1E] text-[24px] uppercase">
                                         {data.title}
                                     </h2>
 
-                                    <div className="mt-8 flex justify-center lg:justify-start">
+                                    <div className="mt-8 hidden flex justify-center lg:justify-start">
                                         <motion.div
                                             initial={{
                                                 opacity: 0,
@@ -97,7 +97,7 @@ export default function CaseStudyDetails() {
                                 </div>
 
                                 {/* RIGHT CONTENT */}
-                                <div className="lg:col-span-8 relative">
+                                <div className="xl:col-span-8 lg:col-span-9 relative">
 
                                     <Image
                                         src="/images/case-study-details/problem-shadow.svg"
