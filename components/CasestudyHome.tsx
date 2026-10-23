@@ -53,24 +53,25 @@ export default function CasestudyHome() {
 
   return (
     <section className="relative overflow-hidden  px-5 py-12 text-white md:px-10 md:py-16 lg:px-16 lg:py-20">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center lg:grid-cols-[0.9fr_1.9fr_0.7fr] lg:gap-10">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.6fr] md:items-center lg:grid-cols-[0.9fr_1.9fr_0.7fr] lg:gap-10">
         {/* 1. Heading */}
         <div className="order-1">
-          <h2 className="text-2xl font-light uppercase leading-snug tracking-wide md:text-3xl">
+          <h2 className="text-2xl font-light uppercase leading-snug tracking-wide md:text-2xl lg:text-3xl">
             Creating
             <br />
             <span className="font-bold">
               Real <span className="text-[#FFD75E]">Impact.</span>
             </span>
           </h2>
-          <span className="mt-3 block h-[3px] w-16 rounded bg-[#FFD75E]" />
+          <span className="mt-3 block h-[3px] w-16 rounded bg-[#FFD75E]"  />
         </div>
 
         {/* 2. Tabs: horizontal on mobile/tablet, vertical line on desktop */}
+        <div className="order-2 overflow-x-auto border-b border-white/25 pb-3 lg:border-b-0  lg:pb-0 lg:order-3 ">
      <ul
   role="tablist"
   aria-label="Case studies"
-  className="order-2 flex gap-6 overflow-x-auto border-b border-white/25 pb-3 [scrollbar-width:none] md:justify-end lg:order-3 lg:flex-col lg:justify-start lg:gap-7 lg:overflow-visible lg:border-b-0 lg:pb-0 [&::-webkit-scrollbar]:hidden"
+  className="flex gap-6 md:gap-4    [scrollbar-width:none] md:justify-end  lg:flex-col lg:justify-start lg:gap-7 lg:overflow-visible lg:border-b-0 l [&::-webkit-scrollbar]:hidden"
 >
   {cases.map((c, i) => {
     const isActive = c.id === active;
@@ -111,6 +112,7 @@ export default function CasestudyHome() {
     );
   })}
 </ul>
+</div>
 
         {/* 3. Card */}
     {/* 3. Card */}

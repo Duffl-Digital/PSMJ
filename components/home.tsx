@@ -718,7 +718,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
       <div className="pt-7"></div>
 
    
-         <div className="xl:pt-24 md:pt-8 pt-18 relative flex lg:flex-row flex-col  w-10/12 item-center justify-center mx-auto     ">
+         <div className="xl:pt-24 md:pt-8 pt-18 relative flex lg:flex-row flex-col  xl:w-10/12 lg:w-11/12 item-center justify-center mx-auto     ">
     
 <div className="lg:w-2/12  lg:mx-0 mx-auto md:w-4/12  w-9/12   text-center">
     <img
@@ -741,15 +741,15 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
                         Get In Touch
                     </h2>
 
-                    <div className="hidden xl:block w-px h-10 bg-[linear-gradient(180deg,#ffffff4f_0%,#121212_50%,_#ffffff4f_100%)]" />
+                    <div className="hidden lg:block w-px h-10 bg-[linear-gradient(180deg,#ffffff4f_0%,#121212_50%,_#ffffff4f_100%)]" />
 
 
                     <div className="flex flex-col w-full md:flex-row items-center justify-between gap-6 lg:flex-1 ">
-                         <div className="flex items-center justify-center gap-[13px] ">
+                         <div className="flex xl:flex-row lg:flex-col flex-row items-center justify-center gap-[13px] ">
 
                             <a href="tel:+919840077635" className="elms-sans-Regular text-black text-[18.322px] font-normal leading-[140%] ">+91 98400 77635</a>
 
-                            <span>|</span>
+                            <span className="xl:block lg:hidden">|</span>
 
                             <a href="tel:04428170635" className="elms-sans-Regular text-black text-[18.322px] font-normal leading-[140%] ">044 2817 0635</a>
 
