@@ -8,8 +8,8 @@ const easeOut = [0.22, 1, 0.36, 1] as const;
 // Only these texts rotate. The badge (People. Strategy. Performance.) stays static.
 const HERO_ITEMS = [
   { prefix: "Building", line1: "High-Performing", line2: "Organizations" },
-  { prefix: "Shaping", line1: "Winning", line2: "Strategies" },
-  { prefix: "Empowering", line1: "Ambitious", line2: "Teams" },
+  { prefix: "Inspiring", line1: "Excellence-Driven", line2: "Organizations" },
+  { prefix: "Creating", line1: "People-Centered", line2: "Organizations" },
 ];
 
 const INTERVAL_MS = 7000;
@@ -61,7 +61,7 @@ export default function RotatingHeroHeading() {
     >
       {/* PREFIX (changes) + BADGE (static) */}
       <span className="flex w-full items-start gap-2 sm:items-center sm:gap-0">
-        <span className="block shrink-0 whitespace-nowrap min-w-[110px] sm:min-w-[170px] lg:min-w-[260px]">
+        <span className="block shrink-0 figtree-Regular whitespace-nowrap min-w-[110px] sm:min-w-[170px] lg:min-w-[260px]">
           <AnimatePresence mode="wait">
             <motion.span key={prefix} {...fade} className="block">
               {prefix}
@@ -114,7 +114,7 @@ export default function RotatingHeroHeading() {
       </span>
 
       {/* LINE 1 (changes) */}
-      <span className="block">
+      <span className="block figtree-Regular">
         <AnimatePresence mode="wait">
           <motion.span key={line1} {...fade} className="block">
             {line1}
@@ -123,7 +123,7 @@ export default function RotatingHeroHeading() {
       </span>
 
       {/* LINE 2 (changes) */}
-      <span className="block">
+      <span className="block figtree-Regular">
         <AnimatePresence mode="wait">
           <motion.span key={line2} {...fade} className="block">
             {line2}

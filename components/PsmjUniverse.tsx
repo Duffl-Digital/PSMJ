@@ -145,7 +145,7 @@ function Logo() {
                   height={64}
                   className="mb-[1.2cqw] h-[6.5cqw] w-[6.5cqw] object-contain transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
                 />
-                <span className="max-w-[70%] text-center text-[2.4cqw] font-medium leading-[1.25] text-[#1E1E1E] xl:max-w-[60%]">
+                <span className="max-w-[70%] text-center text-[2.4cqw] elms-sans-medium leading-[1.25] text-[#1E1E1E] xl:max-w-[60%]">
                   {c.label}
                 </span>
               </Hex>
@@ -236,11 +236,11 @@ export default function PsmjUniverse() {
   style={{ animationDelay: "0.25s" }}
 >
   <div>
-    <h1 className="text-[15px] font-medium leading-snug tracking-wide text-neutral-800 sm:text-xl md:text-2xl lg:text-[22px]">
+    <h1 className="text-[15px]  figtree-Medium leading-snug tracking-wide text-neutral-800 sm:text-xl md:text-2xl lg:text-[22px]">
       EVERYTHING YOUR
       <br />
-      <span className="font-bold text-neutral-900">
-        ORGANIZATION <span className="text-[#2F6BFF]">NEEDS</span>
+      <span className="figtree-SemiBold text-neutral-900">
+        ORGANIZATION <span className="text-[#1964F9]">NEEDS</span>
       </span>
     </h1>
     <span className="mt-2 block h-[3px] w-24 origin-left animate-underline rounded bg-[#FFD25A] sm:w-40" />
