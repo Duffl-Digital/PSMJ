@@ -15,7 +15,7 @@ export default function TrustedBySection() {
    
 
     {/* logos: second on mobile, first on desktop */}
-    <div className="order-1 lg:order-1 lg:w-full md:w-[70%] md:mx-0 mx-auto sm:w-[80%] w-11/12 xl:pl-[8%]">
+    <div className="order-1 lg:order-1 lg:w-full md:w-[70%] md:mx-0 mx-auto sm:w-[80%] w-11/12 xl:pl-[10%]">
       <ClientLogos />
     </div>
 

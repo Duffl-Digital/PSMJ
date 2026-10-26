@@ -16,7 +16,10 @@ import Hex from "./Hex";
 // Coordinates are in a 420 x 350 design grid (centre of each hexagon).
 // const GRID_W = 420;
 // const GRID_H = 350;
+import { motion, MotionConfig } from "framer-motion";
 
+const ease = [0.22, 1, 0.36, 1] as const;
+const viewport = { once: true, amount: 0.3 };
 
 const GRID_W = 440;
 const GRID_H = 388;
@@ -220,39 +223,56 @@ function OrbitLayer({ id, half, z }: { id: string; half: "back" | "front"; z: st
 
 export default function PsmjUniverse() {
   return (
-    <main className="n overflow-x-hidden bg-white">
-      <div className="mx-auto grid  max-w-6xl items-center gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10 lg:py-12">
-        {/* left: logo + cluster */}
-        <section className="animate-rise space-y-6 lg:space-y-10">
-          <Logo />
-          <HexCluster />
-        </section>
+        <MotionConfig reducedMotion="user">
+      <main className="n overflow-x-hidden bg-white">
+        <div className="mx-auto grid max-w-6xl max-w-[1320px] items-center gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[1.4fr_1fr] lg:gap-10 lg:py-12">
+          {/* left */}
+          <motion.section
+            className="space-y-6 lg:space-y-10"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewport}
+            transition={{ duration: 1.2, ease }}
+          >
+            <Logo />
+            <HexCluster />
+          </motion.section>
 
-        {/* right: heading + illustration */}
-       <section
-  className="animate-rise grid grid-cols-[1fr_auto] items-start gap-2 sm:gap-6
-             md:grid-cols-[auto_auto] md:items-center md:justify-center md:gap-10
-             lg:grid-cols-1 lg:items-end lg:justify-start lg:gap-10"
-  style={{ animationDelay: "0.25s" }}
->
-  <div>
-    <h1 className="text-[15px]  figtree-Medium leading-snug tracking-wide text-neutral-800 sm:text-xl md:text-2xl lg:text-[22px]">
-      EVERYTHING YOUR
-      <br />
-      <span className="figtree-SemiBold text-neutral-900">
-        ORGANIZATION <span className="text-[#1964F9]">NEEDS</span>
-      </span>
-    </h1>
-    <span className="mt-2 block h-[3px] w-24 origin-left animate-underline rounded bg-[#FFD25A] sm:w-40" />
-  </div>
+          {/* right */}
+          <motion.section
+            className="grid grid-cols-[1fr_auto] items-start gap-2 sm:gap-6
+                       md:grid-cols-[auto_auto] md:items-center md:justify-center md:gap-10
+                       lg:grid-cols-1 lg:items-end lg:justify-start lg:gap-10"
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.9, ease, delay: 0.25 }}
+          >
+            <div>
+              <h1 className="text-[15px] figtree-Medium leading-snug tracking-wide text-neutral-800 sm:text-xl md:text-2xl lg:text-[22px]">
+                EVERYTHING YOUR
+                <br />
+                <span className="figtree-SemiBold text-neutral-900">
+                  ORGANIZATION <span className="text-[#1964F9]">NEEDS</span>
+                </span>
+              </h1>
+              <motion.span
+                className="mt-2 block h-[3px] w-24 origin-left rounded bg-[#FFD25A] sm:w-40"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={viewport}
+                transition={{ duration: 0.7, ease, delay: 0.9 }}
+              />
+            </div>
 
-  <div className="lg:ml-8">
-    <div className="relative aspect-[318/377] w-[220px] sm:w-[280px] md:w-[260px] lg:w-[318px]">
-      <img src="../images/girl.png" alt="img" className="w-full" />
-    </div>
-  </div>
-</section>
-      </div>
-    </main>
+            <div className="lg:ml-8">
+              <div className="relative aspect-[318/377] w-[220px] sm:w-[280px] md:w-[260px] lg:w-[318px]">
+                <img src="../images/girl.png" alt="img" className="w-full" />
+              </div>
+            </div>
+          </motion.section>
+        </div>
+      </main>
+    </MotionConfig>
   );
 }

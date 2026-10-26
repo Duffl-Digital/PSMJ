@@ -53,7 +53,7 @@ export default function CasestudyHome() {
 
   return (
     <section className="relative overflow-hidden  px-5 md:pb-12 pt-12  pb-10 text-white md:px-10 md:py-16 lg:px-16 lg:py-20">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.6fr] md:items-center lg:grid-cols-[0.9fr_1.9fr_0.7fr] lg:gap-10">
+      <div className="mx-auto grid max-w-6xl max-w-[1320px] gap-10 md:grid-cols-[0.8fr_1.6fr] md:items-center lg:grid-cols-[0.9fr_1.9fr_0.7fr] lg:gap-10">
         {/* 1. Heading */}
         <div className="order-1">
           <h2 className="text-2xl figtree-extra-light uppercase leading-snug tracking-wide md:text-2xl lg:text-3xl">

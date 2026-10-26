@@ -719,12 +719,12 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
       <div className="pt-7"></div>
 
    
-         <div className="xl:pt-24 md:pt-8 pt-12 relative flex lg:flex-row flex-col xl:max-w-[1440px] 2xl:w-10/12 w-11/12 item-center justify-center mx-auto     ">
+         <div className="xl:pt-24 md:pt-8 pt-12 relative flex lg:flex-row flex-col xl:max-w-[1320px] 2xl:w-10/12 w-11/12 item-center justify-center mx-auto     ">
     
 <div className="lg:w-2/12  lg:mx-0 mx-auto md:w-4/12  w-9/12   text-center">
     <img
         src="/images/footer-boxes.png"
-        className=" text-center  md:aspect-[142/142] mx-auto  w-[142px]  "
+        className=" text-center  md:aspect-[142/142] mx-auto xl:mx-0  w-[142px]  "
         alt=""
     />
    
