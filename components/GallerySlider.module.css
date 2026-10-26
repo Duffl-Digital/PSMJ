@@ -45,6 +45,7 @@
   border-radius: 5px;
   border: 2px solid #FFF;
   overflow: hidden;
+  transition: transform 2s ease;
   
 }
 
@@ -64,8 +65,10 @@
   /* transform: translateY(-18%); */
   /* opacity: 0; */
   z-index: 1;
-    border: 2px solid #FFF;
-  overflow: hidden;
+   
+ border-radius: 5px;
+  border: 2px solid transparent;
+  transition: border 1s ease;
   
 }
 
