@@ -752,7 +752,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
 
                             <span className="xl:block lg:hidden">|</span>
 
-                            <a href="tel:04428170635" className="elms-sans-Regular text-black text-[18.322px] font-normal leading-[140%] ">044 2817 0635</a>
+                            <a href="tel:+91 63852 77635" className="elms-sans-Regular text-black text-[18.322px] font-normal leading-[140%] ">+91 63852 77635</a>
 
 
                         </div>

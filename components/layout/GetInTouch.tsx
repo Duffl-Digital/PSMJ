@@ -59,7 +59,7 @@ export default function Footer() {
 
                             <span>|</span>
 
-                            <a href="tel:04428170635" className="elms-sans-Regular text-black text-[18.322px] font-normal leading-[140%] ">044 2817 0635</a>
+                            <a href="tel:+91 63852 77635" className="elms-sans-Regular text-black text-[18.322px] font-normal leading-[140%] ">+91 63852 77635</a>
 
 
                         </div>

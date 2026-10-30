@@ -15,31 +15,41 @@ import type { Variants } from "framer-motion";
 export default function About() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+useEffect(() => {
+  const container = scrollRef.current;
+  if (!container) return;
 
+  let animation: number;
+  let lastTime = 0;
 
-  useEffect(() => {
-    let animation: number;
+  const speed = 45; // Pixels per second
 
-    const autoScroll = () => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollLeft += 1; // speed
+  const autoScroll = (time: number) => {
+    if (!container) return;
 
-        // Restart from beginning
-        if (
-          scrollRef.current.scrollLeft >=
-          scrollRef.current.scrollWidth - scrollRef.current.clientWidth
-        ) {
-          scrollRef.current.scrollLeft = 0;
-        }
-      }
+    if (!lastTime) lastTime = time;
 
-      animation = requestAnimationFrame(autoScroll);
-    };
+    const deltaTime = (time - lastTime) / 1000;
+    lastTime = time;
+
+    container.scrollLeft += speed * deltaTime;
+
+    // Seamless loop
+    const loopWidth = container.scrollWidth / 2;
+
+    if (container.scrollLeft >= loopWidth) {
+      container.scrollLeft -= loopWidth;
+    }
 
     animation = requestAnimationFrame(autoScroll);
+  };
 
-    return () => cancelAnimationFrame(animation);
-  }, []);
+  animation = requestAnimationFrame(autoScroll);
+
+  return () => {
+    cancelAnimationFrame(animation);
+  };
+}, []);
 
   const timeline = [
     {
@@ -367,22 +377,22 @@ export default function About() {
           >
             <div className="min-w-max relative">
               {/* Cards */}
-              <div className="flex">
-                {timeline.map((item, index) => (
-                  <div
-                    key={`${item.year}-${index}`}
-                    className="w-[280px] timeline-card relative ps-4 pe-10"
-                  >
-                    <h3 className="text-[#1E1E1E] figtree-Bold font-[19px] leading-[142%] tracking-[0.95px] pt-1 mb-12">
-                      {item.year}
-                    </h3>
+             <div className="flex flex-nowrap">
+  {[...timeline, ...timeline].map((item, index) => (
+    <div
+      key={`${item.year}-${index}`}
+      className="w-[280px] shrink-0 timeline-card relative ps-4 pe-10"
+    >
+      <h3 className="text-[#1E1E1E] figtree-Bold font-[19px] leading-[142%] tracking-[0.95px] pt-1 mb-12">
+        {item.year}
+      </h3>
 
-                    <p className="elms-sans-light tect-[15px] leading-[142%] text-[#1E1E1E] tracking-[0.75px] pb-10 whitespace-pre-line">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+      <p className="elms-sans-light text-[15px] leading-[142%] text-[#1E1E1E] tracking-[0.75px] pb-10 whitespace-pre-line">
+        {item.description}
+      </p>
+    </div>
+  ))}
+</div>
             </div>
           </div>
         </div>
