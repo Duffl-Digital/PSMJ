@@ -78,7 +78,7 @@ export default function RotatingHeroHeading() {
             ml-0
             mt-1
             h-[36px]
-            bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
+            bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_80%)]
             sm:ml-[10px]
             sm:mt-0
             sm:h-[44px]
@@ -88,7 +88,8 @@ export default function RotatingHeroHeading() {
           <span
             className="
               block
-              bg-[#3281ba]
+       
+              bg-[linear-gradient(89deg,rgb(50_129_184)_56%,rgb(42_104_149_/_0%)_98%)]
              figtree-Regular
               leading-none
               text-[9px]
