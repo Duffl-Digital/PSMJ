@@ -4,7 +4,7 @@ export default function AdvantageHome() {
       aria-labelledby="advantage-heading"
       className="relative w-full overflow-hidden bg-white px-4 py-10 sm:py-14"
     >
-      <div className="mx-auto w-full max-w-4xl">
+      <div className="mx-auto w-full max-w-4xl xl:max-w-5xl">
         <h2
           id="advantage-heading"
           className="mb-8 text-center text-sm figtree-SemiBold uppercase tracking-wide text-[#2B2B33] sm:mb-10 sm:text-[25px]"
@@ -22,7 +22,7 @@ export default function AdvantageHome() {
           <div className="flex flex-col gap-4 md:gap-6">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_72px_1fr] md:gap-0">
             <article className="flex h-full items-center gap-3 rounded-lg px-4 py-4 sm:px-5 md:min-h-[92px] bg-gradient-to-r from-[#E8F3E8] via-[#F4F9F4] to-white">
-              <img src="/images/home/advantage/icon-1.svg" alt="" aria-hidden="true" className="h-7 w-7 shrink-0 object-contain md:order-last md:mx-1" />
+              <img src="/images/home/advantage/icon-1.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-last md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[12px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Corporate Events</h3>
                 <p className="mt-1.5 text-justify text-[12px] elms-sans-medium  text-[#353535] sm:text-[14px]">
@@ -36,7 +36,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
             </div>
 
             <article className="flex h-full items-center gap-3 rounded-lg px-4 py-4 sm:px-5 md:min-h-[92px] bg-gradient-to-l from-[#DFF0FA] via-[#F1F8FC] to-white">
-              <img src="/images/home/advantage/icon-2.svg" alt="" aria-hidden="true" className="h-7 w-7 shrink-0 object-contain md:order-first md:mx-1" />
+              <img src="/images/home/advantage/icon-2.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-first md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[12px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Employee Engagement Programs (engagemyteam.in)</h3>
                 <p className="mt-1.5 text-justify text-[12px] elms-sans-medium  text-[#353535] sm:text-[14px]">
@@ -48,7 +48,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_72px_1fr] md:gap-0">
             <article className="flex h-full items-center gap-3 rounded-lg px-4 py-4 sm:px-5 md:min-h-[92px] bg-gradient-to-r from-[#FCEADF] via-[#FEF5EF] to-white">
-              <img src="/images/home/advantage/icon-3.svg" alt="" aria-hidden="true" className="h-7 w-7 shrink-0 object-contain md:order-last md:mx-1" />
+              <img src="/images/home/advantage/icon-3.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-last md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[12px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Exhibitions (expostalls.in)</h3>
                 <p className="mt-1.5 text-justify text-[12px] elms-sans-medium  text-[#353535] sm:text-[14px]">
@@ -63,7 +63,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
             </div>
 
             <article className="flex h-full items-center gap-3 rounded-lg px-4 py-4 sm:px-5 md:min-h-[92px] bg-gradient-to-l from-[#FDF0D6] via-[#FEF8EB] to-white">
-              <img src="/images/home/advantage/icon-4.svg" alt="" aria-hidden="true" className="h-7 w-7 shrink-0 object-contain md:order-first md:mx-1" />
+              <img src="/images/home/advantage/icon-4.svg" alt="" aria-hidden="true" className="h-7 w-7  lg:h-10 lg:w-10 shrink-0 object-contain md:order-first md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[12px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Corporate Learning Programs</h3>
                 <p className="mt-1.5 text-justify text-[12px] elms-sans-medium leading-[1.7] text-[#353535] sm:text-[14px]">
@@ -75,7 +75,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_72px_1fr] md:gap-0">
             <article className="flex h-full items-center gap-3 rounded-lg px-4 py-4 sm:px-5 md:min-h-[92px] bg-gradient-to-r from-[#E8E6F3] via-[#F4F3FA] to-white">
-              <img src="/images/home/advantage/icon-5.svg" alt="" aria-hidden="true" className="h-7 w-7 shrink-0 object-contain md:order-last md:mx-1" />
+              <img src="/images/home/advantage/icon-5.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-last md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[12px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Brand Expressions</h3>
                 <p className="mt-1.5 text-justify text-[12px] elms-sans-medium  text-[#353535] sm:text-[14px]">
@@ -89,7 +89,7 @@ We bring brand stories to life through creative storytelling and immersive exper
             </div>
 
             <article className="flex h-full items-center gap-3 rounded-lg px-4 py-4 sm:px-5 md:min-h-[92px] bg-gradient-to-l from-[#FBE1EE] via-[#FDF1F7] to-white">
-              <img src="/images/home/advantage/icon-6.svg" alt="" aria-hidden="true" className="h-7 w-7 shrink-0 object-contain md:order-first md:mx-1" />
+              <img src="/images/home/advantage/icon-6.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-first md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[12px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Brand management</h3>
                 <p className="mt-1.5 text-justify text-[12px] elms-sans-medium leading-[1.7] text-[#353535] sm:text-[14px]">

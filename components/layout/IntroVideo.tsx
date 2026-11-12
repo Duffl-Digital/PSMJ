@@ -95,7 +95,7 @@ export default function IntroVideo({
       {/* INTRO OVERLAY */}
       {!gone && (
         <motion.div
-          className="fixed inset-0 z-[100] h-[100dvh] w-full overflow-hidden bg-black"
+          className="fixed inset-0 z-[100] h-[100dvh] w-full overflow-hidden bg-white"
           initial={{ y: 0 }}
           animate={{ y: leaving ? "-100%" : 0 }}
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
@@ -113,7 +113,7 @@ export default function IntroVideo({
               preload="auto"
               onTimeUpdate={handleTimeUpdate}
               onEnded={() => setShowPrompt(true)} // no `loop`: plays once
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0  md:h-full max-md:top-1/2 max-md:-translate-y-1/2 w-full object-cover"
             />
           )}
 

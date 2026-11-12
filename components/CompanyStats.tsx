@@ -10,7 +10,7 @@ const fade = {
 
 export default function CompanyStats() {
   return (
-   <div aria-label="Company statistics" className="w-full xl:w-10/12 mx-auto px-4 py-8 sm:py-12 md:pt-14 md:pb-20">
+   <div aria-label="Company statistics" className="w-full xl:w-10/12 2xl:w-9/12 mx-auto px-4 py-8 sm:py-12 md:pt-18 md:pb-20">
   <div className="flex flex-wrap items-center">
     {/* Logo + vertical divider */}
     <div className="xl:w-2/12 md:w-2/12 w-full relative md:pr-4">

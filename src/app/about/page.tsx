@@ -332,9 +332,52 @@ useEffect(() => {
           </motion.p>
         </motion.div>
       </section>
+<section className="flex flex-col items-center justify-center gap-3 md:flex-row md:gap-0 pb-20">
+  {/* 20+ Years */}
+  <div className="flex items-center gap-2">
+    <h6 className="text-[#1E1E1E] figtree-SemiBold text-[18px] tracking-[1.5px]">
+      20+
+    </h6>
+    <p className="text-[#1E1E1E] text-[15px] elms-sans-light leading-[142%] tracking-[0.75px]">
+      Years
+    </p>
+  </div>
+
+  {/* Dot (desktop/tablet only) */}
+  <span
+    aria-hidden="true"
+    className="hidden h-1.5 w-1.5 shrink-0 rounded-full bg-black md:mx-6 md:block"
+  />
+
+  {/* 70+ Corporate Clients */}
+  <div className="flex items-center gap-2">
+    <h6 className="text-[#1E1E1E] figtree-SemiBold text-[18px] tracking-[1.5px]">
+      70+
+    </h6>
+    <p className="text-[#1E1E1E] text-[16px] elms-sans-light leading-[142%] tracking-[0.75px]">
+      Corporate Clients
+    </p>
+  </div>
+
+  {/* Dot (desktop/tablet only) */}
+  <span
+    aria-hidden="true"
+    className="hidden h-1.5 w-1.5 shrink-0 rounded-full bg-black md:mx-6 md:block"
+  />
+
+  {/* PAN India */}
+  <div className="flex items-center gap-2">
+    <h6 className="text-[#1E1E1E] figtree-SemiBold text-[18px] tracking-[1.5px]">
+      PAN
+    </h6>
+    <p className="text-[#1E1E1E] text-[16px] elms-sans-light leading-[142%] tracking-[0.75px]">
+      India
+    </p>
+  </div>
+</section>
 
       <motion.div
-        className="w-full bg-white relative"
+        className="w-full bg-white relative "
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
@@ -398,7 +441,7 @@ useEffect(() => {
         </div>
       </motion.div>
 
-      <section className="relative bg-white xl:bg-[url('/images/about/team-bg.jpg')] bg-center bg-no-repeat xl:bg-cover">
+      <section className="relative bg-white xl:bg-[url('/images/about/team-bg.jpg')] bg-center bg-no-repeat xl:bg-cover md:pt-20 pt-12">
         <motion.h1
           variants={item}
           initial="hidden"
@@ -416,7 +459,7 @@ useEffect(() => {
           Meet our Team
         </motion.h1>
 
-        <motion.div
+        {/* <motion.div
           className="team-details text-center gap-y-8.75 sm:gap-y-16.25 flex flex-wrap  justify-center items-center pt-15.25"
           variants={container}
           initial="hidden"
@@ -477,9 +520,68 @@ useEffect(() => {
             </p>
             
           </motion.div>
-        </motion.div>
+        </motion.div> */}
+        <div className="">
+ <motion.div
+  className="team-details text-center py-[61px] overflow-hidden"
+  variants={container}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+>
+  <div className="mx-auto w-full max-w-7xl px-4 pb-10">
+    <div className="flex flex-wrap justify-center gap-x-6 gap-y-10">
+      {sliderData.map((member, index) => (
+        <div
+          key={index}
+          className="w-[calc((100%_-_1.5rem)/2)] text-center md:w-[calc((100%_-_3rem)/3)] lg:w-[calc((100%_-_6rem)/5)]"
+        >
+          {/* Photo animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.9,
+              delay: (index % 5) * 0.12,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            whileHover={{ y: -6 }}
+            className="mx-auto w-full max-w-[220px]"
+          >
+            <Image
+              src={member.image}
+              alt={member.name}
+              width={220}
+              height={220}
+              className="mx-auto h-auto w-full"
+            />
+          </motion.div>
 
-       <div className="">
+          {/* Name + role fade in after the photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.7,
+              delay: (index % 5) * 0.12 + 0.35,
+              ease: "easeOut",
+            }}
+          >
+            <h3 className="mt-3 figtree-SemiBold text-[17px] lg:text-[19px]">
+              {member.name}
+            </h3>
+            <p className="text-[#ADADAD] text-[13px]">{member.role}</p>
+          </motion.div>
+        </div>
+      ))}
+    </div>
+  </div>
+</motion.div>
+</div>
+
+       {/* <div className="">
   <motion.div
     className="team-details text-center py-[61px] overflow-hidden"
     variants={container}
@@ -516,10 +618,10 @@ useEffect(() => {
       </div>
     </div>
   </motion.div>
-</div>
+</div> */}
       </section>
 
-      <section className="mb-[20px]  industries-box relative grid grid-cols-12 px-4 lg:px-6 mx-4 lg:mx-10 rounded-[10px] bg-[linear-gradient(68deg,_#043E84_7.09%,_#104F92_33.85%,_#256EAB_61.71%,_#398CC2_81.65%,_#6BD4FC_98.64%,_#FFEFB0_124.63%)]">
+      <section className="mb-[20px]  industries-box 2xl:max-w-[1440px] 2xl:mx-auto relative grid grid-cols-12 px-4 lg:px-6 mx-4 lg:mx-10 rounded-[10px] bg-[linear-gradient(68deg,_#043E84_7.09%,_#104F92_33.85%,_#256EAB_61.71%,_#398CC2_81.65%,_#6BD4FC_98.64%,_#FFEFB0_124.63%)]">
         <motion.div
           className="col-span-12 xl:col-span-10 order-2 xl:order-1"
           variants={containerVariants}
