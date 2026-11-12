@@ -332,13 +332,13 @@ useEffect(() => {
           </motion.p>
         </motion.div>
       </section>
-<section className="flex flex-col items-center justify-center gap-3 md:flex-row md:gap-0 pb-20">
+<section className="flex flex-col items-center justify-center md:gap-3 sm:gap-2 xs:gap-3 gap-2 flex-col xs:flex-row md:gap-0 pb-20">
   {/* 20+ Years */}
-  <div className="flex items-center gap-2">
-    <h6 className="text-[#1E1E1E] figtree-SemiBold text-[18px] tracking-[1.5px]">
+  <div className="flex sm:flex-row xs:flex-col flex-row  items-center sm:gap-2 gap-1">
+    <h6 className="text-[#1E1E1E] figtree-SemiBold sm:text-[18px] text-[16px] tracking-[1.5px]">
       20+
     </h6>
-    <p className="text-[#1E1E1E] text-[15px] elms-sans-light leading-[142%] tracking-[0.75px]">
+    <p className="text-[#1E1E1E] sm:text-[15px] text-[13px] elms-sans-light leading-[142%] tracking-[0.75px]">
       Years
     </p>
   </div>
@@ -346,15 +346,15 @@ useEffect(() => {
   {/* Dot (desktop/tablet only) */}
   <span
     aria-hidden="true"
-    className="hidden h-1.5 w-1.5 shrink-0 rounded-full bg-black md:mx-6 md:block"
+    className=" h-1.5 w-1.5 shrink-0 rounded-full bg-black md:mx-6 xs:block hidden"
   />
 
   {/* 70+ Corporate Clients */}
-  <div className="flex items-center gap-2">
-    <h6 className="text-[#1E1E1E] figtree-SemiBold text-[18px] tracking-[1.5px]">
+  <div className="flex sm:flex-row xs:flex-col flex-row  items-center sm:gap-2 gap-1">
+    <h6 className="text-[#1E1E1E] figtree-SemiBold  sm:text-[18px] text-[16px] tracking-[1.5px]">
       70+
     </h6>
-    <p className="text-[#1E1E1E] text-[16px] elms-sans-light leading-[142%] tracking-[0.75px]">
+    <p className="text-[#1E1E1E] sm:text-[15px] text-[13px] elms-sans-light leading-[142%] tracking-[0.75px]">
       Corporate Clients
     </p>
   </div>
@@ -362,16 +362,16 @@ useEffect(() => {
   {/* Dot (desktop/tablet only) */}
   <span
     aria-hidden="true"
-    className="hidden h-1.5 w-1.5 shrink-0 rounded-full bg-black md:mx-6 md:block"
+    className=" h-1.5 w-1.5 shrink-0 rounded-full bg-black md:mx-6 xs:block hidden"
   />
 
   {/* PAN India */}
-  <div className="flex items-center gap-2">
-    <h6 className="text-[#1E1E1E] figtree-SemiBold text-[18px] tracking-[1.5px]">
-      PAN
+  <div className="flex sm:flex-row xs:flex-col flex-row  items-center sm:gap-2 gap-1">
+    <h6 className="text-[#1E1E1E] figtree-SemiBold  sm:text-[18px] text-[16px] tracking-[1.5px]">
+      200+
     </h6>
-    <p className="text-[#1E1E1E] text-[16px] elms-sans-light leading-[142%] tracking-[0.75px]">
-      India
+    <p className="text-[#1E1E1E] sm:text-[15px] text-[13px] elms-sans-light leading-[142%] tracking-[0.75px]">
+      Projects
     </p>
   </div>
 </section>

@@ -52,7 +52,7 @@ const cases: CaseStudy[] = [
     },
     {
         id: "astrazeneca",
-        tab: "ASTRAZENECA",
+        tab: "Astrazeneca",
         title: "Young Scientist",
         heading: "THE CHALLENGE",
         text: "Creating an immersive science experience for children of different age groups within the workplace while ensuring every activity was educational, engaging, and age-appropriate",
@@ -60,7 +60,7 @@ const cases: CaseStudy[] = [
     },
     {
         id: "mfd",
-        tab: "MFD GALAXY",
+        tab: "MFD Galaxy",
         title: "MFD Galaxy Conference & Expo",
         heading: "THE CHALLENGE",
         text: "Bringing together entrepreneurs from across the country while curating renowned speakers, industry experts, and innovators to deliver a valuable and engaging conference experience.",
@@ -120,12 +120,19 @@ const moreCases = [
             <section className="bg-[url('/images/case-study-details/bg.jpg')] bg-cover pb-10 pt-5 bg-center bg-no-repeat">
                 <Header />
 
-                <a href="/case-study" className="w-10/12 mx-auto flex items-center" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="11" viewBox="0 0 22 11" fill="none">
-<path d="M0.14431 5.10652L5.07831 0.172477C5.25555 -0.0344865 5.56704 -0.058613 5.774 0.118669C5.98096 0.295909 6.00509 0.607392 5.82781 0.814356C5.81127 0.833648 5.79329 0.851669 5.774 0.868163L1.68371 4.96342L21.2176 4.96342C21.49 4.96342 21.7109 5.18433 21.7109 5.45684C21.7109 5.72936 21.49 5.95023 21.2176 5.95023L1.68371 5.95023L5.774 10.0405C5.98096 10.2178 6.00509 10.5293 5.82781 10.7362C5.65053 10.9432 5.33909 10.9673 5.13212 10.79C5.11283 10.7735 5.09481 10.7555 5.07831 10.7362L0.144267 5.80217C-0.047008 5.60979 -0.0470061 5.29898 0.14431 5.10652Z" fill="white"/>
-</svg>
-<span className="text-[15px] text-[#fff] elms-sans-Regular ml-2">Back to Casestudies</span>
-                </a>
+     <a href="/case-study" className="group w-10/12 mx-auto flex items-center">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="22"
+    height="11"
+    viewBox="0 0 22 11"
+    fill="none"
+    className="transition-transform duration-300 ease-out group-hover:-translate-x-2"
+  >
+    <path d="M0.14431 5.10652L5.07831 0.172477C5.25555 -0.0344865 5.56704 -0.058613 5.774 0.118669C5.98096 0.295909 6.00509 0.607392 5.82781 0.814356C5.81127 0.833648 5.79329 0.851669 5.774 0.868163L1.68371 4.96342L21.2176 4.96342C21.49 4.96342 21.7109 5.18433 21.7109 5.45684C21.7109 5.72936 21.49 5.95023 21.2176 5.95023L1.68371 5.95023L5.774 10.0405C5.98096 10.2178 6.00509 10.5293 5.82781 10.7362C5.65053 10.9432 5.33909 10.9673 5.13212 10.79C5.11283 10.7735 5.09481 10.7555 5.07831 10.7362L0.144267 5.80217C-0.047008 5.60979 -0.0470061 5.29898 0.14431 5.10652Z" fill="white"/>
+  </svg>
+  <span className="text-[15px] text-[#fff] elms-sans-Regular ml-2">Back to Casestudies</span>
+</a>
             </section>
 
             <div className="w-full lg:container lg:mx-auto px-6 mb-10 md:mb-20">
@@ -411,11 +418,11 @@ const moreCases = [
                 >
                     <div className="min-w-0">
                         <p
-                            className={`bg-gradient-to-r ${moreColors[index]} bg-clip-text text-[14px] elms-sans-semibold leading-snug text-transparent sm:text-sm`}
+                            className={`bg-gradient-to-r ${moreColors[index]} bg-clip-text text-[14px] elms-sans-semibold leading-snug text-transparent sm:text-[17px]`}
                         >
                             {item.title}
                         </p>
-                        <p className="mt-2 text-[15px] figtree-Medium uppercase italic text-[#1D1D1F]">
+                        <p className="mt-2 text-[13px] figtree-Medium  capitalize italic text-[#1D1D1F]">
                             {item.tab}
                         </p>
                     </div>
