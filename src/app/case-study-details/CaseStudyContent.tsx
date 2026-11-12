@@ -1,6 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
@@ -13,14 +14,92 @@ import { motion, AnimatePresence } from "framer-motion";
 import "swiper/css";
 import "swiper/css/pagination";
 
+
+const ArrowIcon: React.FC = () => (
+  <svg
+    viewBox="0 0 24 24"
+    className="h-4 w-4"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M17 17L7 7" />
+    <path d="M7 16V7h9" />
+  </svg>
+);
+import Link from "next/link";
+
+type CaseStudy = {
+    id: string;
+    tab: string;
+    title: string;
+    heading: string;
+    text: string;
+    href: string;
+};
+
+const cases: CaseStudy[] = [
+    {
+        id: "bpcl",
+        tab: "BPCL",
+        title: "YouNgage - Nation wide engagement initiative",
+        heading: "THE CHALLENGE",
+        text: "As a national PSU, BPCL recognized the need to connect with its younger workforce through an engaging platform that encouraged collaboration and celebrated emerging talent across seven regions.",
+        href: "/case-study-details?id=BPCL",
+    },
+    {
+        id: "astrazeneca",
+        tab: "ASTRAZENECA",
+        title: "Young Scientist",
+        heading: "THE CHALLENGE",
+        text: "Creating an immersive science experience for children of different age groups within the workplace while ensuring every activity was educational, engaging, and age-appropriate",
+        href: "/case-study-details?id=AstraZeneca",
+    },
+    {
+        id: "mfd",
+        tab: "MFD GALAXY",
+        title: "MFD Galaxy Conference & Expo",
+        heading: "THE CHALLENGE",
+        text: "Bringing together entrepreneurs from across the country while curating renowned speakers, industry experts, and innovators to deliver a valuable and engaging conference experience.",
+        href: "/case-study-details?id=MFD_Galaxy",
+    },
+    {
+        id: "dhl",
+        tab: "DHL",
+        title: "Flavors of India: The Team CookOff",
+        heading: "THE CHALLENGE",
+        text: "Designing an engaging activity that introduced German delegates to Chennai's local culture and encouraged meaningful interaction with Indian employees.",
+        href: "/case-study-details?id=DHL",
+    },
+];
+
+const moreColors = [
+    "from-[#4A90E2] to-[#2B4A8C]",
+    "from-[#9B6BD1] to-[#5B3E8F]",
+    "from-[#E8638F] to-[#8E2B4F]",
+];
 export default function CaseStudyDetails() {
 
     const searchParams = useSearchParams();
     const id = searchParams.get("id");
 
     const data = CaseStudyData[id as keyof typeof CaseStudyData];
+// ---- Explore more: next 3 case studies (no duplicate of current) ----
+const currentIndex = cases.findIndex(
+    (c) => c.href.split("id=")[1]?.toLowerCase() === id?.toLowerCase()
+);
 
+const moreCases = [
+    ...cases.slice(currentIndex + 1),
+    ...cases.slice(0, currentIndex + 1),
+]
+    .filter((c) => c !== cases[currentIndex])
+    .slice(0, 3);
     if (!data) {
+       
         return (
             <div>
                 Case Study Not Found
@@ -40,6 +119,13 @@ export default function CaseStudyDetails() {
         <div className="overflow-x-clip">
             <section className="bg-[url('/images/case-study-details/bg.jpg')] bg-cover pb-10 pt-5 bg-center bg-no-repeat">
                 <Header />
+
+                <a href="/case-study" className="w-10/12 mx-auto flex items-center" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="11" viewBox="0 0 22 11" fill="none">
+<path d="M0.14431 5.10652L5.07831 0.172477C5.25555 -0.0344865 5.56704 -0.058613 5.774 0.118669C5.98096 0.295909 6.00509 0.607392 5.82781 0.814356C5.81127 0.833648 5.79329 0.851669 5.774 0.868163L1.68371 4.96342L21.2176 4.96342C21.49 4.96342 21.7109 5.18433 21.7109 5.45684C21.7109 5.72936 21.49 5.95023 21.2176 5.95023L1.68371 5.95023L5.774 10.0405C5.98096 10.2178 6.00509 10.5293 5.82781 10.7362C5.65053 10.9432 5.33909 10.9673 5.13212 10.79C5.11283 10.7735 5.09481 10.7555 5.07831 10.7362L0.144267 5.80217C-0.047008 5.60979 -0.0470061 5.29898 0.14431 5.10652Z" fill="white"/>
+</svg>
+<span className="text-[15px] text-[#fff] elms-sans-Regular ml-2">Back to Casestudies</span>
+                </a>
             </section>
 
             <div className="w-full lg:container lg:mx-auto px-6 mb-10 md:mb-20">
@@ -299,6 +385,48 @@ export default function CaseStudyDetails() {
                     </div>
                 </div>
             </div>
+
+<section
+    aria-labelledby="casestudies-heading"
+    className="w-full bg-white px-4 py-10 md:pt-0 md:pb-16"
+>
+    <div className="mx-auto w-full max-w-5xl">
+        <h2
+            id="casestudies-heading"
+            className="mb-6 text-base figtree-Bold uppercase tracking-wide text-[#1D1D1F] sm:mb-8 sm:text-[19px]"
+        >
+            Explore more casestudies
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3">
+            {moreCases.map((item, index) => (
+                <Link
+                    key={item.id}
+                    href={item.href}
+                    className={`group flex items-center justify-between gap-4 py-5 md:py-2 ${
+                        index === 0
+                            ? "md:pr-6"
+                            : "border-t border-gray-300 md:border-l md:border-t-0 md:px-6"
+                    }`}
+                >
+                    <div className="min-w-0">
+                        <p
+                            className={`bg-gradient-to-r ${moreColors[index]} bg-clip-text text-[14px] elms-sans-semibold leading-snug text-transparent sm:text-sm`}
+                        >
+                            {item.title}
+                        </p>
+                        <p className="mt-2 text-[15px] figtree-Medium uppercase italic text-[#1D1D1F]">
+                            {item.tab}
+                        </p>
+                    </div>
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[#2B7DE9] to-[#1558C0] text-white transition-transform group-hover:scale-110 sm:h-8 sm:w-8">
+                        <ArrowIcon />
+                    </span>
+                </Link>
+            ))}
+        </div>
+    </div>
+</section>
 
             <GetInTouch />
 

@@ -11,6 +11,13 @@
 }
 
 @font-face {
+   font-family: Elms_Sans_SemiBold;
+   src: url('/font/Elms_Sans/static/ElmsSans-SemiBold.ttf');
+   font-display: swap;
+}
+
+
+@font-face {
    font-family: Elms_Medium;
    src: url('/font/Elms_Sans/static/ElmsSans-Medium.ttf');
    font-display: swap;
@@ -30,6 +37,9 @@
 
 .elms-sans-bold {
   font-family: Elms_Sans_Bold;
+}
+.elms-sans-semibold {
+     font-family: Elms_Sans_SemiBold;
 }
 
 .elms-sans-medium {
@@ -88,6 +98,9 @@
  font-family: Figtree-ExtraBold;
 }
 
+.figtree-Light{
+    font-family: Figtree-Light;
+}
 .figtree-Bold {
    font-family: Figtree-Bold;
 }

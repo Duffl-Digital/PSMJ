@@ -2,33 +2,52 @@
 
 import {
   motion,
+  AnimatePresence,
   useScroll,
   useTransform,
   useSpring,
   useMotionValueEvent,
 } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ScrollMaskProps = {
   desktopVideo: string;
   mobileVideo: string;
-  height?: string;
+  logoSrc?: string; // logo shown in the center while scrolling
+  height?: string; // pinned scroll distance = height - 100vh
+  playAt?: number; // scroll progress where the video starts (once)
+  videoWidth?: number; // final video width, 0.8 = 80% (height stays full)
+  bgHideAt?: number; // scroll progress where the bg image is removed
+  onVideoEnd?: () => void; // called once when the video finishes
 };
 
 export default function ScrollMask({
   desktopVideo,
   mobileVideo,
-  height = "400vh", // pinned scroll distance = height - 100vh
+  logoSrc = "/images/logo.svg",
+  height = "400vh",
+  playAt = 0.6,
+  videoWidth = 1,
+  bgHideAt = 0.8,
+  onVideoEnd,
 }: ScrollMaskProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const desktopRef = useRef<HTMLVideoElement>(null);
+  const mobileRef = useRef<HTMLVideoElement>(null);
+  const hasPlayedRef = useRef(false); // video started once: never restart
+  const hasEndedRef = useRef(false); // onVideoEnd fires once only
+
   const [badgeHidden, setBadgeHidden] = useState(false);
+  const [bgVisible, setBgVisible] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [showSoundButton, setShowSoundButton] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  /* Circle opens over the first 90% of scroll, last 10% is a short hold */
+  /* Circle opens over the first 90% of scroll */
   const rawCircleSize = useTransform(
     scrollYProgress,
     [0, 0.07, 0.17, 0.35, 0.55, 0.72, 0.9],
@@ -51,29 +70,107 @@ export default function ScrollMask({
     )`;
   });
 
+  /* Only the width shrinks 100% -> videoWidth (height stays full) */
+  // const videoWidthValue = useTransform(
+  //   scrollYProgress,
+  //   [0.5, bgHideAt],
+  //   ["100%", `${videoWidth * 100}%`]
+  // );
+
   const videoScale = useTransform(scrollYProgress, [0, 0.9], [1.25, 1]);
 
   /* Red dot */
   const dotOpacity = useTransform(scrollYProgress, [0, 0.02, 0.06], [1, 1, 0]);
   const dotScale = useTransform(scrollYProgress, [0, 0.02, 0.06], [1, 1, 0]);
 
-  /* Text */
-  const textOpacity = useTransform(scrollYProgress, [0.6, 0.9, 1], [0, 1, 1]);
-  const rawTextY = useTransform(scrollYProgress, [0.6, 0.9, 1], [120, 0, 0]);
-  const textY = useSpring(rawTextY, { stiffness: 120, damping: 30, mass: 0.6 });
+  /* Logo: appears after the dot, stays centered, fades out when the video starts */
+  const logoOpacity = useTransform(
+    scrollYProgress,
+    [0.04, 0.12, Math.max(playAt - 0.08, 0.13), playAt],
+    [0, 1, 1, 0]
+  );
+  const logoScale = useTransform(scrollYProgress, [0.04, 0.12], [0.85, 1]);
 
-  /* Scroll-down badge: fades out and moves down, then is fully hidden */
+  /* Scroll-down badge */
   const badgeOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
   const badgeY = useTransform(scrollYProgress, [0, 0.06], [0, 40]);
 
+  /* Keep both videos' muted state in sync */
+  useEffect(() => {
+    [desktopRef.current, mobileRef.current].forEach((v) => {
+      if (v) v.muted = isMuted;
+    });
+  }, [isMuted]);
+
+  /* Whichever video is actually visible (md breakpoint = 768px) */
+  const getActiveVideo = () =>
+    window.matchMedia("(min-width: 768px)").matches
+      ? desktopRef.current
+      : mobileRef.current;
+
+  const playVideo = (video: HTMLVideoElement) => {
+    video.play().catch(() => {
+      // sound blocked -> fall back to muted
+      if (!video.muted) {
+        video.muted = true;
+        setIsMuted(true);
+        video.play().catch(() => {
+          hasPlayedRef.current = false; // allow another attempt
+        });
+      } else {
+        hasPlayedRef.current = false;
+      }
+    });
+  };
+
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     setBadgeHidden(v > 0.06);
+    setBgVisible(v < bgHideAt); // bg image only exists before bgHideAt
+
+    // Start the video ONE time when scroll passes playAt.
+    // No pause/reset when scrolling back.
+    if (v >= playAt && !hasPlayedRef.current) {
+      const video = getActiveVideo();
+      if (!video) return;
+      hasPlayedRef.current = true;
+      setShowSoundButton(true);
+      playVideo(video);
+    }
   });
+
+  const handleEnded = () => {
+    setShowSoundButton(false);
+    if (hasEndedRef.current) return;
+    hasEndedRef.current = true;
+    onVideoEnd?.(); // -> Index opens the Home page
+  };
+
+  const toggleMute = () => {
+    const next = !isMuted;
+    [desktopRef.current, mobileRef.current].forEach((v) => {
+      if (v) v.muted = next;
+    });
+    setIsMuted(next);
+
+    const video = getActiveVideo();
+    if (video && video.paused && !video.ended && hasPlayedRef.current) {
+      video.play().catch(() => {});
+    }
+  };
 
   return (
     <section ref={sectionRef} className="relative w-full" style={{ height }}>
-      <div className="sticky top-0 flex h-[100dvh] w-full items-center justify-center overflow-hidden bg-[url('/images/white-bg-video.jpg')] bg-cover bg-center bg-no-repeat">
-        {/* MASKED VIDEO LAYER */}
+      <div className="sticky top-0 flex h-[100dvh] w-full items-center justify-center overflow-hidden bg-white">
+        {/* BG IMAGE: its own layer, first child, behind the video */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500"
+          style={{
+            backgroundImage: "url('/images/white-bg-video.jpg')",
+            opacity: bgVisible ? 1 : 0,
+          }}
+        />
+
+        {/* MASKED VIDEO LAYER: no bg image, no opacity */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -85,42 +182,54 @@ export default function ScrollMask({
             maskPosition: "center",
           }}
         >
-          <motion.div
-            className="absolute inset-0 will-change-transform"
-            style={{ scale: videoScale }}
-          >
-            <video
-              src={desktopVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="absolute inset-0 hidden h-full w-full object-cover md:block"
-            />
-            <video
-              src={mobileVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="absolute inset-0 block h-full w-full object-cover md:hidden"
-            />
+          {/* WIDTH WRAPPER */}
+        <motion.div
+  className="absolute inset-y-0 left-1/2 overflow-hidden"
+  style={{ width: `${videoWidth * 100}%`, x: "-50%" }}
+>
+            {/* ZOOM WRAPPER */}
+            <motion.div
+              className="absolute inset-0 will-change-transform"
+              style={{ scale: videoScale }}
+            >
+              {/* no `loop`: the video plays only once */}
+              <video
+                ref={desktopRef}
+                src={desktopVideo}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={handleEnded}
+                className="absolute inset-0 hidden h-full w-full object-cover md:block"
+              />
+              <video
+                ref={mobileRef}
+                src={mobileVideo}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={handleEnded}
+                className="absolute inset-0 block h-full w-full object-cover md:hidden"
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* TEXT LAYER (outside the mask) */}
+        {/* LOGO (center) */}
         <motion.div
-          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
-          style={{ opacity: textOpacity, y: textY }}
+          className="pointer-events-none absolute inset-0 z-[15] flex items-center justify-center"
+          style={{ opacity: logoOpacity, scale: logoScale }}
         >
-          <h1 className="text-center text-4xl font-bold tracking-[0.2em] text-white md:text-6xl lg:text-8xl">
-            WELCOME TO PSMJ
-          </h1>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoSrc}
+            alt="PSMJ"
+            className="w-40 select-none object-contain md:w-56 lg:w-72"
+            draggable={false}
+          />
         </motion.div>
 
-        {/* CENTER DOT (outer = scroll-driven, inner = smooth small pulse) */}
+        {/* CENTER DOT */}
         <motion.div
           className="pointer-events-none absolute left-1/2 top-1/2 z-20 h-[24px] w-[24px] -translate-x-1/2 -translate-y-1/2"
           style={{ opacity: dotOpacity, scale: dotScale }}
@@ -137,7 +246,7 @@ export default function ScrollMask({
           />
         </motion.div>
 
-        {/* SCROLL DOWN BADGE (positioned right below the red dot) */}
+        {/* SCROLL DOWN BADGE */}
         <div className="pointer-events-none absolute left-1/2 top-1/2 z-20 mt-10 -translate-x-1/2">
           <motion.div
             className="scroll-badge"
@@ -194,6 +303,59 @@ export default function ScrollMask({
             </div>
           </motion.div>
         </div>
+
+        {/* MUTE / UNMUTE BUTTON (only while the video is playing) */}
+        <AnimatePresence>
+          {showSoundButton && (
+            <motion.button
+              type="button"
+              onClick={toggleMute}
+              aria-label={isMuted ? "Unmute video" : "Mute video"}
+              aria-pressed={!isMuted}
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 10 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.94 }}
+              className="absolute bottom-6 right-6 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/50 text-white backdrop-blur-md transition-colors hover:bg-black/70 md:bottom-10 md:right-10 md:h-14 md:w-14"
+            >
+              {isMuted ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <line x1="23" y1="9" x2="17" y2="15" />
+                  <line x1="17" y1="9" x2="23" y2="15" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                </svg>
+              )}
+            </motion.button>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

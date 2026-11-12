@@ -28,6 +28,9 @@ import CompanyStats from "./CompanyStats";
 import RotatingHeroHeading from "./RotatingHeroHeading";
 import HeroDescription from "./HeroDescription";
 import CasestudyHome from "./CasestudyHome";
+import AdvantageHome from "./AdvantageHome";
+
+
 
 const words = [
   "#Lorem", "#Branding", "#Marketing", "#Creative", "#Digital",
@@ -307,12 +310,53 @@ const prefersReducedMotion = useReducedMotion();
 
 
 
+         {/* ============== Home About section ============= */}
+          <motion.div
+          className="px-3 text-center"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.h6
+            variants={fadeUp}
+            className="text-[#fff] elms-sans-regular text-[16px] leading-[180%] tracking-[0.8px]"
+          >
+           WHO WE ARE
+          </motion.h6>
+
+          <motion.h2
+            variants={fadeUp}
+            className="figtree-SemiBold text-[#fff] text-[25px] sm:text-[35.773px] leading-[132%] tracking-[1.073px] "
+            
+          >
+            Inspiring People.Transforming <span className="figtree-Light">Experiences.</span>
+          </motion.h2>
+
+         
+
+          <motion.p
+            variants={fadeUp}
+            className="w-full md:w-[80%] lg:w-[65%] pt-4 mx-auto text-[#fff] elms-sans-medium text-[14px] leading-[180%] tracking-[0.7px]"
+          >
+            PSMJ is a leading experiential engagement and event solutions
+            company with over two decades of expertise in creating impactful
+            corporate experiences. Our work spans employee engagement, learning
+            interventions, leadership experiences, conferences, expos and
+            business events.
+          </motion.p>
+        </motion.div>
+
+         <CompanyStats />
+
+
+
         {/* =================================================
             HERO CONTENT
         ================================================= */}
 
         <section
-          className="
+          className=" pt-10 pb-12
     relative
     z-[999]
     min-h-0
@@ -700,10 +744,11 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
       </div>
     </div> */}
 
-     <CompanyStats />
+    
         </section>
      
-        <PsmjUniverse />
+        {/* <PsmjUniverse /> */}
+          <AdvantageHome />
         <div className="lg:bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)] bg-[linear-gradient(180deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)]">
         <TrustedBySection />
 

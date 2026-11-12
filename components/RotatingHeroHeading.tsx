@@ -36,6 +36,7 @@ export default function RotatingHeroHeading() {
   return (
     <h1
       className="
+      
         relative
         z-[20]
         m-0
@@ -88,6 +89,7 @@ export default function RotatingHeroHeading() {
           <span
             className="
               block
+              hidden
        
               bg-[linear-gradient(89deg,rgb(50_129_184)_56%,rgb(42_104_149_/_0%)_98%)]
              figtree-Regular
