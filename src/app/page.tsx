@@ -6,7 +6,7 @@ export default function Index() {
   return (
     <IntroVideo
       desktopVideo="/video/intro.mp4"
-      mobileVideo="/video/intro.mp4"
+      mobileVideo="/video/intro-mobile.mp4"
       showPromptBefore={2}
     >
       <Home />

@@ -77,9 +77,9 @@ const cases: CaseStudy[] = [
 ];
 
 const moreColors = [
-    "from-[#4A90E2] to-[#2B4A8C]",
-    "from-[#9B6BD1] to-[#5B3E8F]",
-    "from-[#E8638F] to-[#8E2B4F]",
+    "from-[#000000] to-[#000000]",
+    "from-[#000000] to-[#000000]",
+    "from-[#000000] to-[#000000]",
 ];
 export default function CaseStudyDetails() {
 
@@ -131,7 +131,7 @@ const moreCases = [
   >
     <path d="M0.14431 5.10652L5.07831 0.172477C5.25555 -0.0344865 5.56704 -0.058613 5.774 0.118669C5.98096 0.295909 6.00509 0.607392 5.82781 0.814356C5.81127 0.833648 5.79329 0.851669 5.774 0.868163L1.68371 4.96342L21.2176 4.96342C21.49 4.96342 21.7109 5.18433 21.7109 5.45684C21.7109 5.72936 21.49 5.95023 21.2176 5.95023L1.68371 5.95023L5.774 10.0405C5.98096 10.2178 6.00509 10.5293 5.82781 10.7362C5.65053 10.9432 5.33909 10.9673 5.13212 10.79C5.11283 10.7735 5.09481 10.7555 5.07831 10.7362L0.144267 5.80217C-0.047008 5.60979 -0.0470061 5.29898 0.14431 5.10652Z" fill="white"/>
   </svg>
-  <span className="text-[15px] text-[#fff] elms-sans-Regular ml-2">Back to Casestudies</span>
+  <span className="text-[15px] text-[#fff] elms-sans-Regular ml-2">Back to Case studies</span>
 </a>
             </section>
 
@@ -402,7 +402,7 @@ const moreCases = [
             id="casestudies-heading"
             className="mb-6 text-base figtree-Bold uppercase tracking-wide text-[#1D1D1F] sm:mb-8 sm:text-[19px]"
         >
-            Explore more casestudies
+            Explore more case studies
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3">
@@ -426,7 +426,7 @@ const moreCases = [
                             {item.tab}
                         </p>
                     </div>
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[#2B7DE9] to-[#1558C0] text-white transition-transform group-hover:scale-110 sm:h-8 sm:w-8">
+                    <span className="flex h-7 w-7 rotate-90  shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[#2B7DE9] to-[#1558C0] text-white transition-transform group-hover:scale-110 sm:h-8 sm:w-8">
                         <ArrowIcon />
                     </span>
                 </Link>

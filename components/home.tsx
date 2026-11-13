@@ -327,7 +327,7 @@ const prefersReducedMotion = useReducedMotion();
 
           <motion.h2
             variants={fadeUp}
-            className="figtree-SemiBold text-[#fff] text-[25px] sm:text-[35.773px] leading-[132%] tracking-[1.073px] "
+            className="figtree-SemiBold uppercase text-[#fff] text-[25px] sm:text-[35.773px] leading-[132%] tracking-[1.073px] "
             
           >
             Inspiring People.Transforming <span className="figtree-Light">Experiences.</span>

@@ -621,9 +621,9 @@ useEffect(() => {
 </div> */}
       </section>
 
-      <section className="mb-[20px]  industries-box 2xl:max-w-[1440px] 2xl:mx-auto relative grid grid-cols-12 px-4 lg:px-6 mx-4 lg:mx-10 rounded-[10px] bg-[linear-gradient(68deg,_#043E84_7.09%,_#104F92_33.85%,_#256EAB_61.71%,_#398CC2_81.65%,_#6BD4FC_98.64%,_#FFEFB0_124.63%)]">
+      <section className="mb-[20px]  industries-box 2xl:max-w-7xl 2xl:mx-auto relative grid grid-cols-12 px-4 lg:px-6 mx-4 lg:mx-10 rounded-[10px] bg-[linear-gradient(68deg,_#043E84_7.09%,_#104F92_33.85%,_#256EAB_61.71%,_#398CC2_81.65%,_#6BD4FC_98.64%,_#FFEFB0_124.63%)]">
         <motion.div
-          className="col-span-12 xl:col-span-10 order-2 xl:order-1"
+          className="col-span-12 xl:col-span-12 order-2 xl:order-1"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -698,7 +698,7 @@ useEffect(() => {
 
             <motion.div
               variants={fadeUpVariants}
-              className="text-center relative pt-6 pb-5"
+              className="text-center relative pt-6 pb-5 col-span-2 justify-self-center lg:col-span-1"
             >
               <Image
                 src="/images/about/Industries/Telecommunications.svg"
@@ -715,11 +715,8 @@ useEffect(() => {
         </motion.div>
 
         <motion.div
-          variants={fadeUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="order-1 xl:order-2 col-span-12 xl:col-span-2 flex items-center justify-center xl:justify-start px-4 xl:ps-12 py-8 xl:py-0"
+         
+          className="order-1 xl:order-2 col-span-12 xl:col-span-2 items-center hidden justify-center xl:justify-start px-4 xl:ps-12 py-8 xl:py-0"
         >
           <h1 className="text-white text-[24px] lg:text-[25px] text-center xl:text-left leading-[126%] tracking-[1.253px] figtree-extra-bold">
             Industries <br className="hidden xl:block" />
