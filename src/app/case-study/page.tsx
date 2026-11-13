@@ -82,7 +82,7 @@ export default function CaseStudy() {
             left: {
                 id: "Exhibition_Stall_Launch",
                 title: "Exhibition Stall Launch",
-                company: "",
+                company: "Real Estate",
                 gradient: "linear-gradient(90deg, #4A91E8 0%, #295182 100%)",
             },
             right: {
@@ -277,9 +277,11 @@ export default function CaseStudy() {
                                     <p className="mt-3 elms-sans-medium uppercase  text-[#1E1E1E] text-[15px] font-semibold leading-[151%] tracking-[0.75px]">
                                             {row.left.company}
                                         </p>
+<span className="lg:hidden block">
 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none"  className="mt-[9px]">
 <path d="M11.4797 0.000259585L6.10966 0.0823858C5.90033 0.0694092 5.72009 0.228579 5.70713 0.437927C5.69416 0.647253 5.85333 0.827496 6.06268 0.840449C6.0822 0.841651 6.10179 0.841374 6.12124 0.839553L10.5757 0.774109L0.108297 11.5668C-0.0377117 11.7173 -0.0340338 11.9578 0.116535 12.1038C0.267104 12.2498 0.507517 12.2461 0.653526 12.0956L11.121 1.30291L11.1891 5.75468C11.1761 5.964 11.3353 6.14425 11.5446 6.1572C11.754 6.17015 11.9342 6.01101 11.9471 5.80166C11.9483 5.78214 11.9481 5.76255 11.9462 5.7431L11.8641 0.373005C11.8603 0.164236 11.6886 -0.00231279 11.4797 0.000259585Z" fill="black"/>
 </svg>
+</span>
 
                                     </Link>
                                         
@@ -321,9 +323,11 @@ export default function CaseStudy() {
                                          <p className="mt-3 elms-sans-medium uppercase  text-[#1E1E1E] text-[15px] font-semibold leading-[151%] tracking-[0.75px]">
                                             {row.right.company}
                                         </p>
+<span className="lg:hidden block">
 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none"  className="mt-[9px]">
 <path d="M11.4797 0.000259585L6.10966 0.0823858C5.90033 0.0694092 5.72009 0.228579 5.70713 0.437927C5.69416 0.647253 5.85333 0.827496 6.06268 0.840449C6.0822 0.841651 6.10179 0.841374 6.12124 0.839553L10.5757 0.774109L0.108297 11.5668C-0.0377117 11.7173 -0.0340338 11.9578 0.116535 12.1038C0.267104 12.2498 0.507517 12.2461 0.653526 12.0956L11.121 1.30291L11.1891 5.75468C11.1761 5.964 11.3353 6.14425 11.5446 6.1572C11.754 6.17015 11.9342 6.01101 11.9471 5.80166C11.9483 5.78214 11.9481 5.76255 11.9462 5.7431L11.8641 0.373005C11.8603 0.164236 11.6886 -0.00231279 11.4797 0.000259585Z" fill="black"/>
 </svg>
+</span>
                                          </Link>
                                         
 
