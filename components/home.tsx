@@ -671,11 +671,11 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
             pt-0
             text-white
 
-            text-[11px]
+            text-[13px]
             leading-[165%]
             tracking-[0.3px]
 
-            sm:text-[12px]
+            sm:text-[13px]
             sm:leading-[175%]
             sm:tracking-[0.45px]
 

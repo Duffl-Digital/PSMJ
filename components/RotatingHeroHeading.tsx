@@ -61,7 +61,7 @@ export default function RotatingHeroHeading() {
       "
     >
       {/* PREFIX (changes) + BADGE (static) */}
-      <span className="flex w-full items-start gap-2 sm:items-center sm:gap-0">
+      <span className="">
         <span className="block shrink-0 figtree-Regular whitespace-nowrap min-w-[110px] sm:min-w-[170px] lg:min-w-[260px]">
           <AnimatePresence mode="wait">
             <motion.span key={prefix} {...fade} className="block">
