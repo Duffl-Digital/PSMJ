@@ -58,10 +58,7 @@ export default function WhatWeDo() {
                                 viewport={{ once: true }}
                                 className="text-center  elms-sans-medium text-[#1E1E1E] text-[14px] font-medium leading-[180%] tracking-[0.7px] mb-6"
                             >
-                                Lorem ipsum dolor sit amet consectetur. Ut sed enim a ornare elit auctor ac
-                                fringilla. Sed adipiscing mauris euismod sed nisl erat est morbi.
-                                Pellentesque adipiscing fusce condimentum elementum tincidunt vel
-                                tristique.
+                               Every event we create reflects our commitment to meaningful engagement, thoughtful execution, and lasting impact. From corporate gatherings to large-scale exhibitions, our work brings people, ideas, and brands together.
                             </motion.p>
 
                             <motion.p
@@ -71,10 +68,7 @@ export default function WhatWeDo() {
                                 viewport={{ once: true }}
                                 className="text-center  elms-sans-medium text-[#1E1E1E] text-[14px] font-medium leading-[180%] tracking-[0.7px]"
                             >
-                                Lorem ipsum dolor sit amet consectetur. Ut sed enim a ornare elit auctor ac
-                                fringilla. Sed adipiscing mauris euismod sed nisl erat est morbi.
-                                Pellentesque adipiscing fusce condimentum elementum tincidunt vel
-                                tristique.
+                               Explore the moments that define our journey experiences built through collaboration, creativity, and a passion for delivering exceptional outcomes.
                             </motion.p>
                         </div>
 
