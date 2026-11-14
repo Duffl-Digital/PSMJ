@@ -383,6 +383,23 @@ useEffect(() => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
+<h2
+  className="uppercase pt-5 w-[150px] sm:w-[250px] md:left-[11px] left-[16px] md:justify-center bg-white leading-[126%] tracking-[1.25px] figtree-extra-bold text-[19px] sm:text-[25.773px]"
+  style={{
+    position: "absolute",
+   
+    top: "-39px",
+    zIndex: 9999,
+    width: "150px",
+    
+    display: "flex",
+    background: "linear-gradient(96deg, rgb(38, 40, 117) 4.59%, rgb(104, 21, 91) 39.36%)",
+    backgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  }}
+>
+  The
+</h2>
         {/* Blue Line */}
         <div className="absolute top-7.5 left-0 w-full z-999">
           <div
@@ -409,7 +426,7 @@ useEffect(() => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              The <br /> Journey
+              Journey
             </h2>
           </div>
 

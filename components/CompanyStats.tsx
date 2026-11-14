@@ -36,7 +36,7 @@ export default function CompanyStats() {
         </div>
 
         {/* 5 columns from sm up; 2 columns on mobile */}
-        <div className="grid xl:w-10/12 md:pt-0 pt-8 lg:w-10/12 md:w-10/12 w-11/12 grid-cols-2 gap-x-6 gap-y-8 text-center text-white sm:grid-cols-5 md:pl-4">
+        <div className="grid xl:w-10/12 md:pt-0 mx-auto  pt-8 lg:w-10/12 md:w-10/12 w-11/12 grid-cols-2 gap-x-6 gap-y-8 text-center text-white sm:grid-cols-5 md:pl-4">
           {stats.map((item, index) => (
             <motion.div
               key={item.number + item.line1}

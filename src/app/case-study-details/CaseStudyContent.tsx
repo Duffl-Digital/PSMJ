@@ -327,7 +327,7 @@ const moreCases = Array.from(
                                                             delay: 0.2,
                                                             ease: "easeOut",
                                                         }}
-                                                        className="figtree-extra-bold text-[#FFDB6E] font-[800] text-[32.74px] leading-[151%] tracking-[1.637px] uppercase [text-shadow:0_99.213px_79.37px_rgba(0,0,0,0.19),0_64.304px_46.483px_rgba(0,0,0,0.14),0_38.215px_25.281px_rgba(0,0,0,0.12),0_19.843px_12.898px_rgba(0,0,0,0.09),0_8.084px_6.467px_rgba(0,0,0,0.07),0_1.837px_3.123px_rgba(0,0,0,0.05)]">
+                                                        className="figtree-extra-bold text-[#FFDB6E] font-[800] text-[32.74px] leading-[151%] tracking-[1.637px] uppercase ">
                                                         Impact
                                                     </motion.h3>
                                                 </div>
