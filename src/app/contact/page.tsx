@@ -326,7 +326,7 @@ function handleWhatsappCheckbox(
                 </div>
 
                 <p className="text-black elms-sans-Regular text-[16.021px] font-normal leading-[21.343px] tracking-[0.481px] [font-feature-settings:'liga'_off]">
-                  #6, 5th Floor, Rajakrishnan Street, Alwarpet, Chennai - 600018
+                  #6, 5<sup>th</sup> Floor, Rajakrishnan Street, Alwarpet,<br /> Chennai - 600018
                 </p>
               </div>
 
