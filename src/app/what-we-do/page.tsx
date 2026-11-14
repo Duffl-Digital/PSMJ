@@ -50,38 +50,40 @@ const isManualClick = useRef(false);
     ];
 
     const stats = [
-        {
-            number: "400+",
-            title: "Team Building",
-            subtitle: "programs",
-
-        },
-        {
-            number: "140+",
-            title: "Employee engagement",
-            subtitle: "programs",
-            className: "mb-10",
-        },
-        {
-            number: "90+",
-            title: "Brand",
-            subtitle: "management",
-        },
-        {
-            number: "20",
+          {
+            number: "20+",
             title: "Years of",
             subtitle: "experience",
         },
+         {
+            number: "70+",
+            title: "Corporate",
+            subtitle: "Clients",
+        },
+        {
+            number: "1K+",
+            title: "Programs",
+            subtitle: "Delivered",
+
+        },
+        {
+            number: "1L+",
+            title: "Participants",
+            subtitle: "Engaged",
+            className: "mb-10",
+        },
+        {
+            number: "95%",
+            title: "Participant",
+            subtitle: "Satisfaction",
+        },
+      
         {
             number: "60+",
             title: "Workshops on",
             subtitle: "soft skills",
         },
-        {
-            number: "60",
-            title: "clients across",
-            subtitle: "industries",
-        },
+       
     ];
 
     const [activeIndex, setActiveIndex] = useState(0); 
@@ -129,7 +131,7 @@ const isManualClick = useRef(false);
         <>
 
             <section
-                className="w-full  bg-[url('/images/what-we-do/banner.jpg')] bg-no-repeat bg-cover bg-center"
+                className="w-full  bg-[url('/images/what-we-do/banner.jpg')] bg-no-repeat bg-[length:100%_80%] "
             >
                 {/* Navbar */}
                 <Header />
@@ -208,7 +210,7 @@ const isManualClick = useRef(false);
                 }}
             >
                 <motion.p
-                    className="max-w-4xl mx-auto px-4 mt-10 text-center text-[#1E1E1E] text-[14px] elms-sans-medium leading-[180%] tracking-[0.7px]"
+                    className="max-w-4xl mx-auto px-4 mt-10 pt-5 text-center text-[#1E1E1E] text-[14px] elms-sans-medium leading-[180%] tracking-[0.7px]"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}

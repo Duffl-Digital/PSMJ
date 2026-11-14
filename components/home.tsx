@@ -125,7 +125,7 @@ type Stat = {
 const stats: Stat[] = [
   { value: "60", label: "clients across industries" },
   { value: "400+", label: "Team Building programs" },
-  { value: "11", label: "Years of experience" },
+  { value: "20+", label: "Years of experience" },
   { value: "90+", label: "Brand management" },
 ];
 

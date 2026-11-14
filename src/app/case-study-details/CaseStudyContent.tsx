@@ -36,44 +36,24 @@ type CaseStudy = {
     id: string;
     tab: string;
     title: string;
-    heading: string;
-    text: string;
+    
+
     href: string;
 };
 
+
+
 const cases: CaseStudy[] = [
-    {
-        id: "bpcl",
-        tab: "BPCL",
-        title: "YouNgage - Nation wide engagement initiative",
-        heading: "THE CHALLENGE",
-        text: "As a national PSU, BPCL recognized the need to connect with its younger workforce through an engaging platform that encouraged collaboration and celebrated emerging talent across seven regions.",
-        href: "/case-study-details?id=BPCL",
-    },
-    {
-        id: "astrazeneca",
-        tab: "Astrazeneca",
-        title: "Young Scientist",
-        heading: "THE CHALLENGE",
-        text: "Creating an immersive science experience for children of different age groups within the workplace while ensuring every activity was educational, engaging, and age-appropriate",
-        href: "/case-study-details?id=AstraZeneca",
-    },
-    {
-        id: "mfd",
-        tab: "MFD Galaxy",
-        title: "MFD Galaxy Conference & Expo",
-        heading: "THE CHALLENGE",
-        text: "Bringing together entrepreneurs from across the country while curating renowned speakers, industry experts, and innovators to deliver a valuable and engaging conference experience.",
-        href: "/case-study-details?id=MFD_Galaxy",
-    },
-    {
-        id: "dhl",
-        tab: "DHL",
-        title: "Flavors of India: The Team CookOff",
-        heading: "THE CHALLENGE",
-        text: "Designing an engaging activity that introduced German delegates to Chennai's local culture and encouraged meaningful interaction with Indian employees.",
-        href: "/case-study-details?id=DHL",
-    },
+    { id: "bpcl", tab: "BPCL", title: "YouNgage - Nation wide engagement initiative", href: "/case-study-details?id=BPCL" },
+    { id: "astrazeneca", tab: "AstraZeneca", title: "Young Scientist", href: "/case-study-details?id=AstraZeneca" },
+    { id: "mfd", tab: "MFD Galaxy", title: "MFD Galaxy Conference & Expo", href: "/case-study-details?id=MFD_Galaxy" },
+    { id: "astrazeneca_2", tab: "AstraZeneca", title: "Business Connect - Mystery Room", href: "/case-study-details?id=AstraZeneca_2" },
+    { id: "dhl", tab: "DHL", title: "Flavors of India: The Team CookOff", href: "/case-study-details?id=DHL" },
+    { id: "uk_based_organisation", tab: "UK-Based Organisation", title: "Sustainability Roadshow", href: "/case-study-details?id=UK_Based_Organisation" },
+    { id: "tiger_analytics", tab: "TIGER ANALYTICS", title: "Board Game Experience", href: "/case-study-details?id=TIGER_ANALYTICS" },
+    { id: "global_tech_company", tab: "GLOBAL TECH COMPANY", title: "Pitch Perfect", href: "/case-study-details?id=GLOBAL_TECH_COMPANY" },
+    { id: "exhibition_stall_launch", tab: "Real Estate", title: "Exhibition Stall Launch", href: "/case-study-details?id=Exhibition_Stall_Launch" },
+    { id: "bounteous", tab: "BOUNTEOUS", title: "Family Day", href: "/case-study-details?id=BOUNTEOUS" },
 ];
 
 const moreColors = [
@@ -92,12 +72,11 @@ const currentIndex = cases.findIndex(
     (c) => c.href.split("id=")[1]?.toLowerCase() === id?.toLowerCase()
 );
 
-const moreCases = [
-    ...cases.slice(currentIndex + 1),
-    ...cases.slice(0, currentIndex + 1),
-]
-    .filter((c) => c !== cases[currentIndex])
-    .slice(0, 3);
+const startIndex = currentIndex === -1 ? 0 : currentIndex + 1;
+const moreCases = Array.from(
+    { length: 3 },
+    (_, i) => cases[(startIndex + i) % cases.length]
+);
     if (!data) {
        
         return (

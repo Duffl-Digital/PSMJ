@@ -373,10 +373,10 @@ function handleWhatsappCheckbox(
   {" | "}
 
   <a
-    href="tel:+914428170635"
+    href="tel:+916385277635"
     className="text-inherit no-underline"
   >
-    044 2817 0635
+   +91 63852 77635
   </a>
 </p>
               </div>

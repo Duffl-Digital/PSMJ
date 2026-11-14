@@ -75,6 +75,7 @@ export default function RotatingHeroHeading() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: easeOut, delay: 0.35 }}
           className="
+          hidden
             relative
             ml-0
             mt-1
