@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 type HeroVideoProps = {
@@ -28,10 +22,9 @@ export default function HeroVideo({
 }: HeroVideoProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const lastY = useRef(0);
-  const insertedAtTop = useRef(false);
 
-  const [showVideo, setShowVideo] = useState(false); // false on first load
+  const [showVideo, setShowVideo] = useState(false); // mounted (collapsed or open)
+  const [open, setOpen] = useState(false); // expanded to full screen
   const [playing, setPlaying] = useState(false);
   const [posterVisible, setPosterVisible] = useState(true);
 
@@ -44,29 +37,30 @@ export default function HeroVideo({
     });
   }, [poster, mobilePoster]);
 
-  /* Add the video when:
-     (a) user scrolled one screen down, or
-     (b) user is at the top and scrolls up (right after the intro) */
+  /* Control when the video is added and when it slides open */
   useEffect(() => {
-    if (showVideo) return;
+    if (open) return;
 
     // the intro overlay locks body scroll while it is visible
     const introActive = () => document.body.style.overflow === "hidden";
 
-    const reveal = (atTop: boolean) => {
-      insertedAtTop.current = atTop;
-      lastY.current = window.scrollY;
+    // mount (if needed) and slide open
+    const openNow = () => {
       setShowVideo(true);
+      setOpen(true);
     };
 
     const onScroll = () => {
-      lastY.current = window.scrollY;
-      if (window.scrollY > window.innerHeight) reveal(false);
+      // scrolled one screen down: add it collapsed (height 0, so no page jump)
+      if (!showVideo && window.scrollY > window.innerHeight) setShowVideo(true);
+      // came back to the top from below: slide open
+      if (showVideo && window.scrollY <= 0) openNow();
     };
 
+    // right after the intro, user is at the top and scrolls up
     const onWheel = (e: WheelEvent) => {
       if (introActive()) return;
-      if (window.scrollY <= 0 && e.deltaY < -4) reveal(true);
+      if (window.scrollY <= 0 && e.deltaY < -4) openNow();
     };
 
     let touchY = 0;
@@ -75,14 +69,13 @@ export default function HeroVideo({
     };
     const onTouchMove = (e: TouchEvent) => {
       if (introActive()) return;
-      if (window.scrollY <= 0 && e.touches[0].clientY - touchY > 20)
-        reveal(true);
+      if (window.scrollY <= 0 && e.touches[0].clientY - touchY > 20) openNow();
     };
 
     const onKey = (e: KeyboardEvent) => {
       if (introActive()) return;
       if (window.scrollY <= 0 && ["ArrowUp", "PageUp"].includes(e.key))
-        reveal(true);
+        openNow();
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -97,21 +90,12 @@ export default function HeroVideo({
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("keydown", onKey);
     };
-  }, [showVideo]);
-
-  /* Keep the user's view in place when the video is inserted above them */
-  useLayoutEffect(() => {
-    if (!showVideo || !sectionRef.current) return;
-    if (insertedAtTop.current) return; // added at top: user should see the video
-    const h = sectionRef.current.offsetHeight;
-    const alreadyShifted = window.scrollY - lastY.current; // some browsers auto-adjust
-    window.scrollBy({ top: h - alreadyShifted, behavior: "instant" });
-  }, [showVideo]);
+  }, [showVideo, open]);
 
   /* Pause, rewind and show the thumbnail when the video leaves the screen */
   useEffect(() => {
     const el = sectionRef.current;
-    if (!showVideo || !el) return;
+    if (!open || !el) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting && videoRef.current) {
         videoRef.current.pause();
@@ -121,31 +105,30 @@ export default function HeroVideo({
     });
     observer.observe(el);
     return () => observer.disconnect();
-  }, [showVideo]);
+  }, [open]);
 
-  /* Tell Home once, when video mode starts */
+  /* Tell Home once, when the video opens (hides the original header) */
   const onShowRef = useRef(onShow);
   useEffect(() => {
     onShowRef.current = onShow;
   });
-
   useEffect(() => {
-    if (showVideo) onShowRef.current?.();
-  }, [showVideo]);
+    if (open) onShowRef.current?.();
+  }, [open]);
 
   if (!showVideo) return null;
 
   return (
-     <motion.section
-    ref={sectionRef}
-    initial={insertedAtTop.current ? { height: 0, opacity: 0 } : false}
-    animate={{ height: "100vh", opacity: 1 }}
-    transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-    className="relative w-full overflow-hidden bg-black hero-video"
-  >
-   
+    <motion.section
+      ref={sectionRef}
+      initial={{ height: 0, opacity: 0 }}
+      animate={open ? { height: "100vh", opacity: 1 } : { height: 0, opacity: 0 }}
+      transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+      className="relative w-full overflow-hidden bg-black hero-video"
+    >
       <video
         ref={videoRef}
+        muted
         playsInline
         preload="metadata"
         onPlay={() => setPlaying(true)}
@@ -156,7 +139,7 @@ export default function HeroVideo({
           setPosterVisible(true); // thumbnail comes back after end
         }}
         onClick={playing ? () => videoRef.current?.pause() : undefined}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-[100vh] w-full object-cover"
       >
         {mobileVideo && (
           <source
@@ -177,14 +160,14 @@ export default function HeroVideo({
         <img
           src={poster}
           alt=""
-          className={`pointer-events-none absolute inset-0 z-[5] h-full w-full object-cover transition-opacity duration-300 ${
+          className={`pointer-events-none absolute inset-0 z-[5] h-[100vh] w-full object-cover transition-opacity duration-300 ${
             posterVisible ? "opacity-100" : "opacity-0"
           }`}
         />
       </picture>
 
       {/* Header overlapping the video, top center */}
-      {header && (
+      {open && header && (
         <div className="absolute hero-header inset-x-0 top-[-12px] z-20 flex justify-center pt-2">
           {header}
         </div>
@@ -208,7 +191,7 @@ export default function HeroVideo({
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className=" h-8 w-8"
+              className="h-8 w-8"
               fill="white"
             >
               <path d="M8 5v14l11-7z" />
