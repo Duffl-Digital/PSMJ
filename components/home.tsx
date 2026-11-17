@@ -13,7 +13,7 @@ import {
 
 
 import { motion, useScroll, useTransform, easeOut, Variants,useReducedMotion  } from "framer-motion";
-
+import { useCallback } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -29,6 +29,7 @@ import RotatingHeroHeading from "./RotatingHeroHeading";
 import HeroDescription from "./HeroDescription";
 import CasestudyHome from "./CasestudyHome";
 import AdvantageHome from "./AdvantageHome";
+import HeroVideo from "./layout/HeroVideo";
 
 
 
@@ -141,6 +142,7 @@ export default function Home() {
   const [isArcReady, setIsArcReady] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 const prefersReducedMotion = useReducedMotion();
+const [videoMode, setVideoMode] = useState(false);
   /* =======================================================
      SCROLL-LINKED PARALLAX (hero background image)
   ======================================================= */
@@ -288,16 +290,21 @@ const prefersReducedMotion = useReducedMotion();
             },
         },
     };
-
+const handleShow = useCallback(() => setVideoMode(true), []);
   return (
     <>
       
         <main className="w-full ">
-     
-      {/* =====================================================
-          HERO
-      ===================================================== */}
-         <div className="relative z-10  w-full shadow-[0_-30px_80px_rgba(0,0,0,0.45)] rounded-t-[40px]">
+    
+         <div className="relative z-10  w-full shadow-[0_-30px_80px_rgba(0,0,0,0.45)] ">
+            <HeroVideo
+      desktopVideo="/video/intro.mp4"
+      mobileVideo="/video/intro-mobile.mp4"
+       poster="/video/intro-poster.jpg"
+  mobilePoster="/video/intro-poster-mobile.jpg"
+   header={<Header />}
+  onShow={handleShow}
+    />
       <section
         ref={heroRef}
         className="
@@ -306,13 +313,15 @@ const prefersReducedMotion = useReducedMotion();
           bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%)]
         "
       >
+          <div className={videoMode ? "hidden" : ""}>
         <Header />
 
+</div>
 
 
          {/* ============== Home About section ============= */}
           <motion.div
-          className="px-3 text-center"
+          className={videoMode ? "px-3 pt-12 text-center" : "px-3  text-center"}
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"

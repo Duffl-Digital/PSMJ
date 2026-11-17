@@ -17,9 +17,10 @@ export const logos: Logo[] = [
 
 // Use 5+ slides: Swiper's loop + coverflow needs enough slides to look right
 export const slides: Slide[] = [
-  { src: "/images/home/gallery/img-1.jpg", alt: "Attendee smiling at the expo" },
-  { src: "/images/home/gallery/img-2.jpg", alt: "Expo hall with exhibitor booths" },
-  { src: "/images/home/gallery/img-3.jpg", alt: "Visitor walking through the venue" },
-  { src: "/images/home/gallery/img-4.jpg", alt: "Networking at the event" },
-  { src: "/images/home/gallery/img-5.jpg", alt: "Panel session on the main stage" },
+  { src: "/images/home/gallery/img-1.jpg", alt: "img" },
+  { src: "/images/home/gallery/img-2.jpg", alt: "img" },
+  { src: "/images/home/gallery/img-3.jpg", alt: "img" },
+  { src: "/images/home/gallery/img-4.jpg", alt: "img" },
+  { src: "/images/home/gallery/img-5.jpg", alt: "img" },
+    { src: "/images/home/gallery/img-6.jpg", alt: "img" },
 ];
