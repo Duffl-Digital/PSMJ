@@ -901,3 +901,7 @@ Arrow box icon
   align-items: center;
   text-align: center;
 }
+
+.hero-header div{
+ box-shadow: none !important;
+}
