@@ -21,20 +21,20 @@ export default function WhatWeDo() {
 
     const [index, setIndex] = useState(-1);
 const images = [
-    { thumb: "/images/moments-and-milestones/Img-1.jpg",   full: "/images/moments-and-milestones/Lightbox-1.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-2.jpg",   full: "/images/moments-and-milestones/Lightbox-2.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-3.jpg",   full: "/images/moments-and-milestones/Lightbox-3.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-4.jpg",   full: "/images/moments-and-milestones/Lightbox-4.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-5.jpg",   full: "/images/moments-and-milestones/Lightbox-5.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-6.jpg",   full: "/images/moments-and-milestones/Lightbox-6.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-7.jpg",   full: "/images/moments-and-milestones/Lightbox-7.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-8.jpg",   full: "/images/moments-and-milestones/Lightbox-8.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-9.jpg",   full: "/images/moments-and-milestones/Lightbox-9.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-10.jpg",  full: "/images/moments-and-milestones/Lightbox-10.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-11.jpg",  full: "/images/moments-and-milestones/Lightbox-11.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-12.jpg",  full: "/images/moments-and-milestones/Lightbox-12.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-13.jpg", full: "/images/moments-and-milestones/Lightbox-13.jpg" },
-    { thumb: "/images/moments-and-milestones/Img-14.jpg", full: "/images/moments-and-milestones/Lightbox-14.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-1.jpg",   full: "/images/moments-and-milestones/LightBox-1.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-2.jpg",   full: "/images/moments-and-milestones/LightBox-2.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-3.jpg",   full: "/images/moments-and-milestones/LightBox-3.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-4.jpg",   full: "/images/moments-and-milestones/LightBox-4.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-5.jpg",   full: "/images/moments-and-milestones/LightBox-5.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-6.jpg",   full: "/images/moments-and-milestones/LightBox-6.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-7.jpg",   full: "/images/moments-and-milestones/LightBox-7.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-8.jpg",   full: "/images/moments-and-milestones/LightBox-8.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-9.jpg",   full: "/images/moments-and-milestones/LightBox-9.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-10.jpg",  full: "/images/moments-and-milestones/LightBox-10.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-11.jpg",  full: "/images/moments-and-milestones/LightBox-11.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-12.jpg",  full: "/images/moments-and-milestones/LightBox-12.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-13.jpg", full: "/images/moments-and-milestones/LightBox-13.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-14.jpg", full: "/images/moments-and-milestones/LightBox-14.jpg" },
 ];
 
 
