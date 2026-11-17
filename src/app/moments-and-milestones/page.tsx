@@ -103,7 +103,7 @@ const images = [
         fill
         className="object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-black/20" />
+      {/* <div className="absolute inset-0 bg-black/20" /> */}
     </div>
   );
 })}
