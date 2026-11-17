@@ -20,19 +20,26 @@ import "swiper/css/pagination";
 export default function WhatWeDo() {
 
     const [index, setIndex] = useState(-1);
+const images = [
+    { thumb: "/images/moments-and-milestones/Img-1.jpg",   full: "/images/moments-and-milestones/lightbox-1.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-2.jpg",   full: "/images/moments-and-milestones/lightbox-2.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-3.jpg",   full: "/images/moments-and-milestones/lightbox-3.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-4.jpg",   full: "/images/moments-and-milestones/lightbox-4.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-5.jpg",   full: "/images/moments-and-milestones/lightbox-5.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-6.jpg",   full: "/images/moments-and-milestones/lightbox-6.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-7.jpg",   full: "/images/moments-and-milestones/lightbox-7.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-8.jpg",   full: "/images/moments-and-milestones/lightbox-8.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-9.jpg",   full: "/images/moments-and-milestones/lightbox-9.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-10.jpg",  full: "/images/moments-and-milestones/lightbox-10.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-11.jpg",  full: "/images/moments-and-milestones/lightbox-11.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-12.jpg",  full: "/images/moments-and-milestones/lightbox-12.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-13.jpg", full: "/images/moments-and-milestones/lightbox-13.jpg" },
+    { thumb: "/images/moments-and-milestones/Img-14.jpg", full: "/images/moments-and-milestones/lightbox-14.jpg" },
+];
 
-    const images = [
-        "/images/moments-and-milestones/img1.jpg",
-        "/images/moments-and-milestones/img2.jpg",
-        "/images/moments-and-milestones/img3.jpg",
-        "/images/moments-and-milestones/img4.jpg",
-        "/images/moments-and-milestones/img5.jpg",
-        "/images/moments-and-milestones/img6.jpg",
-        "/images/moments-and-milestones/img7.jpg",
-        "/images/moments-and-milestones/img8.jpg",
-    ];
 
-    const slides = images.map((src) => ({ src }));
+
+    const slides = images.map((item) => ({ src: item.full }));
 
     return (
         <>
@@ -74,14 +81,10 @@ export default function WhatWeDo() {
 
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-10 gap-2">
-  {images.map((img, index) => {
-    const pattern = index % 4;
-
-    return (
-      <div
-        key={index}
-        onClick={() => setIndex(index)}
-        className={`
+{images.map((item, index) => {
+  const pattern = index % 4;
+  return (
+    <div key={index} onClick={() => setIndex(index)}   className={`
           relative overflow-hidden rounded-lg cursor-pointer group
           h-[180px] md:h-[250px] lg:h-[350px]
 
@@ -93,18 +96,17 @@ export default function WhatWeDo() {
               ? "lg:col-span-3"
               : "lg:col-span-2"
           }
-        `}
-      >
-        <Image
-          src={img}
-          alt={`Gallery ${index + 1}`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    );
-  })}
+        `}>
+      <Image
+        src={item.thumb}   // 👈 was `img`
+        alt={`Gallery ${index + 1}`}
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-black/20" />
+    </div>
+  );
+})}
 </div>
 
 <Lightbox

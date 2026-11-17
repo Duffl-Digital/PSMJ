@@ -96,10 +96,12 @@ function validateForm() {
     newErrors.whatsapp = "Enter valid whatsapp number";
   }
 
-  if (!form.subject) {
-    newErrors.subject = "Select service";
-  }
 
+if (!form.subject.trim()) {
+  newErrors.subject = "Enter service";
+} else if (form.subject.trim().length < 3) {
+  newErrors.subject = "Service must be at least 5 characters";
+}
   if (!form.message.trim()) {
     newErrors.message = "Enter message";
   }
@@ -677,48 +679,36 @@ function handleWhatsappCheckbox(
   )}
 </div>
 
+
 {/* Service */}
 <div className="relative">
-  <select
+  <input
     id="subject"
+    type="text"
     name="subject"
-    
     value={form.subject}
     onChange={handleChange}
-    className={`peer
-      w-full
-      bg-transparent
-      border-0
-      border-b
-      border-gray-300
-      rounded-none
-      pt-8
-      pb-3
-      pr-8
-      text-[#1E1E1E]
-      outline-none
-      focus:border-[#0B6BFF]
-      appearance-none
-      [-webkit-appearance:none]
-      [-moz-appearance:none] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_transparent]
+    placeholder=" "
+    className={`peer w-full border-b border-gray-300 bg-transparent pb-3 pt-6 outline-none transition-all duration-300 focus:border-[#0B6BFF]
+      [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_transparent]
     [&:-webkit-autofill]:[-webkit-text-fill-color:inherit]
     [&:-webkit-autofill]:transition-[background-color]
-    [&:-webkit-autofill]:duration-[5000s]
-    ${
+    [&:-webkit-autofill]:duration-[5000s] ${
       errors.subject
         ? "border-red-500"
         : "border-gray-300 focus:border-blue-600"
     }`}
-  >
-   
-    <option value="Option 1">Option 1</option>
-    <option value="Option 2">Option 2</option>
-    <option value="Option 3">Option 3</option>
-  </select>
-
+  />
   <label
     htmlFor="subject"
-    className="absolute left-0 top-0 z-10 text-[16px] text-gray-500 elms-sans-medium transition-all duration-300 peer-focus:text-[#0B6BFF]"
+    className="absolute left-0 top-5 elms-sans-medium text-gray-500 transition-all duration-300
+    peer-placeholder-shown:top-5
+    peer-placeholder-shown:text-base
+    peer-focus:top-0
+    peer-focus:text-xs
+    peer-focus:text-[#0B6BFF]
+    peer-[:not(:placeholder-shown)]:top-0
+    peer-[:not(:placeholder-shown)]:text-xs"
   >
     Service <span className="text-red-500">*</span>
   </label>
