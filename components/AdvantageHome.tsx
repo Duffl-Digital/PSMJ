@@ -25,7 +25,7 @@ export default function AdvantageHome() {
               <img src="/images/home/advantage/icon-1.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-last md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[16px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Corporate Events</h3>
-                <p className="mt-1.5 text-justify text-[14px] elms-sans-medium  text-[#353535] sm:text-[14px]">
+                <p className="mt-1.5  text-[14px] elms-sans-medium  text-[#353535] sm:text-[14px]">
 From leadership conferences to milestone celebrations, we deliver seamless end-to-end event management focused on quality, engagement, and business impact.
                 </p>
               </div>
@@ -39,7 +39,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
               <img src="/images/home/advantage/icon-2.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-first md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[15px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Employee Engagement Programs (engagemyteam.in)</h3>
-                <p className="mt-1.5 text-justify text-[13px] elms-sans-medium  text-[#353535] sm:text-[14px]">
+                <p className="mt-1.5  text-[13px] elms-sans-medium  text-[#353535] sm:text-[14px]">
                   We create engaging experiences that strengthen workplace culture, inspire collaboration, boost morale, and enhance organizational performance.
                 </p>
               </div>
@@ -51,7 +51,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
               <img src="/images/home/advantage/icon-3.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-last md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[16px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Exhibitions (expostalls.in)</h3>
-                <p className="mt-1.5 text-justify text-[14px] elms-sans-medium  text-[#353535] sm:text-[14px]">
+                <p className="mt-1.5  text-[14px] elms-sans-medium  text-[#353535] sm:text-[14px]">
                   We design impactful exhibition booths that showcase your brand, attract visitors, and drive meaningful engagement through seamless execution.
 
                 </p>
@@ -66,7 +66,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
               <img src="/images/home/advantage/icon-4.svg" alt="" aria-hidden="true" className="h-7 w-7  lg:h-10 lg:w-10 shrink-0 object-contain md:order-first md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[16px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Corporate Learning Programs</h3>
-                <p className="mt-1.5 text-justify text-[14px] elms-sans-medium leading-[1.7] text-[#353535] sm:text-[14px]">
+                <p className="mt-1.5  text-[14px] elms-sans-medium leading-[1.7] text-[#353535] sm:text-[14px]">
                   Our interactive workshops combine experiential learning and real-world scenarios to enhance leadership, communication, collaboration, and workplace effectiveness.
                 </p>
               </div>
@@ -78,7 +78,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
               <img src="/images/home/advantage/icon-5.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-last md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[16px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Brand Expressions</h3>
-                <p className="mt-1.5 text-justify text-[14px] elms-sans-medium  text-[#353535] sm:text-[14px]">
+                <p className="mt-1.5  text-[14px] elms-sans-medium  text-[#353535] sm:text-[14px]">
 We bring brand stories to life through creative storytelling and immersive experiences that inspire audiences and build lasting emotional connections.
                 </p>
               </div>
@@ -92,7 +92,7 @@ We bring brand stories to life through creative storytelling and immersive exper
               <img src="/images/home/advantage/icon-6.svg" alt="" aria-hidden="true" className="h-7 w-7 lg:h-10 lg:w-10 shrink-0 object-contain md:order-first md:mx-1" />
               <div className="min-w-0 flex-1">
                 <h3 className="text-[16px] figtree-SemiBold  uppercase leading-snug text-[#353535] sm:text-[16px]">Brand management</h3>
-                <p className="mt-1.5 text-justify text-[14px] elms-sans-medium leading-[1.7] text-[#353535] sm:text-[14px]">
+                <p className="mt-1.5  text-[14px] elms-sans-medium leading-[1.7] text-[#353535] sm:text-[14px]">
                   Our interactive workshops combine experiential learning and real-world scenarios to enhance leadership, communication, collaboration, and workplace effectiveness.
                 </p>
               </div>

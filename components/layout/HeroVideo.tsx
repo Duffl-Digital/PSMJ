@@ -75,7 +75,7 @@ export default function HeroVideo({
     const onKey = (e: KeyboardEvent) => {
       if (introActive()) return;
       if (window.scrollY <= 0 && ["ArrowUp", "PageUp"].includes(e.key))
-        openNow();
+        openNow();   
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
