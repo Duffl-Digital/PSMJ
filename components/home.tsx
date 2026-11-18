@@ -758,7 +758,7 @@ bg-[linear-gradient(90deg,#fff_0%,rgba(59,141,195,0)_100%)]
      
         {/* <PsmjUniverse /> */}
           <AdvantageHome />
-        <div className="lg:bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)] bg-[linear-gradient(180deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)]">
+        <div className="lg:bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)]   md:bg-[linear-gradient(180deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%),linear-gradient(90deg,#0D4C8F_0%,#4FABDC_100%)] bg-[linear-gradient(79deg,#043E84_-20.65%,#104F92_11.84%,#256EAB_45.66%,#398CC2_69.88%,#6BD4FC_90.51%,#FFEFB0_122.08%)]">
         <TrustedBySection />
 
     <CasestudyHome />

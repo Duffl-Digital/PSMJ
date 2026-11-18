@@ -52,7 +52,7 @@ export default function RotatingHeroHeading() {
         sm:text-[46px]
         md:text-[56px]
         lg:text-[64px]
-        lg:leading-[140%]
+        lg:leading-[120%]
         lg:tracking-[2.127px]
         md:pt-[0px]
         pt-[12px]

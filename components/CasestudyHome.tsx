@@ -121,7 +121,7 @@ export default function CasestudyHome() {
     {/* MOBILE background: simple rounded card with a right fade */}
     <div
       aria-hidden="true"
-      className="absolute inset-0 rounded-[28px] md:bg-[linear-gradient(100deg,rgba(98,176,220,1)_0%,rgba(98,176,220,0.6)_65%,rgba(98,176,220,0.15)_100%)] bg-linear-[180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.04)_100%] md:hidden"
+      className="absolute inset-0 rounded-[28px] md:bg-[linear-gradient(100deg,rgba(98,176,220,1)_0%,rgba(98,176,220,0.6)_65%,rgba(98,176,220,0.15)_100%)]       bg-[linear-gradient(178deg,#62b0dc_0%,#62b0dc99_65%,#62b0dc26_100%)] md:hidden"
     />
 
     {/* TABLET / DESKTOP: exact card shape + yellow dot + thin lines (same 700x277 as your design) */}
