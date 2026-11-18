@@ -168,7 +168,7 @@ export default function HeroVideo({
 
       {/* Header overlapping the video, top center */}
       {open && header && (
-        <div className="absolute hero-header inset-x-0 top-[-12px] z-20 flex justify-center pt-2">
+        <div className="absolute hero-header inset-x-0 top-[-12px] z-20 flex lg:justify-end justify-center  lg:pr-[clamp(24px,17vw,255px)] ">
           {header}
         </div>
       )}
