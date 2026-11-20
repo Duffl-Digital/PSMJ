@@ -112,7 +112,7 @@ We bring brand stories to life through creative storytelling and immersive exper
                    <img src="/images/home/advantage/icon-6.svg" alt="" aria-hidden="true" className="w-6  md:w-[30px]    md:order-first md:mx-1" />
                   </div>
                 <p className="mt-[8px] pt-[15px] md:pl-[40px] pl-[26]  pr-[16px] pb-[12px] bg-[linear-gradient(90deg,#FCE5F3_0%,#FFF_100%)]  leading-[180%] text-[14px] rounded-[8px]  elms-sans-medium  text-[#353535] sm:text-[14px]">
-                We help businesses establish a strong brand presence through strategic event planning, creative brand activations, and memorable audience experiences. Every interaction is thoughtfully designed to communicate brand identity, build recognition, and strengthen customer connections.
+                We help businesses establish a strong brand presence through strategic event planning, creative brand activations, and memorable audience experiences. 
                 </p>
               </div>
             </article>
