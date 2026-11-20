@@ -6,7 +6,7 @@ export default function AdvantageHome() {
     >
       
       <img src='/images/home/psmj-adv-backimage.png'
-      className="absolute top-0 right-0 w-[25%] "
+      className="absolute top-0 right-0 w-[25%] opacity-25 lg:min-w-auto md:min-w-[40%] min-w-[90%]"
       alt="img"
       />
       <div className="sm:pt-14 pt-10"></div>
