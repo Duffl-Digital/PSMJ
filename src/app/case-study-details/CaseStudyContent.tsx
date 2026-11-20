@@ -62,7 +62,9 @@ const moreColors = [
     "from-[#000000] to-[#000000]",
 ];
 export default function CaseStudyDetails() {
-
+ useEffect(() => {
+    document.title = "Case Study | PSMJ";
+  }, []);
     const searchParams = useSearchParams();
     const id = searchParams.get("id");
 
