@@ -41,7 +41,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
 
             <article className=" h-full  gap-3 rounded-lg px-1 py-4 sm:px-5 md:min-h-[92px] ">
              
-               <h3 className="text-[16px]  ml-[26px] figtree-SemiBold bg-[linear-gradient(90deg,#E3F2F9_0%,#FFF_100%)] lg:px-md-4 px-3 rounded-[4px] py-2 mb-2 uppercase leading-snug text-[#353535] sm:text-[16px]">Employee Engagement Programs <span className="lowercase figtree-Regular">(engagemyteam.in)</span></h3>
+               <h3 className="text-[16px]  ml-[26px] figtree-SemiBold bg-[linear-gradient(90deg,#E3F2F9_0%,#FFF_100%)] lg:px-md-4 px-3 rounded-[4px] py-2 mb-2 uppercase leading-snug text-[#353535] sm:text-[16px]">Employee Engagement Programs <a className="lowercase figtree-Regular" href="https://engagemyteam.in/" target="blank()" title="click here">(engagemyteam.in)</a></h3>
               <div className="min-w-0 flex items-center">
                   <div className="relative z-1 bg-[#3E81A2] flex items-center justify-center  md:min-w-[58px] md:h-[58px] min-w-[42px] h-[42] rounded-full block md:mr-[-28px] mr-[-18px]">
                  <img src="/images/home/advantage/icon-2.svg" alt="" aria-hidden="true" className=" w-6  md:w-[30px]    md:order-first md:mx-1" />
@@ -56,7 +56,7 @@ From leadership conferences to milestone celebrations, we deliver seamless end-t
 
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_72px_1fr] md:grid-cols-[1fr_2px_1fr] md:gap-0 ">
             <article className=" h-full  gap-3  px-1 py-4 sm:px-5 md:min-h-[92px] ">
-              <h3 className="text-[16px]  ml-[26px] figtree-SemiBold bg-[linear-gradient(90deg,#FDF1E9_0%,#FFF_100%)] lg:px-md-4 px-3 rounded-[4px] py-2 mb-2 uppercase leading-snug text-[#353535] sm:text-[16px]">Exhibitions <span className="lowercase figtree-Regular">(expostalls.in)</span></h3>
+              <h3 className="text-[16px]  ml-[26px] figtree-SemiBold bg-[linear-gradient(90deg,#FDF1E9_0%,#FFF_100%)] lg:px-md-4 px-3 rounded-[4px] py-2 mb-2 uppercase leading-snug text-[#353535] sm:text-[16px]">Exhibitions <a className="lowercase figtree-Regular" href="https://expostalls.in/" target="blank()" title="click here">(expostalls.in)</a></h3>
 
               <div className="min-w-0 flex items-center">
                 <div className="relative z-1 bg-[#BB6F3C] flex items-center justify-center  md:min-w-[58px] md:h-[58px] min-w-[42px] h-[42] rounded-full block md:mr-[-28px] mr-[-18px]">
@@ -112,7 +112,7 @@ We bring brand stories to life through creative storytelling and immersive exper
                    <img src="/images/home/advantage/icon-6.svg" alt="" aria-hidden="true" className="w-6  md:w-[30px]    md:order-first md:mx-1" />
                   </div>
                 <p className="mt-[8px] pt-[15px] md:pl-[40px] pl-[26]  pr-[16px] pb-[12px] bg-[linear-gradient(90deg,#FCE5F3_0%,#FFF_100%)]  leading-[180%] text-[14px] rounded-[8px]  elms-sans-medium  text-[#353535] sm:text-[14px]">
-                  Our interactive workshops combine experiential learning and real-world scenarios to enhance leadership, communication, collaboration, and workplace effectiveness.
+                We help businesses establish a strong brand presence through strategic event planning, creative brand activations, and memorable audience experiences. Every interaction is thoughtfully designed to communicate brand identity, build recognition, and strengthen customer connections.
                 </p>
               </div>
             </article>

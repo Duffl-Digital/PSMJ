@@ -14,7 +14,9 @@ import type { Variants } from "framer-motion";
 
 export default function About() {
   const scrollRef = useRef<HTMLDivElement>(null);
-
+  useEffect(() => {
+    document.title = "About | PSMJ";
+  }, []);
 useEffect(() => {
   const container = scrollRef.current;
   if (!container) return;

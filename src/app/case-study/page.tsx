@@ -12,8 +12,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import "swiper/css";
 import "swiper/css/pagination";
 
-export default function CaseStudy() {
 
+export default function CaseStudy() {
+  useEffect(() => {
+    document.title = "Case Study | PSMJ";
+  }, []);
     const caseStudies = [
         {
             id: 1,

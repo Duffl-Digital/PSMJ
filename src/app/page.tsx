@@ -1,7 +1,9 @@
 
 import Home from "@/components/home";
 import IntroVideo from "@/components/layout/IntroVideo";
-
+export const metadata = {
+  title: "Home",
+};
 export default function Index() {
   return (
     <IntroVideo

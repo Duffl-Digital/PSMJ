@@ -8,11 +8,14 @@ import Header from "@/components/layout/Header";
 import GetInTouch from "@/components/layout/GetInTouch";
 import Footer from "@/components/layout/Footer";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 
 
 export default function WhatWeDo() {
-
+  useEffect(() => {
+    document.title = "What We Do | PSMJ";
+  }, []);
 const isManualClick = useRef(false);
 
     const bouquetData = [
@@ -23,7 +26,9 @@ const isManualClick = useRef(false);
             image: "/images/what-we-do/eep.svg",
         },
         {
-            title: "Employee Engagement Programs (engagemyteam.in)",
+            title: "Employee Engagement Programs",
+               linkText: "(engagemyteam.in)",
+        link: "https://engagemyteam.in",
             description: "We design experiences that bring people together, strengthen workplace culture, and foster collaboration. From team-building activities and annual celebrations to recognition programs and family events, every engagement is thoughtfully crafted to boost morale, motivation, and organizational performance.",
             bg: "/images/what-we-do/bm.jpg",
             image: "/images/what-we-do/bm.svg",
@@ -35,7 +40,9 @@ const isManualClick = useRef(false);
             image: "/images/what-we-do/be.svg",
         },
         {
-            title: "Exhibitions (expostalls.in)",
+            title: "Exhibitions",
+             linkText: "(expostalls.in)",
+        link: "https://expostalls.in",
             description: "We design and build exhibition booths that attract attention, encourage meaningful conversations, and showcase your brand with impact. From concept and fabrication to logistics and on-site support, we create exhibition experiences that maximize visitor engagement.",
             bg: "/images/what-we-do/ce.jpg",
             image: "/images/what-we-do/ce.svg",
@@ -313,10 +320,24 @@ const isManualClick = useRef(false);
                                     ease: "easeOut",
                                 }}
                             >
-                                <h3 className="text-dark text-center sm:text-start figtree-Bold text-[19px] leading-[137%] tracking-[0.57px] uppercase">
-                                    {item.title}
-                                </h3>
-
+<h3 className="text-dark text-center sm:text-start figtree-Bold text-[19px] leading-[137%] tracking-[0.57px] uppercase">
+    {item.title}
+    {item.link && (
+        <>
+            {" "}
+            <Link
+                href={item.link}
+                target="_blank"
+                title="click here"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="figtree-Regular normal-case text-[16px] tracking-normal"
+            >
+                {item.linkText}
+            </Link>
+        </>
+    )}
+</h3>
                                 <div className={`overflow-hidden transition-all duration-[1500ms] ease-in-out lg:max-h-[500px] lg:opacity-100 lg:mt-5
           ${activeIndex === index
                                         ? "max-h-[500px] opacity-100 mt-5"

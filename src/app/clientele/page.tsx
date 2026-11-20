@@ -7,11 +7,13 @@ import Header from "@/components/layout/Header";
 import GetInTouch from "@/components/layout/GetInTouch";
 import Footer from "@/components/layout/Footer";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { useEffect } from "react";
 
 
 export default function WhatWeDo() {
-
+  useEffect(() => {
+    document.title = "Clients | PSMJ";
+  }, []);
   const clients = [
     "/images/clientele/logo/1.svg",
     "/images/clientele/logo/2.svg",
