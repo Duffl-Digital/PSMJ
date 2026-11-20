@@ -39,18 +39,13 @@ export const ContactSchema = z.object({
       }
     ),
 
-  subject: z
-  .string()
-  .trim()
-  .min(1, { message: "Please select a service" })
-  .refine(
-    (value) =>
-      ["Option 1", "Option 2", "Option 3"].includes(value),
-    {
-      message: "Invalid service selected",
-    }
-  ),
+ 
    
+  subject: z
+    .string()
+    .trim()
+    .min(1, { message: "Enter service name" })
+    .min(2, { message: "Enter valid service name" }),
 
   message: z
     .string()

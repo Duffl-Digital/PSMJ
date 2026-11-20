@@ -32,7 +32,7 @@ if (
 }
 
   if (!formData.service) {
-    errors.service = "  Select a service";
+    errors.service = "  Enter a service";
   }
 
 
