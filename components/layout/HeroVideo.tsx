@@ -124,7 +124,7 @@ export default function HeroVideo({
       initial={{ height: 0, opacity: 0 }}
       animate={open ? { height: "100vh", opacity: 1 } : { height: 0, opacity: 0 }}
       transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-      className="relative w-full overflow-hidden bg-black hero-video"
+      className="relative w-full overflow-hidden bg-white hero-video"
     >
       <video
         ref={videoRef}
@@ -139,7 +139,7 @@ export default function HeroVideo({
           setPosterVisible(true); // thumbnail comes back after end
         }}
         onClick={playing ? () => videoRef.current?.pause() : undefined}
-        className="absolute inset-0 h-[100vh] w-full object-cover"
+        className="absolute inset-0 h-[100dvh] w-full object-contain"
       >
         {mobileVideo && (
           <source
@@ -168,7 +168,7 @@ export default function HeroVideo({
 
       {/* Header overlapping the video, top center */}
       {open && header && (
-        <div className="absolute hero-header inset-x-0 top-[-12px] z-20 flex  justify-center   ">
+        <div className="absolute hero-header inset-x-0 top-[-24px] z-20 flex  justify-center   ">
           {header}
         </div>
       )}

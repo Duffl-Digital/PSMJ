@@ -113,7 +113,7 @@ export default function IntroVideo({
               preload="auto"
               onTimeUpdate={handleTimeUpdate}
               onEnded={() => setShowPrompt(true)} // no `loop`: plays once
-              className="absolute inset-0  md:h-full max-md:top-1/2 max-md:-translate-y-1/2 w-full object-cover"
+              className="absolute inset-0  md:h-full max-md:top-1/2 max-md:-translate-y-1/2 w-full object-contain"
             />
           )}
 
